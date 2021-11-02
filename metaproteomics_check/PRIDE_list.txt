@@ -13,6 +13,7 @@ PXD003151	Protein expression patterns associated with sucrose-induced dysbiosis 
 PXD003275	Differential proteomics of Lenisia limosa (Breviatea) and its epibiotic Arcobacter symbion	Breviatea;Alteromonas macleodii atcc 27126;Arcobacter
 PXD003527	Mouse gut metaproteome - MetaPro-IQ: a universal metaproteomic approach to studying human and mouse gut microbiota	Human gut metagenome
 PXD003528	Human MLI metaproteome - MetaPro-IQ: a universal metaproteomic approach to studying human and mouse gut microbiota	Mouse gut metagenome
+PXD003791	MuSt multiomics - Integrated multi-omics of the human gut microbiome in a case study of familial type 1 diabetes	Mixed culture metagenome
 PXD003896	HEK293 searched with UniProt Human and ComPIL	Homo sapiens (human)
 PXD003907	Human Fecal Gut Microbiome proteomics	Human metagenome
 PXD004039	Sequence database choice significantly affects taxonomic and functional metaproteomic results in gut microbiota studies	Human gut metagenome
@@ -60,6 +61,7 @@ PXD010274	An endo-acting galactanase with a type II signal peptide confers keyst
 PXD011166	Interspecies and intersubstrate comparison of the biomass-degrading capacity of five filamentous fungi	Thermothelomyces thermophila atcc 42464;Phanerochaete chrysosporium;Neurospora crassa;Hypocrea jecorina (strain qm6a) (trichoderma reesei)
 PXD011230	Metaproteomes of phototrophic mats from four soda lakes found in the Cariboo Plateau region of British Columbia, Canada	Bacteria
 PXD011357	Mucolytic activity of Akkermansia muciniphila enables Human Milk Oligosaccharides degradation	Akkermansia muciniphila atcc baa-835
+PXD011360	Bacterial and host proteins along and across the porcine GIT	Sus scrofa domesticus (domestic pig)
 PXD011457	Protein turnover rate along the gastrointestinal tract is coordinated by the spatial location and the microbiota	Mus musculus (mouse)
 PXD011515	InfectERA: Challenges in clinical metaproteomics highlighted by the analysis of acute leukemia patients with gut colonization by multidrug-resistant Enterobacteriaceae	Homo sapiens (human)
 PXD011616	Proteomics and direct Protein-SIF of the bacterial ectosymbionts of the ciliate Kentrophoros sp. H	Candidatus kentron sp. h;Kentrophoros sp. h
@@ -104,4 +106,3 @@ PXD024509	Metaproteomics reveals functional changes in the fecal microbiota of r
 PXD025659	Evaluation of different protein extraction protocols to study human gut microbiota	Homo sapiens (human);Microbiota
 PXD026192	Metaproteomic analysis of nine coral species with and without Stony Coral Tissue Loss Disease (SCTLD)	Orbicella faveolata;Pseudodiploria strigosa;Dichocoenia
 PXD027185	Pig metaproteome and mycotoxins	Sus scrofa domesticus (domestic pig)
-
