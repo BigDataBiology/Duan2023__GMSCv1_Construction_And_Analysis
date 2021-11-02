@@ -34,6 +34,7 @@ PXD005969	Evaluating the protein extraction methods for gut metaproteomics	Human
 PXD006070	Rumen metaproteome - A Structural and Functional Elucidation of the Rumen Microbiome Influenced by Various Diets and Microenvironments	Archaea;Bacteria
 PXD006118	Metaproteomics of the marine gutless oligochaete Olavius algarvensis and its symbionts to determine stable isotope fingerprints using Direct Protein-SIF	Archaea;Bacteria;Viruses;Eukaryota (eucaryotes)
 PXD006129	Fiber-associated microbiota protects against diet-induced amelioration of the colonic mucus barrier	Mus musculus (mouse)
+PXD006281	Meta-Proteomics profiling of a four species biofilm	Microbacterium oxydans;Paenibacillus amylolyticus;Stenotrophomonas rhizophila;Xanthomonas retroflexus
 PXD006343	Metaproteomics of phototrophic biomats from two soda lakes in the Canadian Rocky Mountains	Archaea;Bacteria;Viruses;Eukaryota (eucaryotes)
 PXD006366	Re-analysis of an ultra-deep and quantitative saliva proteome	Homo sapiens (human);Bacteria	Homo sapiens (human);Bacteria
 PXD006580	Viral BONCAT: Detection of HPG incorporation into newly synthesized viral proteins via proteomics	Emiliania huxleyi;Escherichia coli;Emiliania huxleyi virus 207;Enterobacteria phage t7
