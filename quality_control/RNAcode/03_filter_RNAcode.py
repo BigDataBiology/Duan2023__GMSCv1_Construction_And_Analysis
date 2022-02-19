@@ -1,4 +1,8 @@
-def file_name(file_dir,outfile):
+'''
+Filter RNAcode result according to p-value:0.05.
+'''
+
+def filter(file_dir,outfile):
     import os
     out = open(outfile, "w")
     for n in range(1,288):
@@ -21,7 +25,10 @@ def file_name(file_dir,outfile):
                                 break
             else:
                 break
+ 
     out.close()
-file_dir = "RNAcode_result/rna"
-outfile = "RNAcode_result/filt/result/smORF_0.9_RNAcode.tsv"
-file_name(file_dir,outfile)
+
+INPUT_DIR = "/RNAcode_result/rna"
+OUTPUT_FILE = "/RNAcode_result/filt/result/smORF_0.9_RNAcode.tsv"
+
+filter(INPUT_DIR,OUTPUT_FILE)

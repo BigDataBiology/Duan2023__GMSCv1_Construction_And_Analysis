@@ -1,4 +1,8 @@
 #!/bin/bash
+
+# Multiple sequences alignment of each .fna family file.
+# Run RNAcode
+
 DIR="/home1/duanyq/GMSC/RNAcode_result/split"
 number=1
 for n in {1..287}

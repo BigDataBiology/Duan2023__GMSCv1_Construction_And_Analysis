@@ -100,7 +100,7 @@ for i in range(1,9):
     INPUT_FILE_4 = OUT_PATH_1+"_"+str(i)+".tsv.xz"
     INPUT_FILE_5 = OUT_PATH_2+"_"+str(i-1)+".tsv.xz"
     OUTPUT_FILE = OUT_PATH_2+"_"+str(i)+".tsv.xz"
-    if i ==1:
+    if i == 1:
         map_cluster(INPUT_FILE_4,INPUT_FILE_3,OUTPUT_FILE)
     else:
         map_cluster(INPUT_FILE_4,INPUT_FILE_5,OUTPUT_FILE)
