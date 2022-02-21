@@ -53,36 +53,31 @@ def change_format_50(infile1,outfile):
 '''
 Map habitat to 90% and 50% identity clusters.
 '''
-def metag_full(infile1,infile2,outfile):
+def mapcluster(infile1,infile2,outfile):
     habitat = {}
     out = lzma.open(outfile, "wt")
     with lzma.open(infile1,"rt") as f1:
         for line in f1:
             line = line.strip()
             linelist = line.split("\t",1)
-            if len(linelist) == 2:
-                habitat[linelist[0]] = linelist[1]
-            else:
-                continue
+            habitat[linelist[0]] = linelist[1]
 
     with lzma.open(infile2,"rt") as f2:
         for line in f2:
             line = line.strip()
             linelist = line.split("\t") 
-            if linelist[1] in habitat.keys():
-                out.write(linelist[0]+"\t"+linelist[1]+"\t"+habitat[linelist[1]]+"\n")
-            else:
-                out.write(line+"\n")
+            out.write(linelist[0]+"\t"+linelist[1]+"\t"+habitat[linelist[1]]+"\n")
+
     out.close()
 
 INPUT_FILE_1 = "/clust_result/result/all_0.5_0.9.tsv.gz" 
-INPUT_FILE_2 = "/habitat/id100/100AA_habitat.tsv.xz"   
+INPUT_FILE_2 = "/habitat/id100/100AA_multi_general_habitat.tsv.xz"   
 OUTPUT_FILE_1 = "all_cluster_0.9.tsv.xz"  
 OUTPUT_FILE_2 = "all_cluster_0.5.tsv.xz"
-OUTPUT_FILE_3 = "/habitat/id90/metag_cluster_habitat_90.tsv.xz" 
-OUTPUT_FILE_4 = "/habitat/id50/metag_cluster_habitat_50.tsv.xz" 
+OUTPUT_FILE_3 = "/habitat/id90/cluster_multi_habitat_90.tsv.xz" 
+OUTPUT_FILE_4 = "/habitat/id50/cluster_multi_habitat_50.tsv.xz" 
 
 change_format_90(INPUT_FILE_1,OUTPUT_FILE_1)
 change_format_50(INPUT_FILE_1,OUTPUT_FILE_2)
-metag_full(INPUT_FILE_2,OUTPUT_FILE_1,OUTPUT_FILE_3)
-metag_full(INPUT_FILE_2,OUTPUT_FILE_2,OUTPUT_FILE_4)
+mapcluster(INPUT_FILE_2,OUTPUT_FILE_1,OUTPUT_FILE_3)
+mapcluster(INPUT_FILE_2,OUTPUT_FILE_2,OUTPUT_FILE_4)

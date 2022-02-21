@@ -1,0 +1,5 @@
+ngless "1.1"
+
+s = samfile('/riboseq/result/bwa/SRR*.sam')
+counts = count(s,features=['seqname'],multiple={unique_only},discard_zeros=True)
+write(counts, ofile='/riboseq/result/ngless/SRR*_uniq.tsv')

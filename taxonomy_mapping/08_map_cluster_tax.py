@@ -133,7 +133,7 @@ def deep_lca(infile1,outfile):
                 out.write(key+"\t"+value[n]+"\n")                        
     out.close()
 
-INPUT_FILE_1 = "/taxa/metag/id100/100AA_habitat.tsv.xz"   
+INPUT_FILE_1 = "/taxa/metag/id100/100AA_taxonomy.tsv.xz"   
 INPUT_FILE_2 = "all_cluster_0.9.tsv.xz"  
 INPUT_FILE_3 = "all_cluster_0.5.tsv.xz"
 OUTPUT_FILE_1 = "/taxa/metag/id90/metag_cluster_tax_90.tsv.xz" 
