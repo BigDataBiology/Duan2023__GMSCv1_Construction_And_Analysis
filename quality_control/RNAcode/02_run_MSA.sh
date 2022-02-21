@@ -1,9 +1,8 @@
 #!/bin/bash
 
 # Multiple sequences alignment of each .fna family file.
-# Run RNAcode
 
-DIR="/home1/duanyq/GMSC/RNAcode_result/split"
+DIR="/GMSC/RNAcode_result/split"
 number=1
 for n in {1..287}
   do
@@ -17,7 +16,7 @@ for n in {1..287}
           then
             for infile in $(ls ${DIR_second})
               do
-                mafft --clustalout --auto ${DIR_second}/${infile} >RNAcode_result/msa/first${n}/second${m}/${infile}.aln
+                mafft --clustalout --auto ${DIR_second}/${infile} >/RNAcode_result/msa/first${n}/second${m}/${infile}.aln
               done
           else
             number=0

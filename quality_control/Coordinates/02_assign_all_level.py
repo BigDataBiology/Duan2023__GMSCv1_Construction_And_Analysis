@@ -121,7 +121,7 @@ def assign_90_50(infile1,infile2,outfile1,outfile2,outfile3,outfile4):
 INPUT_FILE_1 = "/coordinate/all/result.tsv.gz"
 INPUT_FILE_2 = "/data/frozen/100AA_rename.tsv.xz"
 INPUT_FILE_3 = "/data/frozen/all_0.9_0.5_family.tsv.xz"
-OUTPUT_FILE_1 = "/coordinate/all/result_100AA.tsv.gz"
+OUTPUT_FILE_1 = "/coordinate/all/100AA_coordinate.tsv.gz"
 OUTPUT_FILE_2 = "/coordinate/all/90AA_T_F_iso_rate.tsv.gz"
 OUTPUT_FILE_3 = "/coordinate/all/90AA_coordinate.tsv.gz"
 OUTPUT_FILE_4 = "/coordinate/all/50AA_T_F_iso_rate.tsv.gz"
