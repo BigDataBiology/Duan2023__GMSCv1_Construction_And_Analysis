@@ -45,30 +45,20 @@ def detect_sequence(sitelist,seq,out):
     codon = {"TAG","TAA","TGA"} #stop codon
     tf = 0 #default is False
     (GMSC,start,end,flag) = sitelist
-    if flag == 1:
-        for i in range(start-1,2,-3):
-            triplet = seq[i-3:i]            
-            if triplet in codon: 
-                tf = 1
-                break
-        if tf == 0:
-            out.write(GMSC+"\t"+"F"+"\n")
-        else:
-            out.write(GMSC+"\t"+"T"+"\n")
-        tf = 0   
-    else:
+    if flag == -1:
         seq = complement(seq)
-        for i in range(end-1,len(seq)-3,3):
-            triplet = seq[i+3:i:-1]
-            if triplet in codon:
-                tf = 1
-                break
-        if tf == 0:
-            out.write(GMSC+"\t"+"F"+"\n")
-        else:
-            out.write(GMSC+"\t"+"T"+"\n")
-        tf = 0      
-
+    for i in range(start-1,2,-3):
+        triplet = seq[i-3:i]            
+        if triplet in codon:
+            tf = 1
+            break
+    if tf == 0:
+        out.write(GMSC+"\t"+"F"+"\n")
+    else:
+        out.write(GMSC+"\t"+"T"+"\n")
+    tf = 0   
+    
+    
 def detect_contigdict(contigdict,seqdict,out):
     '''
     The function is to detect the contigdict.
