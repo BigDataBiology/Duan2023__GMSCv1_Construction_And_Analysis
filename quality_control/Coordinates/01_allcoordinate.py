@@ -6,15 +6,25 @@ def getfasta(sample,fasta_path):
     import gzip
     seqdict = {}
     fasta_file = fasta_path+sample+"-assembled.fa.gz"
-    with gzip.open(fasta_file,"rt") as f2:
-        for line in f2:
-            line = line.strip()
-            if line.startswith(">"):
-                line = line.strip(">")
-                index = line.split(" ")[0]
+    header = None
+    chunks = []
+    with gzip.open(fasta_file, 'rt') as f:
+        for line in f:
+            if line[0] == '>':
+                if header is not None:
+                    seqdict[header] = ''.join(chunks)
+                line = line[1:].strip()
+                if not line:
+                    header = ''
+                else:
+                    header = line.split()[0]
+                chunks = []
             else:
-                seqdict[index] = line  
+                chunks.append(line.strip())
+        if header is not None:
+            seqdict[header] = ''.join(chunks)
     return seqdict
+
 
 def add_contigdict(contigdict,GMSC,original):
     '''
@@ -31,11 +41,12 @@ def add_contigdict(contigdict,GMSC,original):
     else:
         contigdict[contig].append([GMSC,int(start),int(end),int(flag)])
 
-def complement(seq):
+def revcomplement(seq):
     '''
-    Get complement sequence.
+    Get complement sequence and its reverse.
     '''
     return seq.translate(str.maketrans('ACGT', 'TGCA'))[::-1]
+
 
 def detect_sequence(sitelist,seq,out):
     '''
@@ -46,10 +57,12 @@ def detect_sequence(sitelist,seq,out):
     tf = 0 #default is False
     (GMSC,start,end,flag) = sitelist
     if flag == -1:
-        seq = complement(seq)
-    for i in range(start-1,2,-3):
-        triplet = seq[i-3:i]            
-        if triplet in codon:
+        seq = revcomplement(seq)
+        start = len(seq) - end  # most downstream position is the start of a -1 gene
+    if flag == 1:
+        start = start-1
+    for i in range(start, -1, -3):
+        if (i-3) >= 0 and seq[i-3: i] in codon:
             tf = 1
             break
     if tf == 0:
@@ -140,8 +153,10 @@ def coordinate(infile,fasta_path,outfile):
                 else:   
                     add_contigdict(contigdict,GMSC,original)
 
-        detect_contigdict(contigdict,seqdict,out)                 
+        detect_contigdict(contigdict,seqdict,out)   
+                      
     out.close()  
+    
     
 INPUT_FILE = "/home1/luispedro/SHARED/GMSC10.metag_smorfs.rename.txt.xz" 
 FASTA_PATH = "/home1/luispedro/SHARED/sample-contigs/" 
