@@ -35,7 +35,7 @@ def complement(seq):
     '''
     Get complement sequence.
     '''
-    return seq.translate(str.maketrans('ACGT', 'TGCA'))
+    return seq.translate(str.maketrans('ACGT', 'TGCA'))[::-1]
 
 def detect_sequence(sitelist,seq,out):
     '''
