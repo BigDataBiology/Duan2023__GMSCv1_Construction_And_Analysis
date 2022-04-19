@@ -156,7 +156,7 @@ def coordinate(infile,fasta_path,outfile):
         detect_contigdict(contigdict,seqdict,out)   
                       
     out.close()  
-    
+        
     
 INPUT_FILE = "/home1/luispedro/SHARED/GMSC10.metag_smorfs.rename.txt.xz" 
 FASTA_PATH = "/home1/luispedro/SHARED/sample-contigs/" 
