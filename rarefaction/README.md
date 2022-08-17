@@ -4,6 +4,6 @@ This folder contains the following:
 
 - main.py: Main code for doing the rarefaction. Select the samples for the expected environments.
 - rarefaction.py: Auxiliary functions for the rarefaction. It creates persistent storage for an environment to store the samples. After this, it reads random samples from the storage to run the rarefaction calculations.
-- split_samples: First code needed to run. It separates the samples into files given the initial dataset, also discretizing the smORFs by their unique numbers.
+- split_samples.py: First code needed to run. It separates the samples into files given the initial dataset, also discretizing the smORFs by their unique numbers.
 
 More details at [GMSC figures - CodiMD](https://aws.big-data-biology.org:1300/WS2U5sgnSsKKuUMVzUXxbg).

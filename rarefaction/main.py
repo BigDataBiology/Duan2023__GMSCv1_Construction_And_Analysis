@@ -113,6 +113,6 @@ for high_env in high_envs:
         high_df = high_df[high_df['sample_accession'].isin(data_samples)]
         samples_high = list(high_df['sample_accession'])
 
-        create_database(samples_high, high_env)
+        #create_database(samples_high, high_env)
 
         rarefy(high_env, samples_high, 24, True)

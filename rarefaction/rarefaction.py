@@ -12,12 +12,11 @@ from bitarray import bitarray
 def run_calculations(k, n_perms):
     smorfs_len = []
     avg_smorfs, std_smorfs = 0, 0
-    BILLION = 1000 * 1000 * 1000
-    N = 1 * BILLION
+
+    N = int(1e9)
 
     with shelve.open('database/smorfs') as db:
         samples_db = list(db.keys())
-
 
         if len(samples_db) != k:
 
@@ -37,7 +36,6 @@ def run_calculations(k, n_perms):
 
             avg_smorfs = sum(smorfs_len) / n_perms
             std_smorfs = np.std(smorfs_len, ddof=1)
-     
         else:
             smorfs = bitarray(N)
             smorfs.setall(False)
