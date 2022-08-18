@@ -40,8 +40,7 @@ def run_calculations(name_env, samples, p):
 
 def create_database(samples_dir, samples, env):
     database_dir = 'database'
-    if not os.path.exists(database_dir):
-        os.mkdir(database_dir)
+    os.makedirs(database_dir, exist_ok=True)
 
     print('Creating database for {}'.format(env))
 

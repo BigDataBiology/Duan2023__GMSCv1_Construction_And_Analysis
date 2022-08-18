@@ -126,8 +126,7 @@ rarefy = TaskGenerator(rarefy)
 create_database = TaskGenerator(create_database)
 
 output_dir = 'rarefaction'
-if not os.path.exists(output_dir):
-        os.mkdir(output_dir)
+os.makedirs(output_dir, exist_ok=True)
 
 samples_dir = 'data_samples'
 habitat_data = 'data'
