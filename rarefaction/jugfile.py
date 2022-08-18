@@ -149,9 +149,9 @@ if env == 'high':
 
                 name_env = high_env.replace(' ', '_')
 
-                create_database(samples_dir, samples_high, name_env)
+                db_name = create_database(samples_dir, samples_high, name_env)
 
-                rarefy(name_env, samples_high, n_perms, parallel)
+                rarefy(db_name, name_env, samples_high, n_perms, parallel)
 elif env == 'general':
         general_envs = df['general_envo_name'].unique()
 
@@ -163,6 +163,5 @@ elif env == 'general':
 
                 name_env = general_env.replace(' ', '_')
 
-                create_database(samples_dir, samples_general, name_env)
-
-                rarefy(name_env, samples_general, n_perms, parallel)
+                db_name = create_database(samples_dir, samples_general, name_env)
+                rarefy(db_name, name_env, samples_general, n_perms, parallel)
