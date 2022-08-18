@@ -125,14 +125,15 @@ def higher_env(df):
 rarefy = TaskGenerator(rarefy)
 create_database = TaskGenerator(create_database)
 
-output_dir = 'rarefaction'
-os.makedirs(output_dir, exist_ok=True)
-
 samples_dir = 'data_samples'
 habitat_data = 'data'
 n_perms = 24
 env = 'high'
 parallel = True
+
+output_dir = 'rarefaction_results'
+output_dir = output_dir + '/' + env
+os.makedirs(output_dir, exist_ok=True)
 
 df = get_samples_relationship(samples_dir, habitat_data)
 
@@ -151,7 +152,7 @@ if env == 'high':
 
                 db_name = create_database(samples_dir, samples_high, name_env)
 
-                rarefy(db_name, name_env, samples_high, n_perms, parallel)
+                rarefy(db_name, output_dir, name_env, samples_high, n_perms, parallel)
 elif env == 'general':
         general_envs = df['general_envo_name'].unique()
 
@@ -164,4 +165,5 @@ elif env == 'general':
                 name_env = general_env.replace(' ', '_')
 
                 db_name = create_database(samples_dir, samples_general, name_env)
-                rarefy(db_name, name_env, samples_general, n_perms, parallel)
+
+                rarefy(db_name, output_dir, name_env, samples_general, n_perms, parallel)

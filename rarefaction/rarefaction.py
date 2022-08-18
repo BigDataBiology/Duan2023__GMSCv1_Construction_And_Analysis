@@ -9,7 +9,7 @@ import shelve
 from bitarray import bitarray
 import time
 
-def run_calculations(db_name, name_env, samples, p):
+def run_calculations(db_name, env_results_dir, samples, p):
 
     print('... Starting permutation {} ...'.format(p))
 
@@ -25,7 +25,7 @@ def run_calculations(db_name, name_env, samples, p):
         smorfs = bitarray(N)
         smorfs.setall(False)
 
-        with open('rarefaction/{}/perm_{}.tsv'.format(name_env, p), 'a') as rarefication_file:
+        with open(env_results_dir + '/perm_{}.tsv'.format(p), 'a') as rarefication_file:
             rarefication_file.write('k\tsmorfs\n')
 
         for k, sample in enumerate(samples_db):
@@ -33,10 +33,10 @@ def run_calculations(db_name, name_env, samples, p):
             for smorf_id in db[sample]:
                 smorfs[smorf_id] = True
 
-            with open('rarefaction/{}/perm_{}.tsv'.format(name_env, p), 'a') as rarefication_file:
+            with open(env_results_dir + '/perm_{}.tsv'.format(p), 'a') as rarefication_file:
                 rarefication_file.write('{}\t{}\n'.format(k + 1, smorfs.count()))
     
-    print('... Permutation {} completed in {:2f} seconds ...'.format(p, time.time() - start))
+    print('... Permutation {} completed in {:.2f} seconds ...'.format(p, time.time() - start))
 
 def create_database(samples_dir, samples, env):
     database_dir = 'database'
@@ -52,11 +52,12 @@ def create_database(samples_dir, samples, env):
             smorfs = set(dt_file.to_list()[0])
 
             db[sample] = smorfs
+
     return db_name
 
-def rarefy(db_name, environment, samples, n_perms, parallel):
+def rarefy(db_name, output_dir, environment, samples, n_perms, parallel):
 
-    name_env = environment.replace(' ', '_')
+    name_env = environment.replace(' ', '_').replace('/', '-')
     
     L = len(samples)
 
@@ -64,17 +65,17 @@ def rarefy(db_name, environment, samples, n_perms, parallel):
 
     print('{} samples for {} environment.'.format(L, environment))
 
-    output_dir = 'rarefaction/' + name_env
-    if not os.path.exists(output_dir):
-        os.mkdir(output_dir)
+    env_results_dir = output_dir + '/' + name_env
+    if not os.path.exists(env_results_dir):
+        os.mkdir(env_results_dir)
     else:
-        shutil.rmtree(output_dir)
-        os.mkdir(output_dir)
+        shutil.rmtree(env_results_dir)
+        os.mkdir(env_results_dir)
 
     if parallel:
         with concurrent.futures.ProcessPoolExecutor() as executor:
             for p in range(n_perms):
-                executor.submit(run_calculations, db_name, name_env, samples, p)
+                executor.submit(run_calculations, db_name, env_results_dir, samples, p)
     else:
         for p in range(n_perms):
-            run_calculations(name_env, samples, p)
+            run_calculations(db_name, env_results_dir, samples, p)
