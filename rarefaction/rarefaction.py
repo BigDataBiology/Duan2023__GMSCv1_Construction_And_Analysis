@@ -2,65 +2,52 @@ import datatable as dt
 import numpy as np
 from tqdm import tqdm
 import concurrent.futures
-from random import sample
+import random
 import os
 import shutil
 import shelve
-import time
 from bitarray import bitarray
+import time
 
-def run_calculations(k, n_perms):
-    smorfs_len = []
-    avg_smorfs, std_smorfs = 0, 0
+def run_calculations(name_env, samples, p):
 
-    N = int(1e9)
+    print('... Starting permutation {} ...'.format(p))
+
+    start = time.time()
 
     with shelve.open('database/smorfs') as db:
-        samples_db = list(db.keys())
+        samples_db = samples.copy()
 
-        if len(samples_db) != k:
+        np.random.seed()
+        random.shuffle(samples_db)
 
-            for p in range(n_perms):
-                np.random.seed()
-            
-                random_samples = sample(samples_db, k)
+        N = int(1e9)
+        smorfs = bitarray(N)
+        smorfs.setall(False)
 
-                smorfs = bitarray(N)
-                smorfs.setall(False)
+        with open('rarefaction/{}/perm_{}.tsv'.format(name_env, p), 'a') as rarefication_file:
+            rarefication_file.write('k\tsmorfs\n')
 
-                for key in random_samples:
-                    for smorf_id in db[key]:
-                        smorfs[smorf_id] = True
+        for k, sample in enumerate(samples_db):
 
-                smorfs_len.append(smorfs.count())
+            for smorf_id in db[sample]:
+                smorfs[smorf_id] = True
 
-            avg_smorfs = sum(smorfs_len) / n_perms
-            std_smorfs = np.std(smorfs_len, ddof=1)
-        else:
-            smorfs = bitarray(N)
-            smorfs.setall(False)
+            with open('rarefaction/{}/perm_{}.tsv'.format(name_env, p), 'a') as rarefication_file:
+                rarefication_file.write('{}\t{}\n'.format(k + 1, smorfs.count()))
+    
+    print('... Permutation {} completed in {:2f} seconds ...'.format(p, time.time() - start))
 
-            for key in samples_db:
-                for smorf_id in db[key]:
-                    smorfs[smorf_id] = True
-        
-            avg_smorfs = smorfs.count()
-
-    return (k, avg_smorfs, std_smorfs)
-
-def create_database(samples, env):
+def create_database(samples_dir, samples, env):
     database_dir = 'database'
     if not os.path.exists(database_dir):
-        os.mkdir(database_dir)
-    else:
-        shutil.rmtree(database_dir)
         os.mkdir(database_dir)
 
     print('Creating database for {}'.format(env))
 
     with shelve.open(database_dir + '/smorfs') as db:
         for sample in tqdm(samples):
-            dt_file = dt.fread('data_samples/' + sample, header = None)
+            dt_file = dt.fread(samples_dir + '/' + sample, header = None)
 
             smorfs = set(dt_file.to_list()[0])
 
@@ -72,26 +59,21 @@ def rarefy(environment, samples, n_perms, parallel):
     
     L = len(samples)
 
-    print('{} samples for {} environment'.format(L, environment))
+    print('------------------------------------------------------')
 
-    with open('rarefaction/{}.tsv'.format(name_env), 'a') as rarefication_file:
-        rarefication_file.write('{}\t{}\t{}\t{}\n'.format('samples', 'avg_smorfs', 'std_smorfs', 'time'))
+    print('{} samples for {} environment.'.format(L, environment))
+
+    output_dir = 'rarefaction/' + name_env
+    if not os.path.exists(output_dir):
+        os.mkdir(output_dir)
+    else:
+        shutil.rmtree(output_dir)
+        os.mkdir(output_dir)
 
     if parallel:
         with concurrent.futures.ProcessPoolExecutor() as executor:
-            futures = []
-
-            start = time.time()
-
-            for k in range(1, L + 1, 10):
-                futures.append(executor.submit(run_calculations, k, n_perms))
-            for future in tqdm(concurrent.futures.as_completed(futures), total=int(L/10)):
-                with open('rarefaction/{}.tsv'.format(name_env), 'a') as rarefication_file:
-                    rarefication_file.write('{}\t{}\t{}\t{}\n'.format(future.result()[0], future.result()[1], future.result()[2], time.time() - start))
+            for p in range(n_perms):
+                executor.submit(run_calculations, name_env, samples, p)
     else:
-        start = time.time()
-
-        for k in tqdm(range(1, L + 1, 10)):
-            k, presult, std_result = run_calculations(k, n_perms)
-            with open('rarefaction/{}.tsv'.format(name_env), 'a') as rarefication_file:
-                rarefication_file.write('{}\t{}\t{}\t{}\n'.format(k, presult, std_result, time.time() - start))
+        for p in range(n_perms):
+            run_calculations(name_env, samples, p)
