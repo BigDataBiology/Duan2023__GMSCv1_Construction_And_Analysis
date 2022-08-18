@@ -9,13 +9,13 @@ import shelve
 from bitarray import bitarray
 import time
 
-def run_calculations(name_env, samples, p):
+def run_calculations(db_name, name_env, samples, p):
 
     print('... Starting permutation {} ...'.format(p))
 
     start = time.time()
 
-    with shelve.open('database/smorfs') as db:
+    with shelve.open(db_name) as db:
         samples_db = samples.copy()
 
         np.random.seed()
@@ -40,20 +40,21 @@ def run_calculations(name_env, samples, p):
 
 def create_database(samples_dir, samples, env):
     database_dir = 'database'
-    if not os.path.exists(database_dir):
-        os.mkdir(database_dir)
+    os.makedirs(database_dir, exist_ok=True)
 
     print('Creating database for {}'.format(env))
 
-    with shelve.open(database_dir + '/smorfs') as db:
+    db_name = database_dir + '/smorfs'
+    with shelve.open(db_name) as db:
         for sample in tqdm(samples):
             dt_file = dt.fread(samples_dir + '/' + sample, header = None)
 
             smorfs = set(dt_file.to_list()[0])
 
             db[sample] = smorfs
+    return db_name
 
-def rarefy(environment, samples, n_perms, parallel):
+def rarefy(db_name, environment, samples, n_perms, parallel):
 
     name_env = environment.replace(' ', '_')
     
@@ -73,7 +74,7 @@ def rarefy(environment, samples, n_perms, parallel):
     if parallel:
         with concurrent.futures.ProcessPoolExecutor() as executor:
             for p in range(n_perms):
-                executor.submit(run_calculations, name_env, samples, p)
+                executor.submit(run_calculations, db_name, name_env, samples, p)
     else:
         for p in range(n_perms):
             run_calculations(name_env, samples, p)
