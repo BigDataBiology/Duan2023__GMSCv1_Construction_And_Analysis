@@ -128,7 +128,7 @@ create_database = TaskGenerator(create_database)
 samples_dir = 'data_samples'
 habitat_data = 'data'
 n_perms = 24
-env = 'high'
+env = 'general'
 parallel = True
 
 output_dir = 'rarefaction_results'
@@ -148,13 +148,12 @@ if env == 'high':
                 high_df = df[df['high'] == high_env]
                 samples_high = list(high_df['sample_accession'])
 
-                name_env = high_env.replace(' ', '_')
+                db_name = create_database(samples_dir, samples_high, high_env)
 
-                db_name = create_database(samples_dir, samples_high, name_env)
-
-                rarefy(db_name, output_dir, name_env, samples_high, n_perms, parallel)
+                rarefy(db_name, output_dir, high_env, samples_high, n_perms, parallel)
 elif env == 'general':
-        general_envs = df['general_envo_name'].unique()
+        env_threshold = df.groupby('general_envo_name')['sample_accession'].count() >= 100
+        general_envs = list(env_threshold[env_threshold == True].index)
 
         for general_env in general_envs:
                 print(general_env)
@@ -162,8 +161,6 @@ elif env == 'general':
                 general_df = df[df['general_envo_name'] == general_env]
                 samples_general = list(general_df['sample_accession'])
 
-                name_env = general_env.replace(' ', '_')
+                db_name = create_database(samples_dir, samples_general, general_env)
 
-                db_name = create_database(samples_dir, samples_general, name_env)
-
-                rarefy(db_name, output_dir, name_env, samples_general, n_perms, parallel)
+                rarefy(db_name, output_dir, general_env, samples_general, n_perms, parallel)
