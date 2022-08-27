@@ -2,7 +2,6 @@ from rarefaction import rarefy
 from rarefaction import create_database
 import pandas as pd
 import os
-import shutil
 from jug import TaskGenerator
 
 # def parse_args():
@@ -129,7 +128,11 @@ samples_dir = 'data_samples'
 habitat_data = 'data'
 n_perms = 24
 env = 'general'
-parallel = True
+parallel = False
+f_smorfs = True
+
+select = True
+selected = ['human gut']
 
 output_dir = 'rarefaction_results'
 output_dir = output_dir + '/' + env
@@ -140,7 +143,10 @@ df = get_samples_relationship(samples_dir, habitat_data)
 if env == 'high':
         high_df = higher_env(df)
 
-        high_envs = high_df['high'].unique()
+        if select:
+                high_envs = selected
+        else:
+                high_envs = high_df['high'].unique()
 
         for high_env in high_envs:
                 print(high_env)
@@ -150,10 +156,14 @@ if env == 'high':
 
                 db_name = create_database(samples_dir, samples_high, high_env)
 
-                rarefy(db_name, output_dir, high_env, samples_high, n_perms, parallel)
+                rarefy(db_name, output_dir, high_env, samples_high, n_perms, f_smorfs, parallel)
 elif env == 'general':
-        env_threshold = df.groupby('general_envo_name')['sample_accession'].count() >= 100
-        general_envs = list(env_threshold[env_threshold == True].index)
+        env_threshold = df.groupby('general_envo_name')['sample_accession'].count().sort_values(ascending=False)
+        
+        if select:
+                general_envs = selected
+        else:
+                general_envs = list(env_threshold[:10].index)
 
         for general_env in general_envs:
                 print(general_env)
@@ -163,4 +173,4 @@ elif env == 'general':
 
                 db_name = create_database(samples_dir, samples_general, general_env)
 
-                rarefy(db_name, output_dir, general_env, samples_general, n_perms, parallel)
+                rarefy(db_name, output_dir, general_env, samples_general, n_perms, f_smorfs, parallel)
