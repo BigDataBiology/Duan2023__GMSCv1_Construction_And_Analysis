@@ -8,10 +8,8 @@ import shutil
 import shelve
 from bitarray import bitarray
 import time
-import gzip
-import pickle
 
-def run_calculations(db_name, env_results_dir, samples, p, f_smorfs):
+def run_calculations(db_name, env_results_dir, samples, p):
 
     print('... Starting permutation {} ...'.format(p))
 
@@ -37,29 +35,6 @@ def run_calculations(db_name, env_results_dir, samples, p, f_smorfs):
 
             with open(env_results_dir + '/perm_{}.tsv'.format(p), 'a') as rarefication_file:
                 rarefication_file.write('{}\t{}\n'.format(k + 1, smorfs.count()))
-
-        if f_smorfs:
-            for pct in [0.01, 0.05]:
-
-                smorfs.setall(False)
-
-                print('... Permutation {}: Counting frequent genes with a {}% threshold ...'.format(p, int(pct * 100)))
-
-                # Load frequent genes considering a threshold
-
-                with gzip.open('freq_smorfs/{}_smorfs.gz'.format(pct), 'rb') as f:
-                    freq_smorfs = pickle.load(f)
-
-                with open(env_results_dir + '/perm_{}_{}.tsv'.format(p, pct), 'a') as rarefication_file:
-                    rarefication_file.write('k\tsmorfs\n')
-
-                for k, sample in enumerate(samples_db):
-
-                    for smorf_id in db[sample]:
-                            smorfs[smorf_id] = freq_smorfs[smorf_id]
-
-                    with open(env_results_dir + '/perm_{}_{}.tsv'.format(p, pct), 'a') as rarefication_file:
-                        rarefication_file.write('{}\t{}\n'.format(k + 1, smorfs.count()))
                 
     print('... Permutation {} completed in {:.2f} seconds ...'.format(p, time.time() - start))
 
@@ -80,7 +55,7 @@ def create_database(samples_dir, samples, env):
 
     return db_name
 
-def rarefy(db_name, output_dir, environment, samples, n_perms, f_smorfs, parallel):
+def rarefy(db_name, output_dir, environment, samples, n_perms, parallel):
 
     name_env = environment.replace(' ', '_').replace('/', '-')
     
@@ -100,7 +75,7 @@ def rarefy(db_name, output_dir, environment, samples, n_perms, f_smorfs, paralle
     if parallel:
         with concurrent.futures.ProcessPoolExecutor() as executor:
             for p in range(n_perms):
-                executor.submit(run_calculations, db_name, env_results_dir, samples, p, f_smorfs)
+                executor.submit(run_calculations, db_name, env_results_dir, samples, p)
     else:
         for p in range(n_perms):
-            run_calculations(db_name, env_results_dir, samples, p, f_smorfs)
+            run_calculations(db_name, env_results_dir, samples, p)

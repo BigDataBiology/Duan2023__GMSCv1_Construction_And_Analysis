@@ -4,23 +4,6 @@ import pandas as pd
 import os
 from jug import TaskGenerator
 
-# def parse_args():
-#         desc = """Script for rarefaction of 100AA smORFs. Rarefaction can be made for higher level environments or general environment names. """
-#         parser = argparse.ArgumentParser(description=desc)
-
-#         parser.add_argument('-n', '--n_perms', help='Number of permutations',
-#                                 required=True, dest='n_perms')
-#         parser.add_argument('-e', '--env', help='Higher level environment or general environment name',
-#                                 choices=['high',
-#                                         'general'],
-#                                 required=True, dest='env')
-#         parser.add_argument('-s', '--samples_dir', help='Directory in which the samples are stored.',
-#                                 default='data_samples', dest='samples_dir')
-#         parser.add_argument('-hab', '--habitat_data', help='Directory for habitat relationships data with the samples.',
-#                         default='data', dest='habitat_data')
-
-#         return parser.parse_args()
-
 def get_samples_relationship(samples_dir, habitat_data):
 
         data_general = pd.read_table(habitat_data + '/general_envo_names.tsv', sep='\t')
@@ -127,11 +110,10 @@ create_database = TaskGenerator(create_database)
 samples_dir = 'data_samples'
 habitat_data = 'data'
 n_perms = 24
-env = 'general'
-parallel = False
-f_smorfs = True
+env = 'high'
+parallel = True
 
-select = True
+select = False
 selected = ['human gut']
 
 output_dir = 'rarefaction_results'
@@ -156,14 +138,14 @@ if env == 'high':
 
                 db_name = create_database(samples_dir, samples_high, high_env)
 
-                rarefy(db_name, output_dir, high_env, samples_high, n_perms, f_smorfs, parallel)
+                rarefy(db_name, output_dir, high_env, samples_high, n_perms, parallel)
 elif env == 'general':
         env_threshold = df.groupby('general_envo_name')['sample_accession'].count().sort_values(ascending=False)
         
         if select:
                 general_envs = selected
         else:
-                general_envs = list(env_threshold[:10].index)
+                general_envs = list(env_threshold[:10].index) # Consider the top 10 environments with most samples
 
         for general_env in general_envs:
                 print(general_env)
@@ -173,4 +155,4 @@ elif env == 'general':
 
                 db_name = create_database(samples_dir, samples_general, general_env)
 
-                rarefy(db_name, output_dir, general_env, samples_general, n_perms, f_smorfs, parallel)
+                rarefy(db_name, output_dir, general_env, samples_general, n_perms, parallel)
