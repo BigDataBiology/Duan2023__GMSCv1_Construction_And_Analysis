@@ -41,9 +41,15 @@ We can also group these habitats by higher-level environment names. Considering 
 
 Considering the grouping made, we have a similar pattern of the rarefaction curve from before, with soil-related habitat under-sampled and human gut oversampled.
 
+As expected, the rarefaction curves generated to match the curves in works such as [6] made for unigenes, showing a similar tendency of over and undersampling curves with the same habitats.
+
 ## Conclusions
 
--
+In the context of large biological datasets, many tools to study them, such as rarefaction curves, can turn out to be non-trivial to proper application. Along with running these methods, we need to find suitable ways to represent our data, to make the generation of rarefaction curves computationally feasible. With the optimizations made, we can work with even larger datasets with fewer hardware requirements.
+
+We can generate these curves considering multiple habitats, and they can be a great tool to visualize and compare the richness of an element such as smORFs in them. 
+
+---
 
 [1] Ji, X., Cui, C., & Cui, Q. (2020). smORFunction: a tool for predicting functions of small open reading frames and microproteins. BMC bioinformatics, 21(1), 1-13.
 
@@ -54,3 +60,5 @@ Considering the grouping made, we have a similar pattern of the rarefaction curv
 [4] Van Rossum, G. (2020). The Python Library Reference, release 3.8.2. Python Software Foundation.
 
 [5] Coelho, L. P. (2017). Jug: Software for parallel reproducible computation in python. Journal of Open Research Software, 5(1).
+
+[6] Coelho, L. P., Alves, R., Del Río, Á. R., Myers, P. N., Cantalapiedra, C. P., Giner-Lamia, J., ... & Bork, P. (2022). Towards the biogeography of prokaryotic genes. Nature, 601(7892), 252-256.
