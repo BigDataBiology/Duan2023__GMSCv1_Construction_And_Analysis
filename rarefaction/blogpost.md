@@ -4,11 +4,11 @@
 
 ## Distribution of the Small Open Reading Frames
 
-There are millions of Open Reading Frames (ORFs) spread through the genomes from diverse habitats that, if they were translated, would generate much smaller proteins made of fewer than 100 amino acids. In this context, we have the small ORFs (smORFs), which have the vast majority of functions still unknown, although previous studies collected and annotated a considerable number of smORFs [1, 2].
+There are millions of Open Reading Frames (ORFs) spread through the genomes from diverse habitats that, if they were translated, would generate much smaller proteins made of fewer than 100 amino acids. In this context, we have the small ORFs (smORFs), which have the vast majority of functions still unknown, although previous studies collected and annotated a considerable number of smORFs [1, 2]. 
 
 As for its functions, little is known about the distribution of smORFs across different environments. For a clearer look at the distribution, we can use methods such as the rarefaction curve, which estimates how the number of observed species increases with the sample size of individuals, assuming that individuals are sampled randomly and independently [3].
 
-Generating rarefaction curves can be a simple problem, but in the context of dealing with large-scale biological data, it's expected some adjustments go beyond naive methods to generate these curves. For this project, we dealt with almost 1 billion unique smORFs spread through the environments, making it unfeasible to just store them in the memory to find the counting of the unique ones.
+Generating rarefaction curves can be a simple problem. Still, in the context of dealing with large-scale biological data, it's expected some adjustments go beyond naive methods to generate these curves. For this project, we dealt with almost 1 billion unique smORFs spread through the environments, making it unfeasible to just store them in the memory to find the counting of the unique ones.
 
 ## Data Processing
 
@@ -28,7 +28,7 @@ For each permutation we had a bitarray object, and, as we add more samples with 
 
 ## Rarefaction Curves
 
-With the permutations of the samplings generated, we took the average for each number of samples considered in the permutations. Firstly, we considered the habitats by their general environments names, and only the ten with the most samples to avoid the "Spaghetti plot". We have the following rarefaction curve:
+With the permutations of the samplings generated, we took the average for each number of samples considered in the permutations. Firstly, we selected the habitats by their general environments names, and only the ten with the most samples to avoid the "Spaghetti plot". We have the following rarefaction curve:
 
 ![](figures/general_envs.svg)
 
