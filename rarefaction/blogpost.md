@@ -1,7 +1,6 @@
 # Global Microbial Small ORFs Catalog - Gene rarefaction for smORFs
 
-**Abstract**: 
-
+**Abstract**: Having a dataset with around 1 billion unique smORFs, we generated rarefaction curves for different habitats, considering their general environment names, and also grouping them in higher-level environment names. The curves obtained show habitats such as soil relatively under-sampled, showing a higher level of smORFs richness in comparison to other environments.
 
 ## Distribution of the Small Open Reading Frames
 
@@ -29,7 +28,7 @@ For each permutation we had a bitarray object, and, as we add more samples with 
 
 ## Rarefaction Curves
 
-With the permutations of the samplings generated, we took the average for each number of samples considered in the permutations. Firstly, we considered the habitats by their general environments names, and only the ten with the most samples to avoid "Spaghetti plot". We have the following rarefaction curve:
+With the permutations of the samplings generated, we took the average for each number of samples considered in the permutations. Firstly, we considered the habitats by their general environments names, and only the ten with the most samples to avoid the "Spaghetti plot". We have the following rarefaction curve:
 
 ![](figures/general_envs.svg)
 
@@ -41,13 +40,13 @@ We can also group these habitats by higher-level environment names. Considering 
 
 Considering the grouping made, we have a similar pattern of the rarefaction curve from before, with soil-related habitat under-sampled and human gut oversampled.
 
-As expected, the rarefaction curves generated to match the curves in works such as [6] made for unigenes, showing a similar tendency of over and undersampling curves with the same habitats.
+As expected, the rarefaction curves match curves in works such as [6] made for unigenes, showing a similar tendency of over and under-sampling curves with the same habitats.
 
 ## Conclusions
 
-In the context of large biological datasets, many tools to study them, such as rarefaction curves, can turn out to be non-trivial to proper application. Along with running these methods, we need to find suitable ways to represent our data, to make the generation of rarefaction curves computationally feasible. With the optimizations made, we can work with even larger datasets with fewer hardware requirements.
+In the context of large biological datasets, many tools to study them, such as rarefaction curves, can turn out to be non-trivial to proper application. Along with running these methods, we need to find suitable ways to represent our data, making the generation of rarefaction curves computationally feasible. With the optimizations made, we can work with even larger datasets with fewer hardware requirements.
 
-We can generate these curves considering multiple habitats, and they can be a great tool to visualize and compare the richness of an element such as smORFs in them. 
+We can generate these curves considering multiple habitats, and they can be a great tool to visualize and compare the richness of an element such as smORFs in them.
 
 ---
 
