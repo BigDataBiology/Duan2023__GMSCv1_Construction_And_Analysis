@@ -34,10 +34,10 @@ def generate_family(infile1,infile2,infile3,outfile):
                 out1.write(linelist[0]+"\t"+name90[linelist[2]]+"\n")           
     out1.close()        
 
-INPUT_FILE_1 = "/data/frozen/50AA_rename_all.tsv.xz"  
-INPUT_FILE_2 = "/data/frozen/90AA_rename_all.tsv.xz"
-INPUT_FILE_3 = "/clust_result/result/all_0.5_0.9_rename.tsv.gz"
-OUTPUT_FILE = "/data/frozen/all_0.9_0.5_family.tsv.xz"
+INPUT_FILE_1 = "./data/frozen/50AA_rename_all.tsv.xz"  
+INPUT_FILE_2 = "./data/frozen/90AA_rename_all.tsv.xz"
+INPUT_FILE_3 = "./clust_result/result/all_0.5_0.9_rename.tsv.gz"
+OUTPUT_FILE = "./data/frozen/all_0.9_0.5_family.tsv.xz"
 
 generate_family(INPUT_FILE_1,INPUT_FILE_2,INPUT_FILE_3,OUTPUT_FILE)
 

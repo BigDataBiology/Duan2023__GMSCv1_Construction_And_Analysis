@@ -17,6 +17,6 @@ mkdir result_0.9
 DIR="./split"
 for file in $(ls $DIR)
   do
-    diamond blastp -q ./split/$file -d metag_ProG_ns_0.5 -o ./result_0.5/$file.tsv -e 0.00001 --id 90 -b 12 -c 1
-    diamond blastp -q ./split/$file -d metag_ProG_ns_0.9 -o ./result_0.9/$file.tsv -e 0.00001 --id 90 -b 12 -c 1
+    diamond blastp -q ./split/$file -d metag_ProG_ns_0.5 -o ./result_0.5/$file.tsv -e 0.00001 --id 50 -b 12 -c 1 --query-cover 90 --subject-cover 90
+    diamond blastp -q ./split/$file -d metag_ProG_ns_0.9 -o ./result_0.9/$file.tsv -e 0.00001 --id 90 -b 12 -c 1 --query-cover 90 --subject-cover 90
   done

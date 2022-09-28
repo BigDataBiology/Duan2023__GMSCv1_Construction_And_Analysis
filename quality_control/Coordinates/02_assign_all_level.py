@@ -1,5 +1,6 @@
 '''
-Generate coordinate checking results for 100AA,90AA and 50AA smORFs.
+Generate coordinate checking results of 100AA,90AA and 50AA smORFs.
+If the true rate in the family > 0.5,then the family will be true.
 '''
 
 '''
@@ -118,14 +119,14 @@ def assign_90_50(infile1,infile2,outfile1,outfile2,outfile3,outfile4):
                 out4.write(linelist[0]+"\t"+"F"+"\n")           
     out4.close()
 
-INPUT_FILE_1 = "/coordinate/all/result.tsv.gz"
-INPUT_FILE_2 = "/data/frozen/100AA_rename.tsv.xz"
-INPUT_FILE_3 = "/data/frozen/all_0.9_0.5_family.tsv.xz"
-OUTPUT_FILE_1 = "/coordinate/all/100AA_coordinate.tsv.gz"
-OUTPUT_FILE_2 = "/coordinate/all/90AA_T_F_iso_rate.tsv.gz"
-OUTPUT_FILE_3 = "/coordinate/all/90AA_coordinate.tsv.gz"
-OUTPUT_FILE_4 = "/coordinate/all/50AA_T_F_iso_rate.tsv.gz"
-OUTPUT_FILE_5 = "/coordinate/all/50AA_coordinate.tsv.gz"
+INPUT_FILE_1 = "./coordinate/all/result.tsv.gz"
+INPUT_FILE_2 = "./data/frozen/100AA_rename.tsv.xz"
+INPUT_FILE_3 = "./data/frozen/all_0.9_0.5_family.tsv.xz"
+OUTPUT_FILE_1 = "./coordinate/all/100AA_coordinate.tsv.gz"
+OUTPUT_FILE_2 = "./coordinate/all/90AA_T_F_iso_rate.tsv.gz"
+OUTPUT_FILE_3 = "./coordinate/all/90AA_coordinate.tsv.gz"
+OUTPUT_FILE_4 = "./coordinate/all/50AA_T_F_iso_rate.tsv.gz"
+OUTPUT_FILE_5 = "./coordinate/all/50AA_coordinate.tsv.gz"
 
 assign_100(INPUT_FILE_1,INPUT_FILE_2,OUTPUT_FILE_1)
 assign_90_50(OUTPUT_FILE_1,INPUT_FILE_3,OUTPUT_FILE_2,OUTPUT_FILE_3,OUTPUT_FILE_4,OUTPUT_FILE_5)

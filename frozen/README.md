@@ -198,13 +198,13 @@ Table relating smORF accession and their habitat of origin.
 
 Habitat contains microontology and host (separated by ' # '). 
 
+Multiple habitats are separated by ','.
+
 Microontology is a scheme used to annotate environments via metadata, it has different levels of complexity separated by ':'
 
 Host NCBI taxid is used to annotate hosts of host-associated metagenomes via metadata.
 
 If smORF is from isolated genome, its habitat will be annotated as isolate.
-
-If the taxonomy of smORFs in a cluster is different, the minority is subordinate to the majority.
 
 Columns: 
 
@@ -216,7 +216,7 @@ Columns:
 
 **Files:**
 
-Habitat mapping file: `100AA_habitat.tsv.xz`
+Habitat mapping file: `100AA_ref_multi_habitat.tsv.xz`
 
 e.g.
 ```
@@ -231,7 +231,7 @@ GMSC10.100AA.000_000_000_020    terrestrial:soil # 38727
 
 **Files:**
 
-Habitat mapping file: `90AA_habitat.tsv.xz`
+Habitat mapping file: `90AA_ref_multi_habitat.tsv.xz`
 
 e.g.
 
@@ -248,7 +248,7 @@ GMSC10.90AA.000_000_000_004     host-associated:animal host:digestive tract:inte
 
 **Files:**
 
-Habitat mapping file: `50AA_habitat.tsv.xz`
+Habitat mapping file: `50AA_ref_multi_habitat.tsv.xz`
 
 e.g.
 
@@ -258,34 +258,6 @@ GMSC10.50AA.000_000_000_001     aquatic:freshwater:lake
 GMSC10.50AA.000_000_000_002     aquatic:saline
 GMSC10.50AA.000_000_000_003     aquatic:freshwater
 GMSC10.50AA.000_000_000_004     host-associated:animal host:digestive tract:intestine # 46569
-```
-
-### All level habitat mapping file
-
-**Files:**
-
-All level habitat mapping file: `all_habitat.tsv.xz`
-
-Columns: 
-
-1. 100AA smORF accession
-
-2. 90AA smORF accession
-
-3. 50AA smORF accession
-
-4. Habitat at 100AA
-
-5. Habitat at 90AA
-
-6. Habitat at 50AA
-
-e.g.
-
-```
-GMSC10.100AA.000_000_000_000    GMSC10.90AA.000_000_000_003     GMSC10.50AA.000_000_000_003     aquatic:freshwater      aquatic:freshwater      aquatic:freshwater
-GMSC10.100AA.000_000_000_001    GMSC10.90AA.000_000_000_063     GMSC10.50AA.000_000_000_064     aquatic:marine  aquatic:marine  aquatic:marine
-GMSC10.100AA.000_000_000_002    GMSC10.90AA.000_000_046_429     GMSC10.50AA.000_000_036_067     aquatic:marine:pelagic  aquatic:marine:pelagic  aquatic:marine:pelagic
 ```
 
 ## Taxonomy mapping files
@@ -304,27 +276,27 @@ Columns:
 
 **Files:**
 
-Taxonomy mapping file: `100AA_taxonomy.tsv.xz`
+Taxonomy mapping file: `100AA_ref_taxonomy_format.tsv.xz`
 
 e.g.
 ```
-GMSC10.100AA.000_000_000_019    d__Bacteria     p__Actinobacteriota     c__Thermoleophilia      o__Solirubrobacterales  f__Solirubrobacteraceae g__Solirubrobacter
-GMSC10.100AA.000_000_000_020    d__Bacteria     p__Actinobacteriota     c__Thermoleophilia      o__Solirubrobacterales  f__Solirubrobacteraceae g__Solirubrobacter
-GMSC10.100AA.000_000_000_021    d__Bacteria     p__Actinobacteriota     c__Thermoleophilia      o__Solirubrobacterales  f__Thermoleophilaceae   g__AC-37
+GMSC10.100AA.000_000_000_019    d__Bacteria;p__Actinobacteriota;c__Thermoleophilia;o__Solirubrobacterales;f__Solirubrobacteraceae;g__Solirubrobacter
+GMSC10.100AA.000_000_000_020    d__Bacteria;p__Actinobacteriota;c__Thermoleophilia;o__Solirubrobacterales;f__Solirubrobacteraceae;g__Solirubrobacter
+GMSC10.100AA.000_000_000_021    d__Bacteria;p__Actinobacteriota;c__Thermoleophilia;o__Solirubrobacterales;f__Thermoleophilaceae;g__AC-37
 ```
 
 ### 90% identity smORF catalog
 
 **Files:**
 
-Taxonomy mapping file: `90AA_taxonomy.tsv.xz`
+Taxonomy mapping file: `90AA_ref_taxonomy_format.tsv.xz`
 
 e.g.
 
 ```
-GMSC10.90AA.000_000_000_082     d__Archaea      p__Thermoproteota       c__Nitrososphaeria      o__Nitrososphaerales    f__Nitrososphaeraceae   g__UBA10452     s__UBA10452 sp003176995
-GMSC10.90AA.000_000_000_083     d__Bacteria     p__Actinobacteriota     c__Actinomycetia        o__Streptosporangiales  f__Streptosporangiaceae
-GMSC10.90AA.000_000_000_084     d__Archaea      p__Thermoproteota       c__Nitrososphaeria      o__Nitrososphaerales    f__Nitrososphaeraceae   g__UBA10452     s__UBA10452 sp003176995
+GMSC10.90AA.000_000_000_082     d__Archaea;p__Thermoproteota;c__Nitrososphaeria;o__Nitrososphaerales;f__Nitrososphaeraceae;g__UBA10452;s__UBA10452 sp003176995
+GMSC10.90AA.000_000_000_083     d__Bacteria;p__Actinobacteriota;c__Actinomycetia;o__Streptosporangiales;f__Streptosporangiaceae
+GMSC10.90AA.000_000_000_084     d__Archaea;p__Thermoproteota;c__Nitrososphaeria;o__Nitrososphaerales;f__Nitrososphaeraceae;g__UBA10452;s__UBA10452 sp003176995
 ```
 
 ### 50% identity smORF catalog
@@ -332,47 +304,12 @@ GMSC10.90AA.000_000_000_084     d__Archaea      p__Thermoproteota       c__Nitro
 
 **Files:**
 
-Taxonomy mapping file: `50AA_taxonomy.tsv.xz`
+Taxonomy mapping file: `50AA_ref_taxonomy_format.tsv.xz`
 
 e.g.
 
 ```
-GMSC10.50AA.000_000_000_080     d__Archaea      p__Thermoproteota       c__Nitrososphaeria      o__Nitrososphaerales    f__Nitrososphaeraceae   g__UBA10452     s__UBA10452 sp003176995
-GMSC10.50AA.000_000_000_081     d__Bacteria     p__Actinobacteriota     c__Actinomycetia        o__Streptosporangiales  f__Streptosporangiaceae
-GMSC10.50AA.000_000_000_082     d__Archaea      p__Thermoproteota       c__Nitrososphaeria      o__Nitrososphaerales    f__Nitrososphaeraceae   g__UBA10452     s__UBA10452 sp003176995
-```
-
-### All level taxonomy mapping file
-
-**Files:**
-
-All level taxonomy mapping file: `all_taxonomy.tsv.xz`
-
-Columns: 
-
-1. 100AA smORF accession
-
-2. 90AA smORF accession
-
-3. 50AA smORF accession
-
-4. Taxonomy at 100AA
-
-5. Taxonomy at 90AA
-
-6. Taxonomy at 50AA
-
-
-e.g.
-
-```
-GMSC10.100AA.000_000_000_074    GMSC10.90AA.000_000_002_237     GMSC10.50AA.000_000_001_928     d__Bacteria;p__Actinobacteriota;c__Actinomycetia;o__Streptosporangiales;f__Streptosporangiaceae;g__UBA9676;s__UBA
-9676 sp003541285       d__Bacteria;p__Actinobacteriota;c__Actinomycetia;o__Streptosporangiales;f__Streptosporangiaceae;g__UBA9676;s__UBA9676 sp003541285       d__Bacteria;p__Actinobacteriota;c__Actinomycetia;o
-__Streptosporangiales;f__Streptosporangiaceae;g__UBA9676;s__UBA9676 sp003541285
-GMSC10.100AA.000_000_000_075    GMSC10.90AA.000_000_000_824     GMSC10.50AA.000_000_000_746     d__Bacteria;p__Proteobacteria;c__Alphaproteobacteria;o__Acetobacterales;f__Acetobacteraceae;g__Acidocella;s__Acid
-ocella sp003164135     d__Bacteria;p__Proteobacteria;c__Alphaproteobacteria;o__Acetobacterales;f__Acetobacteraceae;g__Acidocella;s__Acidocella sp003164135     d__Bacteria;p__Proteobacteria;c__Alphaproteobacter
-ia;o__Acetobacterales;f__Acetobacteraceae;g__Acidocella;s__Acidocella sp003164135
-GMSC10.100AA.000_000_000_076    GMSC10.90AA.000_000_000_724     GMSC10.50AA.000_000_000_662     d__Bacteria;p__Firmicutes_A;c__Clostridia;o__Oscillospirales;f__Oscillospiraceae;g__ER4;s__ER4 sp900550165      d
-__Bacteria;p__Firmicutes_A;c__Clostridia;o__Oscillospirales;f__Oscillospiraceae;g__ER4;s__ER4 sp900550165      d__Bacteria;p__Firmicutes_A;c__Clostridia;o__Oscillospirales;f__Oscillospiraceae;g__ER4;s__ER4 sp9
-00550165
+GMSC10.50AA.000_000_000_080     d__Archaea;p__Thermoproteota;c__Nitrososphaeria;o__Nitrososphaerales;f__Nitrososphaeraceae;g__UBA10452;s__UBA10452 sp003176995
+GMSC10.50AA.000_000_000_081     d__Bacteria;p__Actinobacteriota;c__Actinomycetia;o__Streptosporangiales;f__Streptosporangiaceae
+GMSC10.50AA.000_000_000_082     d__Archaea;p__Thermoproteota;c__Nitrososphaeria;o__Nitrososphaerales;f__Nitrososphaeraceae;g__UBA10452;s__UBA10452 sp003176995
 ```

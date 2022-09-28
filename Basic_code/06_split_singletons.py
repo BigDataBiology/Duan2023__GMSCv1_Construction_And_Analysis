@@ -29,7 +29,7 @@ def splitseq(infile,X,outfile):
             break
     out.close()
     
-INPUT_FILE = "/data/metag_ProG_singleton.faa.gz"
-SPLIT_FILE_PAT = "/diamond/split/sub{ix}.faa.gz"
+INPUT_FILE = "./data/metag_ProG_singleton.faa.gz"
+SPLIT_FILE_PAT = "./diamond/split/sub{ix}.faa.gz"
 
 splitseq(INPUT_FILE, 100000000, SPLIT_FILE_PAT)

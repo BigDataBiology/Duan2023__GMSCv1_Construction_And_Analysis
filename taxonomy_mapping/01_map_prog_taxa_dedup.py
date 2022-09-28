@@ -42,11 +42,11 @@ def dedup_fasta(infile,outfile1,outfile2):
     out2.close()
     print("finish dedup and sort")
 
-prog = "/taxa/progenome/genome_prog.tsv"
-taxa = "/taxa/progenome/specI_genome_taxa.txt"
-prog_taxa = "/taxa/progenome/prog_specI_genome_taxa.tsv"
+prog = "./taxa/progenome/genome_prog.tsv"
+taxa = "./taxa/progenome/specI_genome_taxa.txt"
+prog_taxa = "./taxa/progenome/prog_specI_genome_taxa.tsv"
 maptaxa_tsv(prog,taxa,prog_taxa)
 INPUT_FILE = "GMSC10.ProG_smorfs.faa.gz"  
-OUTPUT_FILE_1 = "/taxa/progenome/prog_dedup_sort.faa.gz"
-OUTPUT_FILE_2 = "/taxa/progenome/prog_redundant.tsv.gz"    
+OUTPUT_FILE_1 = "./taxa/progenome/prog_dedup_sort.faa.gz"
+OUTPUT_FILE_2 = "./taxa/progenome/prog_redundant.tsv.gz"    
 dedup_fasta(INPUT_FILE,OUTPUT_FILE_1,OUTPUT_FILE_2)

@@ -81,8 +81,8 @@ def mergeseq(outfile):
                 preseq = seq
     print("finish merge")
 
-INPUT_FILE = "/data/GMSC10.metag_Prog_smorfs.faa.gz"
-OUTPUT_FILE = "/data/smorf_dedup.faa.gz"
+INPUT_FILE = "./data/GMSC10.metag_Prog_smorfs.faa.gz"
+OUTPUT_FILE = "./data/smorf_dedup.faa.gz"
 
 splits = splitseq(INPUT_FILE)
 for sp in bvalue(splits):

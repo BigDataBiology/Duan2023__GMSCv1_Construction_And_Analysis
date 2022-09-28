@@ -89,11 +89,11 @@ def map_cluster(infile1,infile2,outfile):
     out.close()
 
 
-INPUT_FILE_1 = "/habitat/metadata.tsv"
+INPUT_FILE_1 = "./habitat/metadata.tsv"
 INPUT_FILE_2 = "GMSC10.metag_smorfs.rename.txt.xz"
 INPUT_FILE_3 = "dedup_cluster.tsv.gz"
-OUT_PATH_1 = "/habitat/metag_habitat"
-OUT_PATH_2 = "/habitat/metag_cluster_habitat" 
+OUT_PATH_1 = "./habitat/metag_habitat"
+OUT_PATH_2 = "./habitat/metag_cluster_habitat" 
 
 habitat(INPUT_FILE_1,INPUT_FILE_2,OUT_PATH_1)
 for i in range(1,9):

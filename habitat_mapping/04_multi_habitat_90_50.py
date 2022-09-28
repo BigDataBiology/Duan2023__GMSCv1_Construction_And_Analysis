@@ -69,13 +69,13 @@ def general(infile1,infile2,outfile):
             
     out.close()
 
-INPUT_FILE_1 = "/habitat/id90/cluster_multi_habitat_90.tsv.xz"
-INPUT_FILE_2 = "/habitat/id50/cluster_multi_habitat_50.tsv.xz"
-INPUT_FILE_3 = "habitat_general.txt"
-OUTPUT_FILE_1 = "/habitat/id90/90AA_multi_habitat.tsv.xz"
-OUTPUT_FILE_2 = "/habitat/id50/50AA_multi_habitat.tsv.xz" 
-OUTPUT_FILE_3 = "/habitat/id90/90AA_multi_general_habitat.tsv.xz"
-OUTPUT_FILE_4 = "/habitat/id20/50AA_multi_general_habitat.tsv.xz"
+INPUT_FILE_1 = "./habitat/id90/cluster_multi_habitat_90.tsv.xz"
+INPUT_FILE_2 = "./habitat/id50/cluster_multi_habitat_50.tsv.xz"
+INPUT_FILE_3 = "./habitat/habitat_general.txt"
+OUTPUT_FILE_1 = "./habitat/id90/90AA_multi_habitat.tsv.xz"
+OUTPUT_FILE_2 = "./habitat/id50/50AA_multi_habitat.tsv.xz" 
+OUTPUT_FILE_3 = "./habitat/id90/90AA_multi_general_habitat.tsv.xz"
+OUTPUT_FILE_4 = "./habitat/id50/50AA_multi_general_habitat.tsv.xz"
 
 multi_habitat(INPUT_FILE_1,OUTPUT_FILE_1)
 multi_habitat(INPUT_FILE_2,OUTPUT_FILE_2)

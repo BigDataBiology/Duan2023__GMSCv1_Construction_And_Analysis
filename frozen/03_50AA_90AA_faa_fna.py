@@ -99,21 +99,21 @@ def getfna(infile1,infile2,outfile):
         out1.write(f">{ID}\n{seq}\n")               
     out1.close()  
 
-INPUT_FILE_1 = "/clust_result/0.5_result/metag_ProG_nonsingleton_0.5_clu_rep.faa.gz"
-INPUT_FILE_2 = "/clust_result/0.5_result/metag_ProG_nonsingleton_0.5_clu.tsv.gz"
-INPUT_FILE_3 = "/data/100AA_rename.tsv.xz"
-INPUT_FILE_4 = "/data/frozen/100AA_GMSC.fna.xz"
-INPUT_FILE_5 = "/clust_result/0.9_result/metag_ProG_nonsingleton_0.9_clu_rep.faa.gz"
-INPUT_FILE_6 = "/clust_result/0.9_result/metag_ProG_nonsingleton_0.9_clu.tsv.gz"
+INPUT_FILE_1 = "./clust_result/0.5_result/metag_ProG_nonsingleton_0.5_clu_rep.faa.gz"
+INPUT_FILE_2 = "./clust_result/0.5_result/metag_ProG_nonsingleton_0.5_clu.tsv.gz"
+INPUT_FILE_3 = "./data/100AA_rename.tsv.xz"
+INPUT_FILE_4 = "./data/frozen/100AA_GMSC.fna.xz"
+INPUT_FILE_5 = "./clust_result/0.9_result/metag_ProG_nonsingleton_0.9_clu_rep.faa.gz"
+INPUT_FILE_6 = "./clust_result/0.9_result/metag_ProG_nonsingleton_0.9_clu.tsv.gz"
 
-OUTPUT_FILE_1 = "/data/frozen/50AA_rename.tsv.xz"
-OUTPUT_FILE_2 = "/data/frozen/50AA_rename_all.tsv.xz"
-OUTPUT_FILE_3 = "/data/frozen/50AA_GMSC.faa.xz"
-OUTPUT_FILE_4 = "/data/frozen/50AA_GMSC.fna.xz"
-OUTPUT_FILE_5 = "/data/frozen/90AA_rename.tsv.xz"
-OUTPUT_FILE_6 = "/data/frozen/90AA_rename_all.tsv.xz"
-OUTPUT_FILE_7 = "/data/frozen/90AA_GMSC.faa.xz"
-OUTPUT_FILE_8 = "/data/frozen/90AA_GMSC.fna.xz"
+OUTPUT_FILE_1 = "./data/frozen/50AA_rename.tsv.xz"
+OUTPUT_FILE_2 = "./data/frozen/50AA_rename_all.tsv.xz"
+OUTPUT_FILE_3 = "./data/frozen/50AA_GMSC.faa.xz"
+OUTPUT_FILE_4 = "./data/frozen/50AA_GMSC.fna.xz"
+OUTPUT_FILE_5 = "./data/frozen/90AA_rename.tsv.xz"
+OUTPUT_FILE_6 = "./data/frozen/90AA_rename_all.tsv.xz"
+OUTPUT_FILE_7 = "./data/frozen/90AA_GMSC.faa.xz"
+OUTPUT_FILE_8 = "./data/frozen/90AA_GMSC.fna.xz"
 
 rename(INPUT_FILE_1,INPUT_FILE_2,OUTPUT_FILE_1,0,'GMSC10.50AA')
 rename_all(OUTPUT_FILE_1,INPUT_FILE_3,OUTPUT_FILE_2)

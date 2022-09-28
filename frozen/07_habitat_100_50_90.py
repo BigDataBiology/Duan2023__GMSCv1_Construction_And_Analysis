@@ -1,5 +1,5 @@
 '''
-Generate habitat mapping file.
+Generate habitat mapping 100AA/90AA/50AA file.
 '''
 
 import lzma
@@ -49,15 +49,15 @@ def gethabitat_50_90(infile1,infile2,outfile):
     out.close()
 
        
-INPUT_FILE_1 = "/habitat/id100/100AA_multi_general_habitat.tsv.xz"   
-INPUT_FILE_2 = "/data/frozen/100AA_rename.tsv.xz"
-INPUT_FILE_3 = "/habitat/id50/50AA_multi_general_habitat.tsv.xz"  
-INPUT_FILE_4 = "/data/frozen/50AA_rename.tsv.xz"
-INPUT_FILE_5 = "/habitat/id90/90AA_multi_general_habitat.tsv.xz"   
-INPUT_FILE_6 = "/data/frozen/90AA_rename.tsv.xz"
-OUTPUT_FILE_1 = "/data/frozen/100AA_habitat.tsv.xz"
-OUTPUT_FILE_2 = "/data/frozen/50AA_ref_habitat.tsv.xz" 
-OUTPUT_FILE_3 = "/data/frozen/90AA_ref_habitat.tsv.xz" 
+INPUT_FILE_1 = "./habitat/id100/100AA_multi_general_habitat.tsv.xz"   
+INPUT_FILE_2 = "./data/frozen/100AA_rename.tsv.xz"
+INPUT_FILE_3 = "./habitat/id50/50AA_multi_general_habitat.tsv.xz"  
+INPUT_FILE_4 = "./data/frozen/50AA_rename.tsv.xz"
+INPUT_FILE_5 = "./habitat/id90/90AA_multi_general_habitat.tsv.xz"   
+INPUT_FILE_6 = "./data/frozen/90AA_rename.tsv.xz"
+OUTPUT_FILE_1 = "./data/frozen/100AA_ref_multi_habitat.tsv.xz"
+OUTPUT_FILE_2 = "./data/frozen/50AA_ref_multi_habitat.tsv.xz" 
+OUTPUT_FILE_3 = "./data/frozen/90AA_ref_multi_habitat.tsv.xz" 
 
 gethabitat_100(INPUT_FILE_1,INPUT_FILE_2,OUTPUT_FILE_1)
 gethabitat_50_90(INPUT_FILE_3,INPUT_FILE_4,OUTPUT_FILE_2)

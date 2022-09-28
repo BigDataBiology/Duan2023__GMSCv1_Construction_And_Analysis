@@ -70,12 +70,12 @@ def mapcluster(infile1,infile2,outfile):
 
     out.close()
 
-INPUT_FILE_1 = "/clust_result/result/all_0.5_0.9.tsv.gz" 
-INPUT_FILE_2 = "/habitat/id100/100AA_multi_general_habitat.tsv.xz"   
+INPUT_FILE_1 = "./clust_result/result/all_0.5_0.9.tsv.gz" 
+INPUT_FILE_2 = "./habitat/id100/100AA_multi_general_habitat.tsv.xz"   
 OUTPUT_FILE_1 = "all_cluster_0.9.tsv.xz"  
 OUTPUT_FILE_2 = "all_cluster_0.5.tsv.xz"
-OUTPUT_FILE_3 = "/habitat/id90/cluster_multi_habitat_90.tsv.xz" 
-OUTPUT_FILE_4 = "/habitat/id50/cluster_multi_habitat_50.tsv.xz" 
+OUTPUT_FILE_3 = "./habitat/id90/cluster_multi_habitat_90.tsv.xz" 
+OUTPUT_FILE_4 = "./habitat/id50/cluster_multi_habitat_50.tsv.xz" 
 
 change_format_90(INPUT_FILE_1,OUTPUT_FILE_1)
 change_format_50(INPUT_FILE_1,OUTPUT_FILE_2)

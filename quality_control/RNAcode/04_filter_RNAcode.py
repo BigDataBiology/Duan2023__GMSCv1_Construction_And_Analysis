@@ -28,7 +28,7 @@ def filter(file_dir,outfile):
  
     out.close()
 
-INPUT_DIR = "/RNAcode_result/rna"
-OUTPUT_FILE = "/RNAcode_result/filter/result/smORF_0.9_RNAcode.tsv"
+INPUT_DIR = "./RNAcode_result/rna"
+OUTPUT_FILE = "./RNAcode_result/filter/result/smORF_0.9_RNAcode.tsv"
 
 filter(INPUT_DIR,OUTPUT_FILE)

@@ -52,8 +52,8 @@ def merge(outfile):
         for h,seq in merged:
             output.write(f'>{h}\n{seq}\n')
 
-INPUT_FILE = "/data/frozen/100AA_GMSC.fna.xz"
-OUTPUT_FILE="/data/frozen/sort/100AA_GMSC_sort.fna.xz"
+INPUT_FILE = "./data/frozen/100AA_GMSC.fna.xz"
+OUTPUT_FILE="./data/frozen/sort/100AA_GMSC_sort.fna.xz"
 
 splits = splitseq(INPUT_FILE)
 

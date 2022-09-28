@@ -56,13 +56,13 @@ def rename_singleton(infile1,infile2,outfile,n,prefix):
             n += 1
     out.close()          
 
-INPUT_FILE_1 = "/data/metag_ProG.raw_number.tsv.gz"
-INPUT_FILE_2 = "/data/metag_ProG_nonsingleton.faa.gz"
+INPUT_FILE_1 = "./data/metag_ProG.raw_number.tsv.gz"
+INPUT_FILE_2 = "./data/metag_ProG_nonsingleton.faa.gz"
 INPUT_FILE_3 = "singleton_0.5_0.9.tsv"
-INPUT_FILE_4 = "/data/metag_ProG_singleton.faa.gz"
-OUTPUT_FILE_1 = "/data/nonsingleton_rename_seq.tsv"
-OUTPUT_FILE_2 = "/home1/duanyq/GMSC/data/nonsingleton_rename.tsv"
-OUTPUT_FILE_3 = "/home1/duanyq/GMSC/data/singleton_rename.tsv"
+INPUT_FILE_4 = "./data/metag_ProG_singleton.faa.gz"
+OUTPUT_FILE_1 = "./data/nonsingleton_rename_seq.tsv"
+OUTPUT_FILE_2 = "./data/nonsingleton_rename.tsv"
+OUTPUT_FILE_3 = "./data/singleton_rename.tsv"
 
 sort(INPUT_FILE_1,OUTPUT_FILE_1,559407227,'GMSC10.100AA')
 rename_nonsingleton(INPUT_FILE_2,OUTPUT_FILE_1,OUTPUT_FILE_2)

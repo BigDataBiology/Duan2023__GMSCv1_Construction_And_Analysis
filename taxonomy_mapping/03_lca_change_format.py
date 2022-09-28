@@ -198,12 +198,12 @@ def change(infile1,outfile):
                 out.write("\n")
     out.close()       
 
-INPUT_FILE_1 = "/taxa/progenome/prog_redundant.tsv.gz"  
-INPUT_FILE_2 = "/taxa/progenome/clust_result/prog_dedup_0.9_clu.tsv"
-INPUT_FILE_3 = "/taxa/progenome/prog_specI_genome_taxa.tsv.gz"  
-OUTPUT_FILE_1 = "/taxa/progenome/prog_all_0.9_clu.tsv.gz"
-OUTPUT_FILE_2 = "/taxa/progenome/all_taxonomy.tsv.gz"
-OUTPUT_FILE_3 = "/taxa/progenome/prog_taxonomy_change.tsv.gz"
+INPUT_FILE_1 = "./taxa/progenome/prog_redundant.tsv.gz"  
+INPUT_FILE_2 = "./taxa/progenome/clust_result/prog_dedup_0.9_clu.tsv"
+INPUT_FILE_3 = "./taxa/progenome/prog_specI_genome_taxa.tsv.gz"  
+OUTPUT_FILE_1 = "./taxa/progenome/prog_all_0.9_clu.tsv.gz"
+OUTPUT_FILE_2 = "./taxa/progenome/all_taxonomy.tsv.gz"
+OUTPUT_FILE_3 = "./taxa/progenome/prog_taxonomy_change.tsv.gz"
 
 mergeall(INPUT_FILE_1,INPUT_FILE_2,OUTPUT_FILE_1)
 LCA(INPUT_FILE_3,OUTPUT_FILE_1,OUTPUT_FILE_2)

@@ -1,5 +1,7 @@
 '''
-Generate metatranscriptome mapping results for 100AA,90AA and 50AA smORFs.
+Generate metatranscriptome quality results for 100AA,90AA and 50AA smORFs.
+If 90AA family representitive sequence has metatranscriptome evidence,all the 100AA smORFs in the family will be true.
+If at least 1 smORF has metatranscriptome evidence in 50AA family,the family will be true.
 '''
 
 def assign_100(infile1,infile2,outfile1):
@@ -74,10 +76,11 @@ def assign_50(infile1,infile2,outfile1,outfile2):
                 out2.write(linelist[0]+"\n")
     out2.close()
     
-INPUT_FILE_1 = "/metaT/result/merge/metaT_result_filter.tsv"
-INPUT_FILE_2 = "/data/frozen/all_0.9_0.5_family.tsv.xz"
-OUTPUT_FILE_1 = "/metaT/result/merge/metaT_100AA.tsv.gz"
-OUTPUT_FILE_2 = "/metaT/result/merge/50AA_T_F_rate.tsv.gz"
+INPUT_FILE_1 = "./metaT/result/merge/metaT_result_filter.tsv"
+INPUT_FILE_2 = "./data/frozen/all_0.9_0.5_family.tsv.xz"
+OUTPUT_FILE_1 = "./metaT/result/merge/metaT_100AA.tsv.gz"
+OUTPUT_FILE_2 = "./metaT/result/merge/50AA_T_F_rate.tsv.gz"
+OUTPUT_FILE_3 = "./metaT/result/merge/metaT_50AA.tsv.gz"
 
 assign_100(INPUT_FILE_1,INPUT_FILE_2,OUTPUT_FILE_1)
-assign_50(OUTPUT_FILE_1,INPUT_FILE_2,OUTPUT_FILE_2)
+assign_50(OUTPUT_FILE_1,INPUT_FILE_2,OUTPUT_FILE_2,OUTPUT_FILE_3)

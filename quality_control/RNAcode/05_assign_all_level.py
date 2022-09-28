@@ -1,5 +1,7 @@
 '''
 Generate RNAcode results for 100AA,90AA and 50AA.
+If the true rate in the family > 0.5,then the family will be true.
+If the true rate in the family < 0.5, the minority of F and NA is subordinate to the majority, if the number of F and NA is the same, set it to NA.
 '''
 
 '''
@@ -126,19 +128,19 @@ def true_false_50AA(infile1,infile2,infile3,outfile,outfile1,outfile2):
     out1.close()
     out2.close()    
         
-INPUT_FILE_1  = "/RNAcode_result/filter/result/smORF_0.9_RNAcode.tsv"
-INPUT_FILE_2 = "/clust_result/result/all_0.5_0.9_filter.tsv"
-INPUT_FILE_3 = "/data/frozen/100AA_rename.tsv.xz"
-INPUT_FILE_4 = "/data/frozen/90AA_rename.tsv.xz"
-INPUT_FILE_5 = "/data/frozen/all_0.9_0.5_family.tsv.xz"
+INPUT_FILE_1  = "./RNAcode_result/filter/result/smORF_0.9_RNAcode.tsv"
+INPUT_FILE_2 = "./clust_result/result/all_0.5_0.9_filter.tsv"
+INPUT_FILE_3 = "./data/frozen/100AA_rename.tsv.xz"
+INPUT_FILE_4 = "./data/frozen/90AA_rename.tsv.xz"
+INPUT_FILE_5 = "./data/frozen/all_0.9_0.5_family.tsv.xz"
 
-OUTPUT_FILE_1 = "/RNAcode_result/filter/result/rnacode_true_100AA.tsv.xz"
-OUTPUT_FILE_2 = "/RNAcode_result/filter/result/rnacode_false_100AA.tsv.xz"
-OUTPUT_FILE_3 = "/RNAcode_result/filter/result/rnacode_true_90AA.tsv.xz"
-OUTPUT_FILE_4 = "/RNAcode_result/filter/result/rnacode_false_90AA.tsv.xz"
-OUTPUT_FILE_5 = "/RNAcode_result/filter/result/50AA_T_F_rate.tsv.gz"
-OUTPUT_FILE_6 = "/RNAcode_result/filter/result/rnacode_true_50AA.tsv.xz"
-OUTPUT_FILE_7 = "/RNAcode_result/filter/result/rnacode_false_50AA.tsv.xz"
+OUTPUT_FILE_1 = "./RNAcode_result/filter/result/rnacode_true_100AA.tsv.xz"
+OUTPUT_FILE_2 = "./RNAcode_result/filter/result/rnacode_false_100AA.tsv.xz"
+OUTPUT_FILE_3 = "./RNAcode_result/filter/result/rnacode_true_90AA.tsv.xz"
+OUTPUT_FILE_4 = "./RNAcode_result/filter/result/rnacode_false_90AA.tsv.xz"
+OUTPUT_FILE_5 = "./RNAcode_result/filter/result/50AA_T_F_rate.tsv.gz"
+OUTPUT_FILE_6 = "./RNAcode_result/filter/result/rnacode_true_50AA.tsv.xz"
+OUTPUT_FILE_7 = "./RNAcode_result/filter/result/rnacode_false_50AA.tsv.xz"
 
 true_false_100AA_90AA(INPUT_FILE_1,INPUT_FILE_2,INPUT_FILE_3,INPUT_FILE_4,OUTPUT_FILE_1,OUTPUT_FILE_2,OUTPUT_FILE_3,OUTPUT_FILE_4)
 true_false_50AA(OUTPUT_FILE_1,OUTPUT_FILE_2,INPUT_FILE_5,OUTPUT_FILE_5,OUTPUT_FILE_6,OUTPUT_FILE_7)

@@ -28,7 +28,7 @@ def join(infile1,infile2,outfile):
         out.write(key+"\t"+value+"\t"+tsv90[key]+"\n")
     out.close()
     
-INPUT_FILE_1 = "/diamond/analysis/analysis_0.5/singleton_0.5.tsv"
-INPUT_FILE_2 = "/diamond/analysis/analysis_0.9/singleton_0.9.tsv"
-OUT_FILE = "/diamond/analysis/singleton_0.5_0.9.tsv"
+INPUT_FILE_1 = "./diamond/analysis/analysis_0.5/singleton_0.5.tsv"
+INPUT_FILE_2 = "./diamond/analysis/analysis_0.9/singleton_0.9.tsv"
+OUT_FILE = "./diamond/analysis/singleton_0.5_0.9.tsv"
 join(INPUT_FILE_1,INPUT_FILE_2,OUT_FILE)

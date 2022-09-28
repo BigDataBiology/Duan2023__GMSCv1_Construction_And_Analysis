@@ -35,14 +35,14 @@ def sort_table(infile1,outfile):
         out1.write(f"{ID}\t{family}\n")    
     out1.close() 
 
-INPUT_FILE_1 = "/data/frozen/50AA_GMSC.faa.xz"  
-INPUT_FILE_2 = "/data/frozen/90AA_GMSC.faa.xz"  
-INPUT_FILE_3 = "/data/frozen/100AA_GMSC.faa.xz"  
-INPUT_FILE_4 = "/data/frozen/all_0.9_0.5_family.tsv.xz" 
-OUTPUT_FILE_1 = "/data/frozen/50AA_GMSC_sort.faa.xz"
-OUTPUT_FILE_2 = "/data/frozen/90AA_GMSC_sort.faa.xz"
-OUTPUT_FILE_3 = "/data/frozen/100AA_GMSC_sort.faa.xz"
-OUTPUT_FILE_4 = "/data/frozen/all_0.9_0.5_family_sort.tsv.xz"
+INPUT_FILE_1 = "./data/frozen/50AA_GMSC.faa.xz"  
+INPUT_FILE_2 = "./data/frozen/90AA_GMSC.faa.xz"  
+INPUT_FILE_3 = "./data/frozen/100AA_GMSC.faa.xz"  
+INPUT_FILE_4 = "./data/frozen/all_0.9_0.5_family.tsv.xz" 
+OUTPUT_FILE_1 = "./data/frozen/50AA_GMSC_sort.faa.xz"
+OUTPUT_FILE_2 = "./data/frozen/90AA_GMSC_sort.faa.xz"
+OUTPUT_FILE_3 = "./data/frozen/100AA_GMSC_sort.faa.xz"
+OUTPUT_FILE_4 = "./data/frozen/all_0.9_0.5_family_sort.tsv.xz"
 
 sort_faa(INPUT_FILE_1,OUTPUT_FILE_1)
 sort_faa(INPUT_FILE_2,OUTPUT_FILE_2)

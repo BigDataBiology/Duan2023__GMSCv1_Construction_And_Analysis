@@ -75,11 +75,11 @@ def assign(infile1,infile2,outfile1,outfile2,outfile3,outfile4):
                 out4.write(linelist[0]+"\n")
     out4.close()
 
-INPUT_FILE_1 = "/antifam/antifam_result.tsv"
-INPUT_FILE_2 = "/data/frozen/all_0.9_0.5_family.tsv.xz"
-OUTPUT_FILE_1 = "/antifam/90AA_F_T_rate.tsv.gz"
-OUTPUT_FILE_2 = "/antifam/antifam_90AA.tsv.gz"
-OUTPUT_FILE_3 = "/antifam/50AA_F_T_rate.tsv.gz"
-OUTPUT_FILE_4 = "/antifam/antifam_50AA.tsv.gz"
+INPUT_FILE_1 = "./antifam/antifam_result.tsv"
+INPUT_FILE_2 = "./data/frozen/all_0.9_0.5_family.tsv.xz"
+OUTPUT_FILE_1 = "./antifam/90AA_F_T_rate.tsv.gz"
+OUTPUT_FILE_2 = "./antifam/antifam_90AA.tsv.gz"
+OUTPUT_FILE_3 = "./antifam/50AA_F_T_rate.tsv.gz"
+OUTPUT_FILE_4 = "./antifam/antifam_50AA.tsv.gz"
 
 assign(INPUT_FILE_1,INPUT_FILE_2,OUTPUT_FILE_1,OUTPUT_FILE_2,OUTPUT_FILE_3,OUTPUT_FILE_4)

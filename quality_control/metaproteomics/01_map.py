@@ -66,9 +66,9 @@ if __name__ == '__main__':
     query = args.query
     output = args.output
     # directory with the metaproteome files
-    directory = '/GMSC/metaproteomes/metaproteomes'
+    directory = './metaproteomes/metaproteomes'
     # directory to store the mapped hits
-    odirectory = '/GMSC/metaproteomes/map_result_new'
+    odirectory = './metaproteomes/map_result_new'
     ofile = db.replace('.fasta', '') + "_" + output + ".tsv"    
     ofile = os.path.join(odirectory,ofile)
     dbin,db_min,db_max = dbmaker(os.path.join(directory, db))

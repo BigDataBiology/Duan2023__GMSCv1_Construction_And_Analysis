@@ -1,6 +1,6 @@
 '''
-Generate antifam results to 90AA. and 50AA
-If there is at least 1 smORF mapped to antifam in 90AA family or 50AA family,the family will be spurious.
+Generate metaproteomics quality results of 90AA. and 50AA smORFs.
+If at least 1 smORF has metaproteomics evidence in 90AA family or 50AA family,the family will be true.
 '''
 
 def assign(infile1,infile2,outfile1,outfile2,outfile3,outfile4):
@@ -76,11 +76,11 @@ def assign(infile1,infile2,outfile1,outfile2,outfile3,outfile4):
                 out4.write(linelist[0]+"\n")
     out4.close()
 
-INPUT_FILE_1 = "/metaproteomes/merge_result/coverage_analysis.tsv.gz"
-INPUT_FILE_2 = "/data/frozen/all_0.9_0.5_family.tsv.xz"
-OUTPUT_FILE_1 = "/metaproteomes/merge_result/90AA_F_T_rate.tsv.gz"
-OUTPUT_FILE_2 = "/metaproteomes/merge_result/metaP_90AA.tsv.gz"
-OUTPUT_FILE_3 = "/metaproteomes/merge_result/50AA_F_T_rate.tsv.gz"
-OUTPUT_FILE_4 = "/metaproteomes/merge_result/metaP_50AA.tsv.gz"
+INPUT_FILE_1 = "./metaproteomes/merge_result/coverage_analysis.tsv.gz"
+INPUT_FILE_2 = "./data/frozen/all_0.9_0.5_family.tsv.xz"
+OUTPUT_FILE_1 = "./metaproteomes/merge_result/90AA_F_T_rate.tsv.gz"
+OUTPUT_FILE_2 = "./metaproteomes/merge_result/metaP_90AA.tsv.gz"
+OUTPUT_FILE_3 = "./metaproteomes/merge_result/50AA_F_T_rate.tsv.gz"
+OUTPUT_FILE_4 = "./metaproteomes/merge_result/metaP_50AA.tsv.gz"
 
 assign(INPUT_FILE_1,INPUT_FILE_2,OUTPUT_FILE_1,OUTPUT_FILE_2,OUTPUT_FILE_3,OUTPUT_FILE_4)

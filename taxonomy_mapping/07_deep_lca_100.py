@@ -134,9 +134,9 @@ def extract(infile1,infile2,outfile):
                 continue
     out.close()
 
-INPUT_FILE_1 = "/taxa/metag/metag_cluster_taxonomy.tsv.xz"
-INPUT_FILE_2 = "/clust_result/result/all_0.5_0.9.tsv.gz"
-OUTPUT_FILE_1 = "/taxa/metag/deep_lca/metag_cluster_tax_all_dlca.tsv.xz"
-OUTPUT_FILE_2 = "/taxa/metag/id100/100AA_taxonomy.tsv.xz" 
+INPUT_FILE_1 = "./taxa/metag/metag_cluster_taxonomy.tsv.xz"
+INPUT_FILE_2 = "./clust_result/result/all_0.5_0.9.tsv.gz"
+OUTPUT_FILE_1 = "./taxa/metag/deep_lca/metag_cluster_tax_all_dlca.tsv.xz"
+OUTPUT_FILE_2 = "./taxa/metag/id100/100AA_taxonomy.tsv.xz" 
 deep_lca(INPUT_FILE_1,OUTPUT_FILE_1)
 extract(INPUT_FILE_2,OUTPUT_FILE_1,OUTPUT_FILE_2)

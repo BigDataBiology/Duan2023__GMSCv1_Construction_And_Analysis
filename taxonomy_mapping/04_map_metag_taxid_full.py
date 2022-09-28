@@ -123,9 +123,9 @@ def fulltax(infile1,infile2,outfile):
 
 INPUT_FILE_1 = "mmseqs2.lca_taxonomy.full.tsv.xz"  
 INPUT_FILE_2 = "GMSC10.metag_smorfs.rename.txt.xz"
-INPUT_FILE_3 = "/taxa/metag/gtdb_taxonomy.tsv"
-OUTPUT_FILE_1 = "/taxa/metag/metag_taxid.tsv.xz"
-OUTPUT_FILE_2 = "/taxa/metag/taxid_fullname_gtdb.tsv"
+INPUT_FILE_3 = "./taxa/metag/gtdb_taxonomy.tsv"
+OUTPUT_FILE_1 = "./taxa/metag/metag_taxid.tsv.xz"
+OUTPUT_FILE_2 = "./taxa/metag/taxid_fullname_gtdb.tsv"
 
 maptax(INPUT_FILE_1,INPUT_FILE_2,OUTPUT_FILE_1)
 fulltax(INPUT_FILE_3,INPUT_FILE_1,OUTPUT_FILE_2)

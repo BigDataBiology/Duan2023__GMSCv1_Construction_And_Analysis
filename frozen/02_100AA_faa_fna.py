@@ -20,13 +20,13 @@ def getseq(infile1,infile2,outfile):
             out1.write(f'>{name[ID]}\n{seq}\n')           
     out1.close()        
 
-INPUT_FILE_1 = "/data/100AA_rename.tsv.xz"  
-INPUT_FILE_2 = "/data/metag_ProG_dedup.faa.gz"
+INPUT_FILE_1 = "./data/100AA_rename.tsv.xz"  
+INPUT_FILE_2 = "./data/metag_ProG_dedup.faa.gz"
 INPUT_FILE_3 = "GMSC10.metag_smorfs.fna.xz"
 INPUT_FILE_4 = "GMSC.ProGenomes2.smorfs.fna.xz"
-OUTPUT_FILE_1 = "/data/frozen/100AA_GMSC.faa.xz"
-OUTPUT_FILE_2 = "/data/frozen/100AA_metag.fna.xz"
-OUTPUT_FILE_3 = "/data/frozen/100AA_prog.fna.xz"
+OUTPUT_FILE_1 = "./data/frozen/100AA_GMSC.faa.xz"
+OUTPUT_FILE_2 = "./data/frozen/100AA_metag.fna.xz"
+OUTPUT_FILE_3 = "./data/frozen/100AA_prog.fna.xz"
 
 getseq(INPUT_FILE_1,INPUT_FILE_2,OUTPUT_FILE_1)
 getseq(INPUT_FILE_1,INPUT_FILE_3,OUTPUT_FILE_2)

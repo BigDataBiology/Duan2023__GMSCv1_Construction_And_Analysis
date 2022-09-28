@@ -18,9 +18,9 @@ def identify(infile,outfile):
     out.close()
 
 for i in range(24):
-    INPUT_FILE_1 = "/diamond/analysis/analysis_0.5/sub"+str(i)+".faa.gz.tsv.tmp.3"
-    INPUT_FILE_2 = "/diamond/analysis/analysis_0.9/sub"+str(i)+".faa.gz.tsv.tmp.3"
-    OUT_FILE_1 = "/diamond/analysis/analysis_0.5/sub"+str(i)+".faa.gz.tsv.tmp.4"
-    OUT_FILE_2 = "/diamond/analysis/analysis_0.9/sub"+str(i)+".faa.gz.tsv.tmp.4"
+    INPUT_FILE_1 = "./diamond/analysis/analysis_0.5/sub"+str(i)+".faa.gz.tsv"
+    INPUT_FILE_2 = "./diamond/analysis/analysis_0.9/sub"+str(i)+".faa.gz.tsv"
+    OUT_FILE_1 = "./diamond/analysis/analysis_0.5/sub"+str(i)+".faa.gz.tsv.tmp"
+    OUT_FILE_2 = "./diamond/analysis/analysis_0.9/sub"+str(i)+".faa.gz.tsv.tmp"
     identify(INPUT_FILE_1,OUT_FILE_1)
     identify(INPUT_FILE_2,OUT_FILE_2)

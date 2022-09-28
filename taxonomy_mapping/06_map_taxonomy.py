@@ -135,12 +135,12 @@ def map_cluster(infile1,infile2,infile3,outfile):
                 out.write(linelist[0]+"\t"+linelist[1]+"\n")           
     out.close()
 
-INPUT_FILE_1 = "/taxa/metag/taxid_fullname_gtdb.tsv"   
-INPUT_FILE_2 = "/taxa/metag/metag_taxid.tsv.xz"
+INPUT_FILE_1 = "./taxa/metag/taxid_fullname_gtdb.tsv"   
+INPUT_FILE_2 = "./taxa/metag/metag_taxid.tsv.xz"
 INPUT_FILE_3 = "dedup_cluster.tsv.gz"
-INPUT_FILE_4 = "/taxa/progenome/prog_taxonomy_change.tsv.gz"  
-OUT_PATH_1 = "/taxa/metag/metag_taxonomy" 
-OUT_PATH_2 = "/taxa/metag/metag_cluster_taxonomy" 
+INPUT_FILE_4 = "./taxa/progenome/prog_taxonomy_change.tsv.gz"  
+OUT_PATH_1 = "./taxa/metag/metag_taxonomy" 
+OUT_PATH_2 = "./taxa/metag/metag_cluster_taxonomy" 
 
 metag_full(INPUT_FILE_1,INPUT_FILE_2,OUT_PATH_1)
 for i in range(1,9):

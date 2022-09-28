@@ -31,16 +31,16 @@ def select(infile,outfile,NR_SINGLETONS):
            if n in selected:
                out.write(f'>{ID}\n{seq}\n')
 
-INPUT_FILE_1 = "/clust_result/0.9_result/0.9clu_singleton_name"
-INPUT_FILE_2 = "/clust_result/0.9_result/metag_ProG_nonsingleton_0.9_clu_rep.faa"
-INPUT_FILE_3 = "/clust_result/0.5_result/0.5clu_singleton_name"
-INPUT_FILE_4 = "/clust_result/0.5_result/metag_ProG_nonsingleton_0.5_clu_rep.faa"
-OUT_FILE_1 = "/clust_result/0.9_result/0.9clu_singleton.faa"
-OUT_FILE_2 = "/clust_result/0.9_result/0.9clu_nonsingleton.faa"
-OUT_FILE_3 = "/clust_result/0.5_result/0.5clu_singleton.faa"
-OUT_FILE_4 = "/clust_result/0.5_result/0.5clu_nonsingleton.faa"
-OUT_FILE_5 = "/clust_result/0.9_result/0.9clu_singleton_1000.faa"
-OUT_FILE_6 = "/clust_result/0.5_result/0.5clu_singleton_1000.faa"
+INPUT_FILE_1 = "./clust_result/0.9_result/0.9clu_singleton_name"
+INPUT_FILE_2 = "./clust_result/0.9_result/metag_ProG_nonsingleton_0.9_clu_rep.faa"
+INPUT_FILE_3 = "./clust_result/0.5_result/0.5clu_singleton_name"
+INPUT_FILE_4 = "./clust_result/0.5_result/metag_ProG_nonsingleton_0.5_clu_rep.faa"
+OUT_FILE_1 = "./clust_result/0.9_result/0.9clu_singleton.faa"
+OUT_FILE_2 = "./clust_result/0.9_result/0.9clu_nonsingleton.faa"
+OUT_FILE_3 = "./clust_result/0.5_result/0.5clu_singleton.faa"
+OUT_FILE_4 = "./clust_result/0.5_result/0.5clu_nonsingleton.faa"
+OUT_FILE_5 = "./clust_result/0.9_result/0.9clu_singleton_1000.faa"
+OUT_FILE_6 = "./clust_result/0.5_result/0.5clu_singleton_1000.faa"
 
 extract(INPUT_FILE_1,INPUT_FILE_2,OUT_FILE_1,OUT_FILE_2)
 extract(INPUT_FILE_3,INPUT_FILE_4,OUT_FILE_3,OUT_FILE_4)

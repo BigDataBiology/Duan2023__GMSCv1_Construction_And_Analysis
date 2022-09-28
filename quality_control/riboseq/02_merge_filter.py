@@ -25,9 +25,9 @@ def filter_riboseq(infile,outfile):
 
     out.close()
 
-INPUT_FILE = glob.glob('/riboseq/result/ngless/*.tsv') 
-OUTPUT_FILE_1 = "/riboseq/result/merge/riboseq_result.tsv"
-OUTPUT_FILE_2 = "/riboseq/result/merge/riboseq_result_filter.tsv"
+INPUT_FILE = glob.glob('./riboseq/result/ngless/*.tsv') 
+OUTPUT_FILE_1 = "./riboseq/result/merge/riboseq_result.tsv"
+OUTPUT_FILE_2 = "./riboseq/result/merge/riboseq_result_filter.tsv"
 
 dfs = map(read_and_set_index, enumerate(INPUT_FILE))
 pd.concat(dfs, axis=1, sort=True, join='outer').to_csv(OUTPUT_FILE_1, sep='\t')

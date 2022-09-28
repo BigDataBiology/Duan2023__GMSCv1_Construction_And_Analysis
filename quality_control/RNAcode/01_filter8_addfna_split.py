@@ -101,12 +101,12 @@ def split(infile,outfile):
                 out.write(">"+linelist[1]+"\n"+linelist[2]+"\n")
     out.close()   
 
-INPUT_FILE_1 = "/clust_result/result/all_0.5_0.9.tsv"
-INPUT_FILE_2 = "/data/metag_ProG_smorfs.fna.xz"
-OUT_FILE_1 = "/clust_result/result/all_0.5_0.9_filter.tsv"
-OUT_FILE_2 = "/RNAcode_result/all_0.5_0.9_filter_fna.tsv"
-OUT_FILE_3 = "/RNAcode_result/all_0.5_0.9_filter_fna_order.tsv"
-SPLIT_FILE_PAT = "/RNAcode_result/split/"
+INPUT_FILE_1 = "./clust_result/result/all_0.5_0.9.tsv"
+INPUT_FILE_2 = "./data/metag_ProG_smorfs.fna.xz"
+OUT_FILE_1 = "./clust_result/result/all_0.5_0.9_filter.tsv"
+OUT_FILE_2 = "./RNAcode_result/all_0.5_0.9_filter_fna.tsv"
+OUT_FILE_3 = "./RNAcode_result/all_0.5_0.9_filter_fna_order.tsv"
+SPLIT_FILE_PAT = "./RNAcode_result/split/"
 
 filter_eight(INPUT_FILE_1,OUT_FILE_1)
 addfna(OUT_FILE_1,INPUT_FILE_2,OUT_FILE_2)

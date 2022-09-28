@@ -85,12 +85,12 @@ def general(infile1,infile2,outfile):
             
     out.close()
 
-INPUT_FILE_1 = "/habitat/metag_cluster_habitat.tsv.xz"
-INPUT_FILE_2 = "/frozen/100AA_rename.tsv.xz"
-INPUT_FILE_3 = "habitat_general.txt"
-OUTPUT_FILE_1 = "/habitat/all_cluster_multi_habitat.tsv.xz"
-OUTPUT_FILE_2 = "/habitat/id100/100AA_multi_habitat.tsv.xz" 
-OUTPUT_FILE_3 = "/habitat/id100/100AA_multi_general_habitat.tsv.xz"
+INPUT_FILE_1 = "./habitat/metag_cluster_habitat.tsv.xz"
+INPUT_FILE_2 = "./frozen/100AA_rename.tsv.xz"
+INPUT_FILE_3 = "./habitat/habitat_general.txt"
+OUTPUT_FILE_1 = "./habitat/all_cluster_multi_habitat.tsv.xz"
+OUTPUT_FILE_2 = "./habitat/id100/100AA_multi_habitat.tsv.xz" 
+OUTPUT_FILE_3 = "./habitat/id100/100AA_multi_general_habitat.tsv.xz"
 
 multi_habitat(INPUT_FILE_1,OUTPUT_FILE_1)
 extract(INPUT_FILE_2,OUTPUT_FILE_1,OUTPUT_FILE_2)

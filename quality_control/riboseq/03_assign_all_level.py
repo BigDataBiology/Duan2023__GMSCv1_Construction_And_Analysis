@@ -1,5 +1,7 @@
 '''
 Generate riboseq mapping results for 100AA,90AA and 50AA smORFs.
+If 90AA family representitive sequence has riboseq evidence,all the 100AA smORFs in the family will be true.
+If at least 1 smORF has riboseq evidence in 50AA family,the family will be true.
 '''
 
 def assign(infile1,infile2,outfile1,outfile2,outfile3):
@@ -62,10 +64,10 @@ def assign(infile1,infile2,outfile1,outfile2,outfile3):
                 out3.write(linelist[0]+"\n")
     out3.close()
 
-INPUT_FILE_1 = "/riboseq/result/merge/riboseq_result_filter.tsv"
-INPUT_FILE_2 = "/data/frozen/all_0.9_0.5_family.tsv.xz"
-OUTPUT_FILE_1 = "/riboseq/result/merge/riboseq_100AA.tsv.gz"
-OUTPUT_FILE_2 = "/riboseq/result/merge/50AA_F_T_rate.tsv.gz"
-OUTPUT_FILE_3 = "/riboseq/result/merge/riboseq_50AA.tsv.gz"
+INPUT_FILE_1 = "./riboseq/result/merge/riboseq_result_filter.tsv"
+INPUT_FILE_2 = "./data/frozen/all_0.9_0.5_family.tsv.xz"
+OUTPUT_FILE_1 = "./riboseq/result/merge/riboseq_100AA.tsv.gz"
+OUTPUT_FILE_2 = "./riboseq/result/merge/50AA_F_T_rate.tsv.gz"
+OUTPUT_FILE_3 = "./riboseq/result/merge/riboseq_50AA.tsv.gz"
 
 assign(INPUT_FILE_1,INPUT_FILE_2,OUTPUT_FILE_1,OUTPUT_FILE_2,OUTPUT_FILE_3)

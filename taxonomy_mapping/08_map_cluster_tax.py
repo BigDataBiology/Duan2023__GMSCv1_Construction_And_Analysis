@@ -133,13 +133,13 @@ def deep_lca(infile1,outfile):
                 out.write(key+"\t"+value[n]+"\n")                        
     out.close()
 
-INPUT_FILE_1 = "/taxa/metag/id100/100AA_taxonomy.tsv.xz"   
+INPUT_FILE_1 = "./taxa/metag/id100/100AA_taxonomy.tsv.xz"   
 INPUT_FILE_2 = "all_cluster_0.9.tsv.xz"  
 INPUT_FILE_3 = "all_cluster_0.5.tsv.xz"
-OUTPUT_FILE_1 = "/taxa/metag/id90/metag_cluster_tax_90.tsv.xz" 
-OUTPUT_FILE_2 = "/taxa/metag/id50/metag_cluster_tax_50.tsv.xz" 
-OUTPUT_FILE_3 = "/taxa/metag/id90/90AA_tax.tsv.xz"
-OUTPUT_FILE_4 = "/taxa/metag/id50/50AA_tax.tsv.xz"
+OUTPUT_FILE_1 = "./taxa/metag/id90/metag_cluster_tax_90.tsv.xz" 
+OUTPUT_FILE_2 = "./taxa/metag/id50/metag_cluster_tax_50.tsv.xz" 
+OUTPUT_FILE_3 = "./taxa/metag/id90/90AA_tax.tsv.xz"
+OUTPUT_FILE_4 = "./taxa/metag/id50/50AA_tax.tsv.xz"
 
 metag_full(INPUT_FILE_1,INPUT_FILE_2,OUTPUT_FILE_1)
 metag_full(INPUT_FILE_1,INPUT_FILE_3,OUTPUT_FILE_2)

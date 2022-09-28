@@ -24,7 +24,7 @@ def split(infile,outpath):
             n = 1
     out.close()    
         
-INPUT_FILE_1 = "/data/frozen/100AA_GMSC.faa.xz"
-OUT_PATH = "/metaproteomes/data/split_all"
+INPUT_FILE_1 = "./data/frozen/100AA_GMSC.faa.xz"
+OUT_PATH = "./metaproteomes/data/split_all"
 
 split(INPUT_FILE_1,OUT_PATH)

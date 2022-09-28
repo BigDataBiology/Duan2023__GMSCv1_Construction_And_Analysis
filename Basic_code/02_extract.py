@@ -25,8 +25,8 @@ def extract_seq(infile1,infile2,outfile1,outfile2):
                 out2.write(f'>{ID}\n{seq}\n')
 
 
-INPUT_FILE_1 = "/data/metag_ProG.raw_number.tsv.gz"
-INPUT_FILE_2 = "/data/metag_ProG_dedup.faa.gz"
-OUT_FILE_1 = "/data/metag_ProG_nonsingleton.faa.gz"
-OUT_FILE_2 = "/data/metag_ProG_singleton.faa.gz"
+INPUT_FILE_1 = "./data/metag_ProG.raw_number.tsv.gz"
+INPUT_FILE_2 = "./data/metag_ProG_dedup.faa.gz"
+OUT_FILE_1 = "./data/metag_ProG_nonsingleton.faa.gz"
+OUT_FILE_2 = "./data/metag_ProG_singleton.faa.gz"
 extract_seq(INPUT_FILE_1,INPUT_FILE_2,OUT_FILE_1,OUT_FILE_2)
