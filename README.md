@@ -1,1 +1,1 @@
-# smorf-catalog-project
+# GMSC_manuscript_analysis

@@ -1,0 +1,9 @@
+Tool,Number,Length,Sensitivity,Time,Time(s),Type
+Diamond,"1,000",all,sensitive,04:21.0,261,aa
+Diamond,"10,000",all,sensitive,08:06.7,486,aa
+Diamond,"100,000",all,sensitive,21:11.4,1271,aa
+Diamond,"1,000,000",all,sensitive,1:46:53,6413,aa
+MMseqs,"1,000",all,5.7,09:05.7,545,aa
+MMseqs,"10,000",all,5.7,09:28.1,568,aa
+MMseqs,"100,000",all,5.7,17:39.7,1059,aa
+MMseqs,"1,000,000",all,5.7,1:35:02,5702,aa

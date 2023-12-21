@@ -1,0 +1,26 @@
+J	FCCCFC	Translation, ribosomal structure and biogenesis	INFORMATION STORAGE AND PROCESSING
+A	FCDCFC	RNA processing and modification	INFORMATION STORAGE AND PROCESSING
+K	FCDCEC	Transcription	INFORMATION STORAGE AND PROCESSING
+L	FCDCDC	Replication, recombination and repair	INFORMATION STORAGE AND PROCESSING
+B	FCDCCC	Chromatin structure and dynamics	INFORMATION STORAGE AND PROCESSING
+D	FCFCDC	Cell cycle control, cell division, chromosome partitioning	CELLULAR PROCESSES AND SIGNALING
+Y	FCFCCC	Nuclear structure	CELLULAR PROCESSES AND SIGNALING
+V	FCFCBC	Defense mechanisms	CELLULAR PROCESSES AND SIGNALING
+T	FCFCAC	Signal transduction mechanisms	CELLULAR PROCESSES AND SIGNALING
+M	ECFCAC	Cell wall/membrane/envelope biogenesis	CELLULAR PROCESSES AND SIGNALING
+N	DCFCAC	Cell motility	CELLULAR PROCESSES AND SIGNALING
+Z	CCFCAC	Cytoskeleton	CELLULAR PROCESSES AND SIGNALING
+W	BCFCAC	Extracellular structures	CELLULAR PROCESSES AND SIGNALING
+U	ACFCAC	Intracellular trafficking, secretion, and vesicular transport	CELLULAR PROCESSES AND SIGNALING
+O	9CFCAC	Posttranslational modification, protein turnover, chaperones	CELLULAR PROCESSES AND SIGNALING
+X	9CFC9C	Mobilome: prophages, transposons	CELLULAR PROCESSES AND SIGNALING
+C	BCFCFC	Energy production and conversion	METABOLISM
+G	CCFCFC	Carbohydrate transport and metabolism	METABOLISM
+E	DCFCFC	Amino acid transport and metabolism	METABOLISM
+F	DCECFC	Nucleotide transport and metabolism	METABOLISM
+H	DCDCFC	Coenzyme transport and metabolism	METABOLISM
+I	DCCCFC	Lipid transport and metabolism	METABOLISM
+P	CCCCFC	Inorganic ion transport and metabolism	METABOLISM
+Q	BCCCFC	Secondary metabolites biosynthesis, transport and catabolism	METABOLISM
+R	E0E0E0	General function prediction only	POORLY CHARACTERIZED
+S	CCCCCC	Function unknown	POORLY CHARACTERIZED

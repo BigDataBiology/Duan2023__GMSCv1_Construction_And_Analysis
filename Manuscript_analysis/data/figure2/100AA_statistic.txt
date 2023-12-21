@@ -1,0 +1,2 @@
+Taxonomy	Super_kingdom	Phylum	Class	Order	Family	Genus	Species	No_rank
+100AA	66924066	15612289	39105559	28210570	87914707	151163771	398478153	177561381
