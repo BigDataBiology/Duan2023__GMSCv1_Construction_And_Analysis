@@ -20,6 +20,7 @@ The softwares are required for the scripts.
 | NGLess (v.1.3.0) | https://github.com/ngless-toolkit/ngless |
 | Prodigal (v 2.6.3) | https://github.com/hyattpd/Prodigal |
 | Macrel (v.0.5) | https://github.com/BigDataBiology/macrel |
+| JUG (v.2.1.1) | https://github.com/luispedro/jug |
 | MMseqs2 | https://github.com/soedinglab/MMseqs2 |
 | Swipe (v.2.1.1) | https://github.com/torognes/swipe |
 | DIAMOND (v.2.0.4) | https://github.com/bbuchfink/diamond |
@@ -35,7 +36,7 @@ The softwares are required for the scripts.
 
 ### Database
 
-Theese databases are used in the construction and analysis of the catalogue.
+These databases are used in the construction and analysis of the catalogue.
 
 | **Database** | **Availability** |
 | :---: | :---: |
