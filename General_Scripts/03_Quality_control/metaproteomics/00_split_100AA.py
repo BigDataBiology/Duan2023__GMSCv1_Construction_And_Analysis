@@ -1,6 +1,6 @@
 '''
 Concept:
-100AA smORFs are too many to process.Split them in 20 sub files to speed up.
+Split 100AA smORFs into 20 sub files to process.
 '''
 
 from fasta import fasta_iter
@@ -24,7 +24,7 @@ def split(infile,outpath):
             n = 1
     out.close()    
         
-INPUT_FILE_1 = "./data/frozen/100AA_GMSC.faa.xz"
-OUT_PATH = "./metaproteomes/data/split_all"
+INPUT_FILE_1 = "100AA_GMSC.faa.xz"
+OUT_PATH = "./split_all"
 
 split(INPUT_FILE_1,OUT_PATH)

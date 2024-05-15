@@ -2,7 +2,7 @@
 
 #Run RNAcode
 
-DIR="/GMSC/RNAcode_result/msa"
+DIR="./msa"
 number=1
 for n in {1..287}
   do
@@ -16,7 +16,7 @@ for n in {1..287}
           then
             for infile in $(ls ${DIR_second})
               do
-                RNAcode ${DIR_second}/${infile} --tabular --outfile /RNAcode_result/rna/first${n}/second${m}/${infile}.tsv
+                RNAcode ${DIR_second}/${infile} --tabular --outfile ./rnacode/first${n}/second${m}/${infile}.tsv
               done
           else
             number=0

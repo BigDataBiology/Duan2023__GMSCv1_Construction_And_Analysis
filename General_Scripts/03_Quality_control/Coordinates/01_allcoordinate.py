@@ -61,9 +61,9 @@ def detect_sequence(sitelist,seq,out):
                 tf = 1
                 break
         if tf == 0:
-            out.write(GMSC+"\t"+"F"+"\n")
+            out.write(f'{GMSC}\tF\n')
         else:
-            out.write(GMSC+"\t"+"T"+"\n")
+            out.write(f'{GMSC}\tT\n')
         tf = 0   
     else:
         seq = complement(seq)
@@ -73,9 +73,9 @@ def detect_sequence(sitelist,seq,out):
                 tf = 1
                 break
         if tf == 0:
-            out.write(GMSC+"\t"+"F"+"\n")
+            out.write(f'{GMSC}\tF\n')
         else:
-            out.write(GMSC+"\t"+"T"+"\n")
+            out.write(f'{GMSC}\tT\n')
         tf = 0      
 
 def detect_contigdict(contigdict,seqdict,out):
@@ -103,23 +103,23 @@ def detect_contigdict(contigdict,seqdict,out):
         for i in range(0,len(value)):
             if value[i][3] == 1:
                 if len(flagr) == 3:
-                    out.write(value[i][0]+"\t"+"T"+"\n")
+                    out.write(f'{value[i][0]}\tT\n')
                 else:                
                     if value[i][1] % 3 not in flagp:
                         flagp.add(value[i][1] % 3)
                         detect_sequence(value[i],seq,out)
                     else:
-                        out.write(value[i][0]+"\t"+"T"+"\n")
+                        out.write(f'{value[i][0]}\tT\n')
         for i in range(len(value)-1,-1,-1):
             if value[i][3] == -1:
                 if len(flagr) == 3:
-                    out.write(value[i][0]+"\t"+"T"+"\n")
+                    out.write(f'{value[i][0]}\tT\n')
                 else:
                     if value[i][2] % 3 not in flagr:
                         flagr.add(value[i][2] % 3)
                         detect_sequence(value[i],seq,out)
                     else:
-                        out.write(value[i][0]+"\t"+"T"+"\n")            
+                        out.write(f'{value[i][0]}\tT\n')            
         
 def coordinate(infile,fasta_path,outfile):   
     '''

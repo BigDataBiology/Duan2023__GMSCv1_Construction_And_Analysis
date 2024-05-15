@@ -6,9 +6,9 @@
 set -e
 set -o pipefail
 
-hmmpress ~/software/antifam/AntiFam.hmm
+hmmpress AntiFam.hmm
 
-hmmsearch --cut_ga --tblout ~/antifam/antifam_result_100.tsv ~/software/antifam/AntiFam.hmm ./data/frozen/100AA_GMSC_sort.faa
+hmmsearch --cut_ga --tblout antifam_result_100.tsv AntiFam.hmm 100AA_GMSC.faa
 
 awk 'NR>3&&NR<4031131&&$5 <= 0.00001' antifam_result_100.tsv > antifam_result_100.tsv.tmp
 

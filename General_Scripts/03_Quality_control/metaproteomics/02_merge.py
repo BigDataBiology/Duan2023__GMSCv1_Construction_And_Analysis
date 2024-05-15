@@ -75,10 +75,10 @@ def processfile_cov(infile):
         return df.sort_values('Access')
     
 if __name__ == '__main__':
-    folder = "./metaproteomes/map_result"
-    ofile = "./metaproteomes/merge_result/merged_output.tsv"
+    folder = "./map_result"
+    ofile = "merged_output.tsv"
     mergeall(folder,ofile)
     # properly calculating the coverage per peptide
     df = processfile_cov(ofile)
     # saving final results
-    df.to_csv('./metaproteomes/merge_result/coverage_analysis.tsv',sep='\t', header=True, index=None)
+    df.to_csv('coverage_analysis.tsv',sep='\t', header=True, index=None)

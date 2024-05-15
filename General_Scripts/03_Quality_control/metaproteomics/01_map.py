@@ -1,4 +1,5 @@
 '''
+Concept:
 For each metaproteomes peptides from each project in PRIDE,find their exact match against 100AA smORFs.
 Step 1:Find peptide and smORFs hits. 
 '''
@@ -66,9 +67,9 @@ if __name__ == '__main__':
     query = args.query
     output = args.output
     # directory with the metaproteome files
-    directory = './metaproteomes/metaproteomes'
+    directory = './metaproteomes'
     # directory to store the mapped hits
-    odirectory = './metaproteomes/map_result_new'
+    odirectory = './map_result'
     ofile = db.replace('.fasta', '') + "_" + output + ".tsv"    
     ofile = os.path.join(odirectory,ofile)
     dbin,db_min,db_max = dbmaker(os.path.join(directory, db))
