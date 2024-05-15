@@ -1,6 +1,6 @@
 '''
 Concept:
-Map taxid for smORFs from metaG according to contig.
+Map taxid for smORFs from metaG based on contigs.
 Get fullname of taxonomy of taxid according to GTDB files.
 '''
 
@@ -15,13 +15,11 @@ def maptax(infile1,infile2,outfile):
     out = lzma.open(outfile, "wt") 
 
     f2 = lzma.open(infile2,"rt")
-    header = f2.readline()
     metag = f2.readline().strip().split("\t")
 
     with lzma.open(infile1,"rt") as f1:
         for line in f1:
-            line = line.strip()
-            linelist = line.split("\t")
+            linelist = line.strip().split("\t")
             if line.startswith("sample"):
                 continue
             else:
@@ -35,9 +33,9 @@ def maptax(infile1,infile2,outfile):
                         while metag[1] == lastsample:
                             contig2 = metag[1]+metag[2].split(" # ")[0].split("_")[0]+"_"+metag[2].split(" # ")[0].split("_")[1]
                             if contig2 in taxa.keys():
-                                out.write(metag[0]+"\t"+taxa[contig2]+"\n")   
+                                out.write(f'{metag[0]}\t{taxa[contig2]}\n')   
                             else:
-                                out.write(metag[0]+"\n")
+                                out.write(f'{metag[0]}\n')
                             metag = f2.readline().strip().split("\t")
                             if metag == [""]:
                                 break
@@ -53,9 +51,9 @@ def maptax(infile1,infile2,outfile):
         while metag[1] == lastsample:
             contig2 = metag[1]+metag[2].split(" # ")[0].split("_")[0]+"_"+metag[2].split(" # ")[0].split("_")[1]
             if contig2 in taxa.keys():
-                out.write(metag[0]+"\t"+taxa[contig2]+"\n")   
+                out.write(f'{metag[0]}\t{taxa[contig2]}\n')   
             else:
-                out.write(metag[0]+"\n")
+                out.write(f'{metag[0]}\n')
             metag = f2.readline().strip().split("\t")
             if metag == [""]:
                 break
@@ -74,14 +72,12 @@ def fulltax(infile1,infile2,outfile):
 
     with open(infile1,"rt") as f1:
         for line in f1:
-            line = line.strip()
-            linelist = line.split("\t")
+            linelist = line.strip().split("\t")
             taxonomy.append(linelist[1])
             
     with lzma.open(infile2,"rt") as f2:      
         for line in f2:
-            line = line.strip()
-            linelist = line.split("\t")
+            linelist = line.strip().split("\t")
             if line.startswith("sample"):
                 continue
             else:
@@ -92,7 +88,7 @@ def fulltax(infile1,infile2,outfile):
                     flag = 0
                     if linelist[3] == "superkingdom":
                         tax = "d__"+linelist[4]
-                        outf.write(linelist[2]+"\t"+tax+"\n")
+                        outf.write(f'{linelist[2]}\t{tax}\n')
                     else:
                         tax = linelist[3][0]+"__"+linelist[4]
                         for i in range(len(taxonomy)):
@@ -117,15 +113,15 @@ def fulltax(infile1,infile2,outfile):
                                 flag = 1
                                 break
                         if flag == 0:
-                            outf.write(linelist[2]+"\n")
+                            outf.write(f'{linelist[2]}\n')
 
     outf.close()
 
 INPUT_FILE_1 = "mmseqs2.lca_taxonomy.full.tsv.xz"  
 INPUT_FILE_2 = "GMSC10.metag_smorfs.rename.txt.xz"
-INPUT_FILE_3 = "./taxa/metag/gtdb_taxonomy.tsv"
-OUTPUT_FILE_1 = "./taxa/metag/metag_taxid.tsv.xz"
-OUTPUT_FILE_2 = "./taxa/metag/taxid_fullname_gtdb.tsv"
+INPUT_FILE_3 = "gtdb_taxonomy.tsv"
+OUTPUT_FILE_1 = "metag_taxid.tsv.xz"
+OUTPUT_FILE_2 = "taxid_fullname_gtdb.tsv"
 
 maptax(INPUT_FILE_1,INPUT_FILE_2,OUTPUT_FILE_1)
 fulltax(INPUT_FILE_3,INPUT_FILE_1,OUTPUT_FILE_2)

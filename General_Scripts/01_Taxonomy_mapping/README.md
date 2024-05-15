@@ -7,6 +7,6 @@
 | 04_map_metag_taxid_full.py | Map taxid of smORFs from metaG based on contigs and et the fullname of taxid based on GTDB | mmseqs2.lca_taxonomy.full.tsv.xz GMSC10.metag_smorfs.rename.txt.xz gtdb_taxonomy.tsv | metag_taxid.tsv.xz taxid_fullname_gtdb.tsv |
 | 05_dedup_cluster.py | Get clusters at 100% identity of raw data | GMSC10.metag_ProG_smorfs.faa.gz | dedup_cluster.tsv.gz |
 | 06_map_taxonomy.py | Map taxonomy for all the smORFs from metaG | taxid_fullname_gtdb.tsv metag_taxid.tsv.xz dedup_cluster.tsv.gz prog_taxonomy_change.tsv.gz | metag_cluster_taxonomy.tsv.xz |
-| 07_deep_lca_100.py | Map taxonomy for 100% identity smORFs with LCA | metag_cluster_taxonomy.tsv.xz all_0.5_0.9.tsv.gz | 100AA_taxonomy.tsv.xz |
-| 08_map_cluster_tax.py | Map taxonomy for 90% identity smORFs with LCA | 100AA_taxonomy.tsv.xz all_cluster_0.9.tsv.xz | 90AA_tax.tsv.xz |
+| 07_deep_lca_100.py | Map taxonomy for 100% identity smORFs with LCA | metag_cluster_taxonomy.tsv.xz GMSC.cluster.tsv.gz | 100AA_taxonomy.tsv.xz |
+| 08_map_cluster_tax.py | Map taxonomy for 90% identity smORFs with LCA | 100AA_taxonomy.tsv.xz GMSC.cluster.tsv.gz | 90AA_tax.tsv.xz |
 | 09_fix_prog_tax.py | Make consistency between Progenomes2 taxonomy and GTDB taxonomy | 100AA_taxonomy.tsv.xz 90AA_tax.tsv.xz | GMSC10.100AA.taxonomy.tsv GMSC10.90AA.taxonomy.tsv |

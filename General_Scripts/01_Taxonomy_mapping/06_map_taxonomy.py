@@ -27,16 +27,15 @@ def metag_full(infile1,infile2,outpath):
 
     with open(infile1,"rt") as f1:
         for line in f1:
-            line = line.strip()
-            linelist = line.split("\t",1)
+            linelist = line.strip().split("\t",1)
             if len(linelist) == 2:
                 tax[linelist[0]] = linelist[1]
             else:
                 continue
+
     with lzma.open(infile2,"rt") as f2:
         for line in f2:
-            line = line.strip()
-            linelist = line.split("\t")
+            linelist = line.strip().split("\t")
             if n < 600000000:
                 if len(linelist) == 2:
                     if linelist[1] in tax.keys():
@@ -117,12 +116,10 @@ Map taxonomy to raw data non-redundant cluster.
 '''
 def map_cluster(infile1,infile2,infile3,outfile):
     tax = {}
-    n = 0
     out = lzma.open(outfile, "wt")
     with gzip.open(infile1,"rt") as f1:
         for line in f1:
-            line = line.strip()
-            linelist = line.split("\t",1)
+            linelist = line.strip().split("\t",1)
             if len(linelist) == 2:
                 tax[linelist[0]] = linelist[1]
             else:
@@ -130,8 +127,7 @@ def map_cluster(infile1,infile2,infile3,outfile):
 
     with lzma.open(infile2,"rt") as f2:
         for line in f2:
-            line = line.strip()
-            linelist = line.split("\t",1)
+            linelist = line.strip().split("\t",1)
             if len(linelist) == 2:
                 tax[linelist[0]] = linelist[1]
             else:
@@ -139,20 +135,19 @@ def map_cluster(infile1,infile2,infile3,outfile):
 
     with gzip.open(infile3,"rt") as f4:
         for line in f4:
-            line = line.strip()
-            linelist = line.split("\t") 
+            linelist = line.strip().split("\t") 
             if linelist[1] in tax.keys():
                 out.write(linelist[0]+"\t"+linelist[1]+"\t"+tax[linelist[1]]+"\n")
             else:
                 out.write(linelist[0]+"\t"+linelist[1]+"\n")           
     out.close()
 
-INPUT_FILE_1 = "./taxa/metag/taxid_fullname_gtdb.tsv"   
-INPUT_FILE_2 = "./taxa/metag/metag_taxid.tsv.xz"
+INPUT_FILE_1 = "taxid_fullname_gtdb.tsv"   
+INPUT_FILE_2 = "metag_taxid.tsv.xz"
 INPUT_FILE_3 = "dedup_cluster.tsv.gz"
-INPUT_FILE_4 = "./taxa/progenome/prog_taxonomy_change.tsv.gz"  
-OUT_PATH_1 = "./taxa/metag/metag_taxonomy" 
-OUT_PATH_2 = "./taxa/metag/metag_cluster_taxonomy" 
+INPUT_FILE_4 = "prog_taxonomy_change.tsv.gz"  
+OUT_PATH_1 = "metag_taxonomy" 
+OUT_PATH_2 = "metag_cluster_taxonomy" 
 
 metag_full(INPUT_FILE_1,INPUT_FILE_2,OUT_PATH_1)
 for i in range(1,9):

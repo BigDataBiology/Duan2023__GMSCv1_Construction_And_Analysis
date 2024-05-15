@@ -13,10 +13,10 @@ Split all smORFs into 256 subfiles.
 def splitseq(infile):
     print("start splitseq")
     outputlist = [
-        f'/taxa/metag/dedup_cluster/split/sub_{ix:03}.faa.gz'
+        f'sub_{ix:03}.faa.gz'
         for ix in range(256)]
     outputfiles = [
-        gzip.open(f'/taxa/metag/dedup_cluster/split/sub_{ix:03}.faa.gz',compresslevel=1,  mode='wt')
+        gzip.open(f'sub_{ix:03}.faa.gz',compresslevel=1,  mode='wt')
         for ix in range(256)]
     for ID,seq in fasta_iter(infile):
         h = hashlib.sha256()

@@ -6,6 +6,7 @@ But we ignored the blank to make it more specific.
 '''
 
 import lzma
+import gzip
 
 '''
 Map taxonomy to 90% identity clusters.
@@ -13,23 +14,22 @@ Map taxonomy to 90% identity clusters.
 def metag_full(infile1,infile2,outfile):
     tax = {}
     out = lzma.open(outfile, "wt")
+
     with lzma.open(infile1,"rt") as f1:
         for line in f1:
-            line = line.strip()
-            linelist = line.split("\t",1)
+            linelist = line.strip().split("\t",1)
             if len(linelist) == 2:
                 tax[linelist[0]] = linelist[1]
             else:
                 continue
 
-    with lzma.open(infile2,"rt") as f2:
+    with gzip.open(infile2,"rt") as f2:
         for line in f2:
-            line = line.strip()
-            linelist = line.split("\t") 
-            if linelist[1] in tax.keys():
-                out.write(linelist[0]+"\t"+linelist[1]+"\t"+tax[linelist[1]]+"\n")
+            member,cluster = line.strip().split("\t") 
+            if member in tax.keys():
+                out.write(f'{cluster}\t{member}\t{tax[member]}\n')
             else:
-                out.write(line+"\n")
+                out.write(f'{cluster}\t{member}\n')
     out.close()
     
 def deep_lca(infile1,outfile):
@@ -37,11 +37,12 @@ def deep_lca(infile1,outfile):
     taxa = {}
     change = {}
     lastrank = ""
+
     out = lzma.open(outfile, "wt")
+
     with lzma.open(infile1,"rt") as f1:
         for line in f1:
-            line = line.strip()
-            linelist = line.split("\t")   
+            linelist = line.strip().split("\t")     
             if cluster:
                 if linelist[0] in cluster.keys():
                     cluster[linelist[0]].append(linelist[1])
@@ -50,13 +51,13 @@ def deep_lca(infile1,outfile):
                         change[key] = []
                         for rank in range(7):
                             flag = 1
-                            for i in range(len(value)):
-                                if taxa[value[i]]:
-                                    if len(taxa[value[i]]) >= rank+1:
+                            for item in value:
+                                if taxa[item]:
+                                    if len(taxa[item]) >= rank+1:
                                         if lastrank == "":
-                                            lastrank = taxa[value[i]][rank]
+                                            lastrank = taxa[item][rank]
                                         else:
-                                            if taxa[value[i]][rank] != lastrank:
+                                            if taxa[item][rank] != lastrank:
                                                 flag = 0
                                                 lastrank = ""
                                                 break
@@ -79,11 +80,11 @@ def deep_lca(infile1,outfile):
                             taxonomy = change[key][0]
                             for m in range(1,len(change[key])):
                                 taxonomy = taxonomy+"\t"+change[key][m] 
-                            for n in range(len(value)):
-                                out.write(key+"\t"+value[n]+"\t"+taxonomy+"\n")
+                            for item in value:
+                                out.write(f'{key}\t{item}\t{taxonomy}\n')
                         else:
-                            for n in range(len(value)):
-                                out.write(key+"\t"+value[n]+"\n")                      
+                            for item in value:
+                                out.write(f'{key}\t{item}\n')                      
                     cluster = {}
                     taxa = {}
                     change = {}
@@ -97,13 +98,13 @@ def deep_lca(infile1,outfile):
         change[key] = []
         for rank in range(7):
             flag = 1
-            for i in range(len(value)):
-                if taxa[value[i]]:
-                    if len(taxa[value[i]]) >= rank+1:
+            for item in value:
+                if taxa[item]:
+                    if len(taxa[item]) >= rank+1:
                         if lastrank == "":
-                            lastrank = taxa[value[i]][rank]
+                            lastrank = taxa[item][rank]
                         else:
-                            if taxa[value[i]][rank] != lastrank:
+                            if taxa[item][rank] != lastrank:
                                 flag = 0
                                 lastrank = ""
                                 break
@@ -126,17 +127,17 @@ def deep_lca(infile1,outfile):
             taxonomy = change[key][0]
             for m in range(1,len(change[key])):
                 taxonomy = taxonomy+"\t"+change[key][m] 
-            for n in range(len(value)):
-                out.write(key+"\t"+value[n]+"\t"+taxonomy+"\n")
+            for item in value:
+                out.write(f'{key}\t{item}\t{taxonomy}\n')
         else:
-            for n in range(len(value)):
-                out.write(key+"\t"+value[n]+"\n")                        
+            for item in value:
+                out.write(f'{key}\t{item}\n')                        
     out.close()
 
-INPUT_FILE_1 = "./taxa/metag/id100/100AA_taxonomy.tsv.xz"   
-INPUT_FILE_2 = "all_cluster_0.9.tsv.xz"  
-OUTPUT_FILE_1 = "./taxa/metag/id90/metag_cluster_tax_90.tsv.xz" 
-OUTPUT_FILE_3 = "./taxa/metag/id90/90AA_tax.tsv.xz"
+INPUT_FILE_1 = "100AA_taxonomy.tsv.xz"   
+INPUT_FILE_2 = "GMSC.cluster.tsv.gz"  
+OUTPUT_FILE_1 = "metag_cluster_tax_90.tsv.xz" 
+OUTPUT_FILE_2 = "90AA_tax.tsv.xz"
 
 metag_full(INPUT_FILE_1,INPUT_FILE_2,OUTPUT_FILE_1)
-deep_lca(OUTPUT_FILE_1,OUTPUT_FILE_3)
+deep_lca(OUTPUT_FILE_1,OUTPUT_FILE_2)
