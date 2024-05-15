@@ -1,7 +1,7 @@
 '''
 Concept:
 Map habitat for all the smORFs from metaG.
-We split all the smORFs into 8 subfiles because of its large number.
+Split all the smORFs into 8 subfiles because of the large size.
 Map habitat to raw data non-redundant cluster.
 '''
 
@@ -27,23 +27,22 @@ def habitat(infile1,infile2,outpath):
     n = 0
     with open(infile1,'r',encoding = 'utf-8') as f1:
         for line in f1:
-            line = line.strip()
+            linelist = line.strip().split("\t")
             if line.startswith("sample"):
                 continue
             else:
-                linelist = line.split("\t")
                 if len(linelist) > 20:
                     if linelist[20] != "":
                         micro_host[linelist[0]] = linelist[9]+" # "+linelist[20]
                 else:
                     micro_host[linelist[0]] = linelist[9]
+    
     with lzma.open(infile2,'rt') as f2:
         for line in f2:
-            line = line.strip()
+            linelist = line.strip().split("\t")
             if line.startswith("#GMSC"):
                 continue
             else:
-                linelist = line.split("\t")
                 if n < 600000000:
                     out1.write(linelist[0]+"\t"+micro_host[linelist[1]]+"\n")
                 elif n >= 600000000 and n < 1200000000:
@@ -80,8 +79,7 @@ def map_cluster(infile1,infile2,outfile):
             
     with lzma.open(infile1,"rt") as f1:
         for line in f1:
-            line = line.strip()
-            linelist = line.split("\t",1)
+            linelist = line.strip().split("\t",1)
             if len(linelist) == 2:
                 habitat[linelist[0]] = linelist[1]
             else:
@@ -89,24 +87,23 @@ def map_cluster(infile1,infile2,outfile):
 
     with gzip.open(infile2,"rt") as f2:
         for line in f2:
-            line = line.strip()
-            linelist = line.split("\t") 
+            linelist = line.strip().split("\t") 
             number = int(''.join(linelist[1].split(".")[2].split("_")))
             if number < 34617405: #The habitat of smORFs from Progenome is named isolate.
-                out.write(linelist[0]+"\t"+linelist[1]+"\t"+"isolate"+"\n")
+                out.write(f'{linelist[0]}\t{linelist[1]}\tisolate\n')
             else:
                 if linelist[1] in habitat.keys():
-                    out.write(linelist[0]+"\t"+linelist[1]+"\t"+habitat[linelist[1]]+"\n")
+                    out.write(f'{linelist[0]}\t{linelist[1]}\t{habitat[linelist[1]]}\n')
                 else:
-                    out.write(line+"\n")           
+                    out.write(f'{line}')           
     out.close()
 
 
-INPUT_FILE_1 = "./habitat/metadata.tsv"
+INPUT_FILE_1 = "metadata.tsv"
 INPUT_FILE_2 = "GMSC10.metag_smorfs.rename.txt.xz"
 INPUT_FILE_3 = "dedup_cluster.tsv.gz"
-OUT_PATH_1 = "./habitat/metag_habitat"
-OUT_PATH_2 = "./habitat/metag_cluster_habitat" 
+OUT_PATH_1 = "metag_habitat"
+OUT_PATH_2 = "metag_cluster_habitat" 
 
 habitat(INPUT_FILE_1,INPUT_FILE_2,OUT_PATH_1)
 
