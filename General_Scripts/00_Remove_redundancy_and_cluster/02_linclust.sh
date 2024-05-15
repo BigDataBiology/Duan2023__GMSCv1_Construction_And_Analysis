@@ -12,7 +12,7 @@ cd clust_result
 #make db
 mmseqs createdb metag_ProG_nonsingleton.faa.gz metag_ProG_nonsingleton.DB
 
-#clust with kmer:21,-c 0.9,--min-seq-id:0.9
+#clust with -c 0.9,--min-seq-id:0.9
 mmseqs linclust metag_ProG_nonsingleton.DB metag_ProG_nonsingleton_0.9_clu tmp -c 0.9 --min-seq-id 0.9 
 
 #Extract representative sequence

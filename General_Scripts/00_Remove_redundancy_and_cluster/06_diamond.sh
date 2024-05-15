@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #Concept: 
-#Align all the singletons of raw data against non-singletons using Diamond (evalue:0.00001, identity:90).
+#Align all the singletons of raw data against cluster representatives using Diamond (evalue:0.00001, identity:90).
 
 set -e
 set -o pipefail

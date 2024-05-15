@@ -5,18 +5,16 @@ Randomly select 1,000 sequences and map them to the representive sequences of th
 
 def select(infile,outfile):
     import random
-    import lzma
     n = 0
     random.seed(1234)
     random_number = set(random.sample(range(150994369,287926875),1000))
     with open(outfile,'wt') as out:
-        with lzma.open(infile,'rt') as f:
+        with open(infile,'rt') as f:
             for line in f:
-                linelist = line.strip().split('\t')
-                if linelist[1] != '':
-                    if n in random_number:
-                        out.write(f'{linelist[0]}\t{linelist[1]}\n')
-                    n += 1
+                member,cluster = line.strip().split('\t')
+                if n in random_number:
+                    out.write(f'{member}\t{cluster}\n')
+                n += 1
 
 def select_100(infile1,infile2,outfile):
     from fasta import fasta_iter
@@ -44,16 +42,16 @@ def select_90(infile1,infile2,outfile):
             if h in smorf:
                 out.write(f'>{h}\n{seq}\n')
 
-clusterfile = 'all_0.9_0.5_family_sort.tsv.xz'
+clusterfile = 'metag_ProG_nonsingleton_0.9_clu.tsv'
 selected_cluster = 'selected_cluster.tsv'
 select(clusterfile,selected_cluster)
 
 infile1 = 'selected_cluster.tsv'
-infile2 = '100AA_GMSC_sort.faa.xz'
+infile2 = '100AA_GMSC.faa.xz'
 outfile = 'selected_100AA.faa'
 select_100(infile1,infile2,outfile)
 
 infile1 = 'selected_cluster.tsv'
-infile2 = '90AA_GMSC_sort.faa.gz'
+infile2 = '90AA_GMSC.faa.xz'
 outfile = 'selected_90AA.faa'
 select_90(infile1,infile2,outfile)
