@@ -14,7 +14,7 @@ def merge(infile1,infile2,infile3,infile4,infile5,infile6,infile7,infile8,outfil
     with lzma.open (infile1,"rt") as f1:
         for line in f1:
             linelist = line.strip().split("\t")
-            smorf[linelist[1]] = ["NA","T","F","F","NA","F"]
+            smorf[linelist[0]] = ["NA","T","F","F","NA","F"]
             
     with lzma.open(infile2,"rt") as f2:
         for line in f2:
@@ -55,22 +55,19 @@ def merge(infile1,infile2,infile3,infile4,infile5,infile6,infile7,infile8,outfil
             smorf[line][5] = "T" 
 
     for key,value in smorf.items():
-        out.write(key+"\t"+value[0]+"\t"+value[1]+"\t"+value[2]+"\t"+value[3]+"\t"+value[4]+"\t"+value[5]+"\n")
-
+        out.write(f'{key}\t{value[0]}\t{value[1]}\t{value[2]}\t{value[3]}\t{value[4]}\t{value[5]}\n')
     out.close()
 
 def allpass(infile,outfile):
-    import gzip
-
-    out = open(outfile,"wt")
-    with gzip.open(infile,"rt") as f1:
-        for line in f1:
-            linelist = line.strip().split("\t")
-            if linelist[1] == "T" and linelist[2] == "T" and linelist[5] == "T" and (linelist[3] == "T" or linelist[4] == "T" or linelist[6] == "T"):
-                out.write(linelist[0]+"\n") 
-    out.close()
-
-INPUT_FILE_1 = "100AA_rename.tsv.xz"
+    import lzma
+    with open(outfile,'wt') as out:
+        with lzma.open(infile,"rt") as f1:
+            for line in f1:
+                smorf,rnacode,antifam,metap,riboseq,terminal,metat = line.strip().split("\t")
+                if rnacode == "T" and antifam == "T" and terminal == "T" and (metap == "T" or riboseq == "T" or metat == "T"):
+                    out.write(f'{smorf}\n') 
+#100AA
+INPUT_FILE_1 = "GMSC.cluster.tsv.gz"
 INPUT_FILE_2 = "rnacode_true_100AA.tsv"
 INPUT_FILE_3 = "rnacode_false_100AA.tsv"
 INPUT_FILE_4 = "antifam_result.tsv"
@@ -80,6 +77,20 @@ INPUT_FILE_7 = "100AA_coordinate.tsv.gz"
 INPUT_FILE_8 = "metaT_100AA.tsv"
 OUTPUT_FILE_1 = "GMSC10.100AA.quality.tsv.xz"
 OUTPUT_FILE_2 = "allpass_100AA.txt"
+
+merge(INPUT_FILE_1,INPUT_FILE_2,INPUT_FILE_3,INPUT_FILE_4,INPUT_FILE_5,INPUT_FILE_6,INPUT_FILE_7,INPUT_FILE_8,OUTPUT_FILE_1)
+allpass(OUTPUT_FILE_1,OUTPUT_FILE_2)
+
+INPUT_FILE_1 = "GMSC.cluster.tsv.gz"
+INPUT_FILE_2 = "rnacode_true_90AA.tsv"
+INPUT_FILE_3 = "rnacode_false_90AA.tsv"
+INPUT_FILE_4 = "antifam_90AA.tsv.gz"
+INPUT_FILE_5 = "metaP_90AA.tsv.gz"
+INPUT_FILE_6 = "riboseq_90AA.tsv"
+INPUT_FILE_7 = "90AA_coordinate.tsv.gz"
+INPUT_FILE_8 = "metaT_90AA.tsv"
+OUTPUT_FILE_1 = "GMSC10.90AA.quality.tsv.xz"
+OUTPUT_FILE_2 = "allpass_90AA.txt"
 
 merge(INPUT_FILE_1,INPUT_FILE_2,INPUT_FILE_3,INPUT_FILE_4,INPUT_FILE_5,INPUT_FILE_6,INPUT_FILE_7,INPUT_FILE_8,OUTPUT_FILE_1)
 allpass(OUTPUT_FILE_1,OUTPUT_FILE_2)
