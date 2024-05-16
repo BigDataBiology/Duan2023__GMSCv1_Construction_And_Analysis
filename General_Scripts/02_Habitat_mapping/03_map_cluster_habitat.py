@@ -84,12 +84,12 @@ def general(infile1,infile2,outfile):
             
     out.close()
 
-INPUT_FILE_1 = "100AA_multi_general_habitat.tsv.xz"   
+INPUT_FILE_1 = "GMSC10.100AA.general_habitat.tsv.xz"   
 INPUT_FILE_2 = "GMSC.cluster.tsv.gz"
 INPUT_FILE_3 = "habitat_general.txt"
 OUTPUT_FILE_1 = "cluster_multi_habitat_90.tsv.xz" 
 OUTPUT_FILE_2 = "90AA_multi_habitat.tsv.xz"
-OUTPUT_FILE_3 = "90AA_multi_general_habitat.tsv.xz"
+OUTPUT_FILE_3 = "GMSC10.90AA.general_habitat.tsv.xz"
 
 mapcluster(INPUT_FILE_1,INPUT_FILE_2,OUTPUT_FILE_1)
 multi_habitat(OUTPUT_FILE_1,OUTPUT_FILE_2)

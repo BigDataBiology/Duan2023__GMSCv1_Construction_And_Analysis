@@ -86,7 +86,7 @@ INPUT_FILE_2 = "GMSC.cluster.tsv.gz"
 INPUT_FILE_3 = "habitat_general.txt"
 OUTPUT_FILE_1 = "all_cluster_multi_habitat.tsv.xz"
 OUTPUT_FILE_2 = "100AA_multi_habitat.tsv.xz" 
-OUTPUT_FILE_3 = "100AA_multi_general_habitat.tsv.xz"
+OUTPUT_FILE_3 = "GMSC10.100AA.general_habitat.tsv.xz"
 
 multi_habitat(INPUT_FILE_1,OUTPUT_FILE_1)
 extract(INPUT_FILE_2,OUTPUT_FILE_1,OUTPUT_FILE_2)

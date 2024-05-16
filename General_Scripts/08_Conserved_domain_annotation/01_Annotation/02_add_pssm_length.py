@@ -1,4 +1,5 @@
 '''
+Concept:
 Add length of PSSM and filter with target coverage >80%.
 '''
 def add_length(infile1,infile2,outfile):
@@ -23,6 +24,7 @@ def add_length(infile1,infile2,outfile):
                         out.write(f'{line}\t{cdd_dict[pssm]}\n')
 
 def filter_cov(infile,outfile):
+    import pandas as pd
     result = pd.read_csv(infile,compression='gzip',sep='\t',header=None,names=['smorf','cdd','query_length','score','align_length','identity','evalue','target_length'])
     result['tcov'] = result['align_length']/result['target_length']
     result = result[result['tcov'] >0.8]

@@ -31,7 +31,7 @@ def merge():
     df.to_csv('housekeeping_motif_species_multi_phylum_all.tsv',sep='\t',index=None)
 
 infile1 = 'housekeeping_species.tsv'
-infile2 = '90AA_multi_newname.tsv'
+infile2 = '90AA_taxa_multi_specific.tsv'
 outfile = 'housekeeping_multi.tsv'
 
 map_multi(infile1,infile2,outfile)

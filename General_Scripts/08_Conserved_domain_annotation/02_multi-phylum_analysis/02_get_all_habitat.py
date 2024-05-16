@@ -1,4 +1,5 @@
 '''
+Concept:
 Select 90AA smORF families across all 8 habitat categories.
 Add cdd annotation to these 90AA smORF families.
 '''
@@ -113,7 +114,7 @@ infile1 = 'GMSC10.90AA.general_habitat.tsv.xz'
 infile2 = '1_cdd_tcov_90AA.tsv.gz'
 infile3 = 'cddid_all.tbl.gz'
 outfile1 = 'all_habitat_smorf.tsv'
-outfile2 = 'all_habitat_motif_right.tsv'
+outfile2 = 'all_habitat_smorf_motif.tsv'
 
 map_high(infile1,outfile1)
 merge_habitat_motif(infile2,outfile1,infile3,outfile2)

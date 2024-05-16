@@ -1,5 +1,6 @@
 '''
-Analyse if smORFs 90AA families are specific or multiple at the taxonomy rank.
+Concept:
+Analyse if 90AA families are specific or multiple at the taxonomy rank.
 '''
 
 import pandas as pd
@@ -50,26 +51,6 @@ def cal(infile,outfile):
         flag_multi,flag_specific = reducetab(tax)   
         out.write(f'{smorf}\t{flag_multi}\t{flag_specific}\t{number}\n')
     out.close()
-
-# change to new identifier
-
-def store(infile1):
-    import lzma
-    name = {}
-    with lzma.open(infile1,'rt') as f1:
-        for line in f1:
-            old,new = line.strip().split('\t')
-            name[old] = new
-    return name
-
-def map_multi(name,infile,outfile):
-    out1 = open(outfile,'wt')
-    with open(infile,'rt') as f2:
-        for line in f2:
-            family,anno = line.strip().split('\t',1)
-            if family in name.keys():
-                out1.write(f'{name[family]}\t{anno}\n')
-    out1.close()
 
 # Calculate number of taxonomy specific
 def merge(infile,outfile):
@@ -158,12 +139,8 @@ def merge(infile,outfile):
         out.write(f'kingdom-specific\t{ok}\t{pm}\t{ps}\n')
 
 infile1 = 'metag_cluster_tax_90.tsv'
-infile2 = '90AA_rename.tsv.xz'
 outfile1 = '90AA_taxa_multi_specific.tsv'
-outfile2 = '90AA_multi_newname.tsv'
-outfile3 = '90AA_specific_multi.tsv'
+outfile2 = '90AA_specific_multi.tsv'
 
 cal(infile1,outfile1)
-name = store(infile2)
-map_multi(name,outfile1,outfile2)
-merge(outfile1,outfile3)
+merge(outfile1,outfile2)

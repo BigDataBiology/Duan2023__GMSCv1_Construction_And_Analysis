@@ -1,3 +1,6 @@
+'''
+
+'''
 def extract(infile_1,infile_2,outfile):
     smorf_set = set()
 
@@ -59,12 +62,11 @@ def count_multi_habitat(infile):
     print(f'{multi_habitat}/{all}\t{fraction}')
 
 infile1 = 'whole_3_selected.tsv'
-
-infile2 = '90AA_multi_newname_habitat_cdd.tsv'
+infile2 = '90AA_multi_habitat_cdd.tsv'
 outfile1 = 'whole_3_selected_habitat_cdd.tsv'
 extract(infile1,infile2,outfile1)
 
-infile3 = '90AA_multi_newname_habitat.tsv'
+infile3 = '90AA_multi_habitat.tsv'
 outfile2 = 'whole_3_selected_habitat.tsv'
 extract(infile1,infile3,outfile2)
 
