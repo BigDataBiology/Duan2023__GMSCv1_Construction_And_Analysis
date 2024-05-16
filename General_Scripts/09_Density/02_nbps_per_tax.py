@@ -1,4 +1,5 @@
 '''
+Concept:
 Add full ranks for npbs per taxon.
 '''
 def store_taxid_name(infile1):
@@ -6,7 +7,7 @@ def store_taxid_name(infile1):
     with open(infile1,'rt') as f:
         for line in f:
             linelist = line.strip().split('\t',1)
-            if len(linelist) ==2 :
+            if len(linelist) == 2:
                 name = linelist[1].replace('d__','').replace('p__','').replace('c__','').replace('o__','').replace('f__','').replace('g__','').replace('s__','').replace('\t',';')
                 taxid_dict[linelist[0]] = name
     return taxid_dict
@@ -43,6 +44,7 @@ def per_tax(infile,outfile):
     family_number = {}
     genus_number = {}
     species_number = {}
+    
     with open(infile,'rt') as f:
         for line in f:
             taxid,rank,name,nbps = line.strip().split('\t')

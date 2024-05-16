@@ -1,14 +1,15 @@
 def store_100(infile):
-    import lzma
+    import gzip
     name = set()
-    with lzma.open(infile,'rt') as f:
+    with gzip.open(infile,'rt') as f:
         for line in f:
-            old,new = line.strip().split('\t')
-            name.add(old)
+            member,cluster = line.strip().split('\t')
+            name.add(member)
     return name
 
 def cal(infile,name,outfile):
     import lzma
+    
     kingdom = {}
     phylum = {}
     cl = {}
@@ -16,6 +17,7 @@ def cal(infile,name,outfile):
     family = {}
     genus = {}
     species = {}
+
     with lzma.open(infile,'rt') as f:
         for line in f:
             linelist = line.strip().split('\t',2)
@@ -75,7 +77,7 @@ def cal(infile,name,outfile):
         for key,value in species.items():
             out.write(f'{key}\t{value}\n')
 
-infile1 = '100AA_rename.tsv.xz'
+infile1 = 'GMSC.cluster.tsv.gz'
 infile2 = 'metag_cluster_taxonomy.tsv.xz'
 outfile = 'cpnumber_per_tax.tsv'
 
