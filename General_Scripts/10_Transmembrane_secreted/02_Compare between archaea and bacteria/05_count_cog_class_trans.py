@@ -2,9 +2,8 @@
 Count cog class number an fraction of transmembrane or secreted smORFs with annotation
 '''
 def store(infile0):
-    import gzip
     trans = set()
-    with gzip.open(infile0,'rt') as f:
+    with open(infile0,'rt') as f:
         for line in f:
             trans.add(line.strip())
     return trans
@@ -55,7 +54,7 @@ def count_class(trans,seq_cogs,outfile):
                 out.write(f'{key}\t0\t{t}\t{cog_class_not[key]}\t{f}\n')
 
 
-infile = '90AA_tm_signal.tsv.gz'
+infile = '90AA_tm_signal.tsv'
 infile1 = '0_arc_motif_cog.tsv'
 outfile1 = '1_arc_motif_cog_class_count_trans.tsv'
 infile2 = '0_bac_motif_cog.tsv'

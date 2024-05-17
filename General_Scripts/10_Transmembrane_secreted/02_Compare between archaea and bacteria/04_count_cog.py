@@ -1,5 +1,5 @@
 '''
-Count cog number an fraction of smORFs with annotation
+Count the number of each COG of smORFs with annotation
 '''
 import pandas as pd
 
@@ -22,7 +22,7 @@ def count_bg(infile,outfile):
 infile1 = '0_arc_motif_cog.tsv'
 outfile1 = '1_arc_motif_cog_count.tsv'
 infile2 = '0_bg_motif_cog.tsv'
-outfile2 = '1_bg_motif_cog_count.tsv_new'
+outfile2 = '1_bg_motif_cog_count.tsv'
 
 count_arc(infile1,outfile1)
 count_bg(infile2,outfile2)

@@ -39,10 +39,11 @@ def cog(infile1,infile2,infile3,outfile):
 
     merged.to_csv(outfile,sep='\t',index=None)
 
-infile1 = '90AA_ref_taxonomy_format.tsv.xz'
+infile1 = '90AA_tax.tsv.xz'
 infile2 = '1_cdd_tcov_90AA.tsv.gz'
 infile3 = 'cddid_all.tbl'
 infile4 = 'cog-20.def.tab.tsv'
+
 outfile1 = 'bac_motif.txt'
 outfile2 = 'arc_motif.txt'
 outfile3 = '0_arc_motif_cog.tsv'

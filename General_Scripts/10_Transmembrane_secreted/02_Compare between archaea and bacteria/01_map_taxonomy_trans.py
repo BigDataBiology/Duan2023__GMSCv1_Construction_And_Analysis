@@ -4,9 +4,8 @@ Count transmembrane fraction of each phylum.
 '''
 
 def store_trans(infile1):
-    import gzip
     trans = set()
-    with gzip.open(infile1,'rt') as f:
+    with open(infile1,'rt') as f:
         for line in f:
             trans.add(line.strip())
     return trans
@@ -30,8 +29,8 @@ def count_trans(infile,outfile):
     trans_count = df.groupby(['domain','phylum'])['transmembrane'].value_counts()
     trans_count.to_csv(outfile)
 
-infile1 = '90AA_tm_signal.tsv.gz'
-infile2 = '90AA_ref_taxonomy_format.tsv.xz'
+infile1 = '90AA_tm_signal.tsv'
+infile2 = '90AA_tax.tsv.xz'
 outfile1 = 'trans_taxa.tsv'
 outfile2 = 'trans_phylum.csv'
 

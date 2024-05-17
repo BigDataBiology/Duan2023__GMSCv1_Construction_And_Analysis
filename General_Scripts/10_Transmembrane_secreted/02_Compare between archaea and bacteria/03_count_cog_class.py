@@ -1,5 +1,5 @@
 '''
-Count cog class number an fraction of smORFs with annotation
+Count the number of each COG class of smORFs with annotation
 '''
 def merge_class(infile):
     seq_cogs = {}

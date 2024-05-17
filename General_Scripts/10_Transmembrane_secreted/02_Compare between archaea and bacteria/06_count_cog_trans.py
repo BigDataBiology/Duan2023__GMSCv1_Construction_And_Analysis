@@ -1,7 +1,6 @@
 def store(infile):
-    import gzip
     trans = set()
-    with gzip.open(infile0,'rt') as f:
+    with open(infile,'rt') as f:
         for line in f:
             trans.add(line.strip())
     return trans
@@ -53,10 +52,11 @@ def count_bac(infile1,infile2,outfile1,outfile2):
     cog_count['bac_not_trans_all'] = len(result.drop_duplicates('smorf',keep='first'))
     cog_count.to_csv(outfile2,sep='\t',index=None)
 
-infile = '90AA_tm_signal.tsv.gz'
+infile = '90AA_tm_signal.tsv'
 
 infile1 = '0_arc_motif_cog.tsv'
 infile2 = '0_bac_motif_cog.tsv'
+
 outfile1 = '0_arc_motif_cog_trans.tsv'
 outfile2 = '0_arc_motif_cog_not_trans.tsv'
 outfile3 = '0_bac_motif_cog_trans.tsv'

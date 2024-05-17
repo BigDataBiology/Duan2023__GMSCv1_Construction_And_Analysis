@@ -9,7 +9,6 @@ def statistic(infile,outfile):
                 continue
             else:
                 linelist = line.strip().split(' ')
-                print(linelist)
                 if linelist[18] == 'Y':
                     out.write(line)
     out.close()
