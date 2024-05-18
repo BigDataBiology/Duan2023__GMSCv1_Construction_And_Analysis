@@ -5,7 +5,7 @@
 | **Code** | **Description** | **Input** | **Output** |
 | :---: | :---: | :---: | :---: | 
 | 01_cdd.sh | Map 90AA families to CDD database. | 90AA_GMSC.faa | 90AA_cdd.tsv |
-| 02_add_pssm_length.py | Filter results with target coverage >80%. | cddid_all.tbl.gz 90AA_cdd.tsv | 1_cdd_tcov_90AA.tsv |
+| 02_add_pssm_length.py | Filter results with target coverage >80%. | cddid_all.tbl.gz 90AA_cdd.tsv | 90AA_cdd_tl.tsv.gz 1_cdd_tcov_90AA.tsv |
 
 ### 02_multi-phylum analysis
 

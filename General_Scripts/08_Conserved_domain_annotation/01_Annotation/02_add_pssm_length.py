@@ -36,4 +36,4 @@ outfile1 = '90AA_cdd_tl.tsv.gz'
 outfile2 = '1_cdd_tcov_90AA.tsv'
 
 add_length(infile1,infile2,outfile1)
-filter_cov(infile1,outfile2)
+filter_cov(outfile1,outfile2)
