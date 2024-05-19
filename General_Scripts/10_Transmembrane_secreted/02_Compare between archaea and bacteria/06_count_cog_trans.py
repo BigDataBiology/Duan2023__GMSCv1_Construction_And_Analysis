@@ -62,10 +62,10 @@ outfile2 = '0_arc_motif_cog_not_trans.tsv'
 outfile3 = '0_bac_motif_cog_trans.tsv'
 outfile4 = '0_bac_motif_cog_not_trans.tsv'
 
-outfile5 = '1_arc_motif_cog_count_trans.tsv'
-outfile6 = '1_arc_motif_cog_count_not_trans.tsv'
-outfile7 = '1_bac_motif_cog_count_trans.tsv'
-outfile8 = '1_bac_motif_cog_count_not_trans.tsv'
+outfile5 = '9_arc_motif_cog_count_trans.tsv'
+outfile6 = '9_arc_motif_cog_count_not_trans.tsv'
+outfile7 = '9_bac_motif_cog_count_trans.tsv'
+outfile8 = '9_bac_motif_cog_count_not_trans.tsv'
 
 trans = store(infile)
 split(trans,infile1,outfile1,outfile2)

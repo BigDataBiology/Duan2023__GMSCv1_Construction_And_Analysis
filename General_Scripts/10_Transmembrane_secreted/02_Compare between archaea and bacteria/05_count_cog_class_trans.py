@@ -56,9 +56,9 @@ def count_class(trans,seq_cogs,outfile):
 
 infile = '90AA_tm_signal.tsv'
 infile1 = '0_arc_motif_cog.tsv'
-outfile1 = '1_arc_motif_cog_class_count_trans.tsv'
+outfile1 = '2_arc_motif_cog_class_count_trans.tsv'
 infile2 = '0_bac_motif_cog.tsv'
-outfile2 = '1_bac_motif_cog_class_count_trans.tsv'
+outfile2 = '2_bac_motif_cog_class_count_trans.tsv'
 
 trans = store(infile)
 seq_cogs = merge_class(infile1)
