@@ -87,10 +87,9 @@ def extract_seq(infile1,infile2,outfile1,outfile2):
     fastaset = set()
     with gzip.open(infile1,"rt") as f:
         for line in f:
-            line = line.strip()
-            linelist = line.split("\t")
-            if linelist[0] != "1":
-                fastaset.add(linelist[1])
+            count,seq = line.strip().split("\t")
+            if count != "1":
+                fastaset.add(seq)
 
     with gzip.open(outfile1, "wt", compresslevel=1) as out1, \
         gzip.open(outfile2, "wt", compresslevel=1) as out2:

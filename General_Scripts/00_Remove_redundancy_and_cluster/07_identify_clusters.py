@@ -13,7 +13,7 @@ def identify(infile,outfile):
                     continue
                 else:
                     nameset.add(linelist[0])
-                    out.write(linelist[0]+"\t"+linelist[2]+"\n")
+                    out.write(f'{linelist[2]}\t{linelist[0]}\n')
 
 for i in range(24):
     INPUT_FILE_1 = "sub"+str(i)+".faa.gz.tsv"
