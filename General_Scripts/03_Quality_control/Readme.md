@@ -49,7 +49,4 @@
 | **Code** | **Description** | **Input** | **Output** |
 | :---: | :---: | :---: | :---: |
 | 01_merge.py | Merge all the quality control results | 100AA_rename.tsv.xz rnacode_true_100AA.tsv.xz rnacode_false_100AA.tsv.xz antifam_result.tsv coverage_analysis.tsv.gz riboseq_100AA.tsv.gz 100AA_coordinate.tsv.gz metaT_100AA.tsv.gz | allquality_100AA.tsv.gz allpass_100AA.txt | 
-
-
-
 | 02_statistic.py | Merge all the quality control results | 100AA_rename.tsv.xz rnacode_true_100AA.tsv.xz rnacode_false_100AA.tsv.xz antifam_result.tsv coverage_analysis.tsv.gz riboseq_100AA.tsv.gz 100AA_coordinate.tsv.gz metaT_100AA.tsv.gz | allquality_100AA.tsv.gz allpass_100AA.txt | 

@@ -1,4 +1,5 @@
 ## 00_Remove_redundancy_and_cluster
+
 | **Code** | **Description** | **Input** | **Output** |
 | :---: | :---: | :---: | :---: |
 | 01_deduplicate_sort_merge.py | Remove redundancy of the raw data (predicted smORFs from metagenomes and genomes) | GMSC10.metag_Prog_smorfs.faa.gz | metag_ProG_dedup.faa.gz metag_ProG.raw_number.tsv.gz metag_ProG_nonsingleton.faa.gz metag_ProG_singleton.faa.gz|

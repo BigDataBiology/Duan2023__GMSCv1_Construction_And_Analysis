@@ -5,13 +5,12 @@ The folder contains scripts to generate GMSC resourece from the raw data.
 
 | **Code** | **Description** | **Input** | **Output** |
 | :---: | :---: | :---: | :---: |
-| 01_deduplicate_sort_merge.py | Remove redundancy of the raw data (predicted smORFs from metagenomes and genomes) | GMSC10.metag_Prog_smorfs.faa.gz | metag_ProG_dedup.faa.gz metag_ProG.raw_number.tsv.gz|
-| 02_extract.py | Extract non-singletons and singletons |metag_ProG_dedup.faa.gz metag_ProG.raw_number.tsv.gz | metag_ProG_nonsingleton.faa.gz metag_ProG_singleton.faa.gz|
-| 03_linclust.sh | Cluster non-singletons at 90% amino acid identity and 90% coverage | metag_ProG_nonsingleton.faa.gz | metag_ProG_nonsingleton_0.9_clu.tsv metag_ProG_nonsingleton_0.9_clu_rep.faa 0.9clu_singleton_name |
-| 04_1_sig_select1000.py | Randomly select 1,000 cluster with only 1 sequence for cluster significance checking | 0.9clu_singleton_name metag_ProG_nonsingleton_0.9_clu_rep.faa | 0.9clu_singleton.faa 0.9clu_nonsingleton.faa selected_singleton.faa |
-| 04_1_sig_select100AA.py | Randomly select 1,000 sequences for mapping back to the representive sequences of the cluster(>1 member) they are from | all_0.9_0.5_family_sort.tsv.xz 100AA_GMSC_sort.faa.xz 90AA_GMSC_sort.faa.gz| selected_cluster.tsv selected_100AA.faa selected_90AA.faa |
-| 05_align_swipe.sh | Run swipe to align above sequences | 0.9clu_nonsingleton.faa selected_singleton.faa selected_90AA.faa selected_100AA.faa | result_singleton.tsv result_100AA.tsv |
-| 06_split_singletons.py 07_diamond.sh 08_identify_clusters.py 09_join_rescue_result.py| Align all the singletons of raw data against cluster representatives at 90% amino acid identity and 90% coverage | metag_ProG_singleton.faa.gz metag_ProG_nonsingleton_0.9_clu_rep.faa | singleton_0.9.tsv |
+| 01_deduplicate_sort_merge.py | Remove redundancy of the raw data (predicted smORFs from metagenomes and genomes) | GMSC10.metag_Prog_smorfs.faa.gz | metag_ProG_dedup.faa.gz metag_ProG.raw_number.tsv.gz metag_ProG_nonsingleton.faa.gz metag_ProG_singleton.faa.gz|
+| 02_linclust.sh | Cluster non-singletons at 90% amino acid identity and 90% coverage | metag_ProG_nonsingleton.faa.gz | metag_ProG_nonsingleton_0.9_clu.tsv metag_ProG_nonsingleton_0.9_clu_rep.faa 0.9clu_singleton_name |
+| 03_1_sig_select_100AA.py | Randomly select 1,000 sequences for mapping back to the representive sequences of the cluster(>1 member) they are from | metag_ProG_nonsingleton_0.9_clu.tsv 100AA_GMSC.faa.xz 90AA_GMSC.faa.gz| selected_cluster.tsv selected_100AA.faa selected_90AA.faa |
+| 03_2_sig_select_singleton.py | Randomly select 1,000 cluster with only 1 sequence for cluster significance checking | 0.9clu_singleton_name metag_ProG_nonsingleton_0.9_clu_rep.faa | 0.9clu_singleton.faa 0.9clu_nonsingleton.faa selected_singleton.faa |
+| 04_align_swipe.sh | Run swipe to align above sequences | 0.9clu_nonsingleton.faa selected_singleton.faa selected_90AA.faa selected_100AA.faa | result_singleton.tsv result_100AA.tsv |
+| 05_split_singletons.py 06_diamond.sh 07_identify_clusters.py| Align all the singletons of raw data against cluster representatives at 90% amino acid identity and 90% coverage | metag_ProG_singleton.faa.gz metag_ProG_nonsingleton_0.9_clu_rep.faa | singleton_0.9.tsv |
 
 ## 01_Taxonomy_mapping
 
@@ -22,8 +21,8 @@ The folder contains scripts to generate GMSC resourece from the raw data.
 | 04_map_metag_taxid_full.py | Map taxid of smORFs from metaG based on contigs and et the fullname of taxid based on GTDB | mmseqs2.lca_taxonomy.full.tsv.xz GMSC10.metag_smorfs.rename.txt.xz gtdb_taxonomy.tsv | metag_taxid.tsv.xz taxid_fullname_gtdb.tsv |
 | 05_dedup_cluster.py | Get clusters at 100% identity of raw data | GMSC10.metag_ProG_smorfs.faa.gz | dedup_cluster.tsv.gz |
 | 06_map_taxonomy.py | Map taxonomy for all the smORFs from metaG | taxid_fullname_gtdb.tsv metag_taxid.tsv.xz dedup_cluster.tsv.gz prog_taxonomy_change.tsv.gz | metag_cluster_taxonomy.tsv.xz |
-| 07_deep_lca_100.py | Map taxonomy for 100% identity smORFs with LCA | metag_cluster_taxonomy.tsv.xz all_0.5_0.9.tsv.gz | 100AA_taxonomy.tsv.xz |
-| 08_map_cluster_tax.py | Map taxonomy for 90% identity smORFs clusters with LCA | 100AA_taxonomy.tsv.xz all_cluster_0.9.tsv.xz | 90AA_tax.tsv.xz |
+| 07_deep_lca_100.py | Map taxonomy for 100% identity smORFs with LCA | metag_cluster_taxonomy.tsv.xz GMSC.cluster.tsv.gz | 100AA_taxonomy.tsv.xz |
+| 08_map_cluster_tax.py | Map taxonomy for 90% identity smORFs with LCA | 100AA_taxonomy.tsv.xz GMSC.cluster.tsv.gz | 90AA_tax.tsv.xz |
 | 09_fix_prog_tax.py | Make consistency between Progenomes2 taxonomy and GTDB taxonomy | 100AA_taxonomy.tsv.xz 90AA_tax.tsv.xz | GMSC10.100AA.taxonomy.tsv GMSC10.90AA.taxonomy.tsv |
 
 ## 02_Habitat_mapping
@@ -31,9 +30,8 @@ The folder contains scripts to generate GMSC resourece from the raw data.
 | **Code** | **Description** | **Input** | **Output** |
 | :---: | :---: | :---: | :---: |
 | 01_map_habitat.py | Map habitat for all the smORFs from metaG | metadata.tsv GMSC10.metag_smorfs.rename.txt.xz dedup_cluster.tsv.gz| metag_cluster_habitat.tsv.xz |
-| 02_multi_habitat.py | Combine multiple habitats for each smORF from the same cluster | metag_cluster_habitat.tsv.xz 100AA_rename.tsv.xz habitat_general.txt| 100AA_multi_general_habitat.tsv.xz |
-| 03_map_cluster_habitat.py | Map habitat to 90% identity smORFs clusters. | all_0.5_0.9.tsv.gz 100AA_multi_general_habitat.tsv.xz | cluster_multi_habitat_90.tsv.xz |
-|04_multi_habitat_90_50.py | Combine multiple habitats for each smORF from the same 90AA cluster |cluster_multi_habitat_90.tsv.xz habitat_general.txt | 90AA_multi_general_habitat.tsv.xz |
+| 02_multi_habitat.py | Combine multiple habitats for each smORF from the same cluster | metag_cluster_habitat.tsv.xz GMSC.cluster.tsv.gz habitat_general.txt| GMSC10.100AA.general_habitat.tsv.xz |
+| 03_map_cluster_habitat.py | Map multiple habitats to 90% identity smORFs clusters. | GMSC.cluster.tsv.gz 100AA_multi_general_habitat.tsv.xz habitat_general.txt| GMSC10.90AA.general_habitat.tsv.xz |
 
 ## 03_Quality_control
 
@@ -42,40 +40,37 @@ The folder contains scripts to generate GMSC resourece from the raw data.
 | **Code** | **Description** | **Input** | **Output** |
 | :---: | :---: | :---: | :---: |
 | 01_run_antifam.sh | Map 100AA smORFs to antifam | AntiFam.hmm 100AA_GMSC_sort.faa | antifam_result.tsv |
-| 02_assign_all_level.py | Assign antifam results to 90AA smORFs. | antifam_result.tsv all_0.9_0.5_family.tsv.xz | antifam_90AA.tsv.gz |
+| 02_assign_all_level.py | Assign antifam results to 90AA smORFs. | antifam_result.tsv GMSC.cluster.tsv.gz | antifam_90AA.tsv.gz |
 
 ### Coordinates
 
 | **Code** | **Description** | **Input** | **Output** |
 | :---: | :---: | :---: | :---: |
 | 01_allcoordinate.py | Detect if there is a STOP codon on the upstream of the smORF in the contigs | GMSC10.metag_smorfs.rename.txt.xz ./contigs/ | result.tsv.gz | 
-| 02_assign_all_level.py | Assign terminal checking results to 100AA and 90AA smORFs | result.tsv.gz 100AA_rename.tsv.xz all_0.9_0.5_family.tsv.xz | 100AA_coordinate.tsv.gz 90AA_coordinate.tsv.gz | 
+| 02_assign_all_level.py | Assign terminal checking results to 100AA and 90AA smORFs | result.tsv.gz GMSC.cluster.tsv.gz | 100AA_coordinate.tsv.gz 90AA_coordinate.tsv.gz | 
 
 ### RNAcode
 
 | **Code** | **Description** | **Input** | **Output** |
 | :---: | :---: | :---: | :---: |
-| 01_filter8_addfna_split.py | Select clusters(>= 8 members) | all_0.5_0.9.tsv metag_ProG_smorfs.fna.xz | ./split/*.fna | 
+| 01_filter8_addfna_split.py | Select clusters(>= 8 members) | GMSC.cluster.tsv.gz metag_ProG_smorfs.fna.xz | ./split/*.fna | 
 | 02_run_MSA.sh | Multiple sequences alignment of each .fna file | ./split/*.fna | *.aln | 
 | 03_run_RNAcode.sh | Run RNAcode | *.aln | *.tsv | 
-| 04_filter_RNAcode.py | Filter RNAcode result | *.tsv | smORF_0.9_RNAcode.tsv | 
-| 05_assign_all_level.py | Assign RNAcode results to 100AA and 90AA smORFs | smORF_0.9_RNAcode.tsv all_0.5_0.9_filter.tsv 100AA_rename.tsv.xz 90AA_rename.tsv.xz all_0.9_0.5_family.tsv.xz | rnacode_true_100AA.tsv.xz rnacode_false_100AA.tsv.xz rnacode_true_90AA.tsv.xz rnacode_false_90AA.tsv.xz | 
+| 04_filter_RNAcode.py | Filter RNAcode result | *.tsv GMSC.cluster_filter.tsv| rnacode_true_90AA.tsv rnacode_true_100AA.tsv rnacode_false_100AA.tsv rnacode_false_90AA.tsv | 
 
 ### metatranscriptomics
 
 | **Code** | **Description** | **Input** | **Output** |
 | :---: | :---: | :---: | :---: |
 | 01_run_bwa_ngless.sh | Map metatranscriptome reads to smORFs | 90AA_GMSC.fna *.fastq.gz | *.tsv | 
-| 02_merge_filter.py | Merge and filter mapping results | *.tsv | metaT_result_filter.tsv | 
-| 03_assign_all_level.py | Assign results to 100AA and 90AA smORFs | metaT_result_filter.tsv all_0.9_0.5_family.tsv.xz | metaT_100AA.tsv.gz metaT_90AA.tsv.gz | 
+| 02_merge_filter.py | Merge and filter mapping results | *.tsv GMSC.cluster.tsv.gz | metaT_result.tsv metaT_90AA.tsv metaT_100AA.tsv | 
 
 ### riboseq
 
 | **Code** | **Description** | **Input** | **Output** |
 | :---: | :---: | :---: | :---: |
 | 01_run_bwa_ngless.sh | Map riboseq reads to smORFs | 90AA_GMSC.fna *.fastq.gz | *.tsv | 
-| 02_merge_filter.py | Merge and filter mapping results | *.tsv | riboseq_result_filter.tsv | 
-| 03_assign_all_level.py | Assign results to 100AA and 90AA smORFs | riboseq_result_filter.tsv all_0.9_0.5_family.tsv.xz | riboseq_100AA.tsv.gz riboseq_90AA.tsv.gz | 
+| 02_merge_filter.py | Merge and filter mapping results | *.tsv GMSC.cluster.tsv.gz | riboseq_result.tsv riboseq_90AA.tsv riboseq_100AA.tsv | 
 
 ### metaproteomics
 
@@ -83,7 +78,7 @@ The folder contains scripts to generate GMSC resourece from the raw data.
 | :---: | :---: | :---: | :---: |
 | 00_split_100AA.py 01_map.py | For each metaproteomes peptides from each project in PRIDE,find their exact match against 100AA smORFs | 100AA_GMSC.faa.xz *.fasta | *.tsv | 
 | 02_merge.py | Calculate and filter peptide coverage rate of each smORF | *.tsv | coverage_analysis.tsv | 
-| 03_assign_all_level.py | Assign results to 90AA smORFs | coverage_analysis.tsv all_0.9_0.5_family.tsv.xz | metaP_90AA.tsv.gz | 
+| 03_assign_all_level.py | Assign results to 90AA smORFs | coverage_analysis.tsv GMSC.cluster.tsv.gz | metaP_90AA.tsv.gz | 
 
 
 ### merge_quality_control
@@ -91,6 +86,7 @@ The folder contains scripts to generate GMSC resourece from the raw data.
 | **Code** | **Description** | **Input** | **Output** |
 | :---: | :---: | :---: | :---: |
 | 01_merge.py | Merge all the quality control results | 100AA_rename.tsv.xz rnacode_true_100AA.tsv.xz rnacode_false_100AA.tsv.xz antifam_result.tsv coverage_analysis.tsv.gz riboseq_100AA.tsv.gz 100AA_coordinate.tsv.gz metaT_100AA.tsv.gz | allquality_100AA.tsv.gz allpass_100AA.txt | 
+| 02_statistic.py | Merge all the quality control results | 100AA_rename.tsv.xz rnacode_true_100AA.tsv.xz rnacode_false_100AA.tsv.xz antifam_result.tsv coverage_analysis.tsv.gz riboseq_100AA.tsv.gz 100AA_coordinate.tsv.gz metaT_100AA.tsv.gz | allquality_100AA.tsv.gz allpass_100AA.txt | 
 
 ## 04_Frozen
 
@@ -113,7 +109,8 @@ The folder contains scripts to generate GMSC resourece from the raw data.
 
 | **Code** | **Description** |
 | :---: | :---: |
-| 01_download.sh 02_filter_sp_dedup.py | Download archaeal and bacterial proteins from Refseq, filter sequences (<100aa) and remove redundancy | 
+| 01_download.sh | Download archaeal and bacterial proteins from Refseq | 
+| 02_filter_sp_dedup.py | Filter sequences (<100aa) and remove redundancy | 
 | 03_align.sh | Use Diamond to align sequences to GMSC | 
 
 ## 07_GMSC_mapper_benchmark
@@ -142,33 +139,35 @@ The folder contains scripts to generate GMSC resourece from the raw data.
 ### 01_Annotation
 
 | **Code** | **Description** | **Input** | **Output** |
-| :---: | :---: | :---: | :---: |
-| 01_cdd.sh | Map to CDD database | 90AA_GMSC.faa ~/Cdd | 90AA_cdd.tsv |
-| 02_add_pssm_length.py | Add length of PSSM and filter with target coverage >80%. | cddid_all.tbl.gz 90AA_cdd.tsv | 1_cdd_tcov_90AA.tsv |
+| :---: | :---: | :---: | :---: | 
+| 01_cdd.sh | Map 90AA families to CDD database. | 90AA_GMSC.faa | 90AA_cdd.tsv |
+| 02_add_pssm_length.py | Filter results with target coverage >80%. | cddid_all.tbl.gz 90AA_cdd.tsv | 90AA_cdd_tl.tsv.gz 1_cdd_tcov_90AA.tsv |
 
-### 02_multi-phylum_analysis
+### 02_multi-phylum analysis
 
 | **Code** | **Description** | **Input** | **Output** |
-| :---: | :---: | :---: | :---: |
-| 01_get_all_habitat.py | Select 90AA smORF families across all 8 habitat categories and map CDD annotation | GMSC10.90AA.general_habitat.tsv.xz 1_cdd_tcov_90AA.tsv.gz cddid_all.tbl.gz | all_habitat_smorf.tsv all_habitat_motif_right.tsv |
-| 02_species_number.py | Calculate the species number in 90AA families | metag_cluster_tax_90.tsv.xz 90AA_rename.tsv.xz all_habitat_smorf.tsv | 90AA_species_number.tsv housekeeping_species.tsv |
-| 03_multi_specific.py | Analyse if smORFs 90AA families are specific or multiple at the taxonomy rank | metag_cluster_tax_90.tsv 90AA_rename.tsv.xz | 90AA_multi_newname.tsv 90AA_specific_multi.tsv |
-| 04_merge_multi-phylum.py | Merge table with multi-phylum 90AA families, habitats, and the number of species | housekeeping_species.tsv 90AA_multi_newname.tsv housekeeping_species.tsv all_habitat_motif.tsv | housekeeping_motif_species_multi_phylum_all.tsv |
-| 05_map_sample_taxonomy.py | Map samples and taxonomy which are multi-phylum and distributed in 8 habitat categories and have more than 100 species | 100AA_sample.tsv.xz all_0.9_0.5_family_sort.tsv.xz housekeeping.txt 90AA_rename.tsv.xz metag_cluster_tax_90.tsv.xz | housekeeping_sample.txt housekeeping_taxonomy.txt |
+| :---: | :---: | :---: | :---: | 
+| 01_multi_specific.py | Analyse if 90AA families are specific or multiple at each taxonomy rank. | metag_cluster_tax_90.tsv | 90AA_taxa_multi_specific.tsv 90AA_specific_multi.tsv |
+| 02_get_all_habitat.py | Add CDD annotation to 90AA families across all 8 habitat categories. | GMSC10.90AA.general_habitat.tsv.xz 1_cdd_tcov_90AA.tsv.gz cddid_all.tbl.gz | all_habitat_smorf_motif.tsv |
+| 03_species_number.py | Calculate the species number in 90AA families across all 8 habitat categories. | metag_cluster_tax_90.tsv.xz all_habitat_smorf.tsv | housekeeping_species.tsv |
+| 04_merge_multi-phylum.py | multi-phylum 90AA families | housekeeping_species.tsv 90AA_taxa_multi_specific.tsv | housekeeping_multi.tsv |
+| 05_map_sample_taxonomy.py | Map samples and taxonomy to multi-phylum 90AA families which occurs in 8 habitat categories and are from more than 100 species | 100AA_sample.tsv.xz GMSC.cluster.tsv.gz housekeeping_species.tsv metag_cluster_tax_90.tsv.xz | 90AA_sample.tsv housekeeping_sample.txt housekeeping_taxonomy.txt |
 
 ### 03_multi-genus_enrichment
-| **Code** | **Description** | **Input** | **Output** |
-| :---: | :---: | :---: | :---: |
-| 00_multi_genus.py | Select multi-genus or specific-genus 90AA smORF families | 90AA_multi_newname.tsv | multi_genus_3.tsv specific_genus_3.tsv |
-| 01_cal_size.py | | multi_genus_3_habitat.tsv 90AA_multi_newname.tsv | multi_genus_3_habitat_size.tsv whole_3_size.tsv whole_3.tsv |
-| 02_keep_same_size.py | | multi_genus_3_habitat_size.tsv whole_3_size.tsv whole_3.tsv | size_genus_whole_3_compare.tsv whole_3_selected.tsv |
-| 03_extract_count.py | | whole_3_selected.tsv  90AA_multi_newname_habitat_cdd.tsv 90AA_multi_newname_habitat.tsv | whole_3_selected_habitat_cdd.tsv whole_3_selected_habitat.tsv |
+
+| **Code** | **Description** |
+| :---: | :---: | :---: | :---: | 
+| 01_multi_genus.py | Extract multi-genus and specific-genus families. | 90AA_taxa_multi_specific.tsv | multi_genus_3.tsv specific_genus_3.tsv  |
+| 02_map_cdd_3.py | Map CDD annotation | 1_cdd_tcov_90AA.tsv.gz cddid_all.tbl.gz 90AA_multi_habitat.tsv multi_genus_3.tsv | 90AA_multi_habitat_cdd.tsv multi_genus_3_cdd.tsv|
+| 03_keep_size.py | Keep the same size for selected clusers from multi-genus and the whole clusters. | 90AA_taxa_multi_specific.tsv multi_genus_3.tsv| whole_3_selected.tsv |
+| 04_extract_count_cdd_habitat.py | Calculate fraction of habitats and cdd annotation of families. | whole_3_selected.tsv 90AA_multi_habitat_cdd.tsv 90AA_multi_habitat.tsv | whole_3_selected_habitat_cdd.tsv whole_3_selected_habitat.tsv |
+| 05_count_pfam.py | Map Pfam clan and count Pfam number. | multi_genus_3_cdd.tsv 90AA_multi_habitat_cdd.tsv Pfam-A.clans.tsv pfam-c_format.txt | multi_genus_3_pfam_count.tsv 90AA_multi_habitat_pfam_count.tsv |
 
 ## 09_Density
 
 | **Code** | **Description** | **Input** | **Output** |
 | :---: | :---: | :---: | :---: |
-| 01_100AA_copy_number_per_tax.py | Calculate the copy number of smORFs per taxonomy | 100AA_rename.tsv.xz metag_cluster_taxonomy.tsv.xz | cpnumber_per_tax.tsv |
+| 01_100AA_copy_number_per_tax.py | Calculate the copy number of smORFs per taxonomy | GMSC.cluster.tsv.gz metag_cluster_taxonomy.tsv.xz | cpnumber_per_tax.tsv |
 | 02_nbps_per_tax.py | Calculate nbps per taxonomy | taxid_fullname_gtdb.tsv bps-per-taxon.tsv | per_tax_rank.txt full_nbp.txt |
 | 03_calculate_density.py | Calculate density of phylum and genus | cpnumber_per_tax.tsv per_tax_rank.txt| density_phylum.tsv density_genus.tsv |
 
@@ -186,9 +185,9 @@ The folder contains scripts to generate GMSC resourece from the raw data.
 
 | **Code** | **Description** | **Input** | **Output** |
 | :---: | :---: | :---: | :---: |
-| 01_map_taxonomy_trans.py | Map transmembrane or secreted families to taxonomy and count transmembrane or secreted fraction of each phylum | 90AA_tm_signal.tsv 90AA_ref_taxonomy_format.tsv.xz | trans_taxa.tsv trans_phylum.csv |
-| 02_extract_cog.py | Extract bacterial and archaeal 90AA families with COG annotation | 90AA_ref_taxonomy_format.tsv.xz 1_cdd_tcov_90AA.tsv.gz cddid_all.tbl cog-20.def.tab.tsv | 0_arc_motif_cog.tsv 0_bac_motif_cog.tsv 0_bg_motif_cog.tsv |
-| 03_count_cog_class.py | Count cog class number an fraction of smORFs with annotation | 0_bac_motif_cog.tsv 0_arc_motif_cog.tsv 0_bg_motif_cog.tsv | 1_bac_motif_cog_class_count.tsv 1_arc_motif_cog_class_count.tsv 1_bg_motif_cog_class_count.tsv |
-| 04_count_cog.py | Count cog number an fraction of smORFs with annotation | 0_arc_motif_cog.tsv 0_bg_motif_cog.tsv | 1_arc_motif_cog_count.tsv 1_bg_motif_cog_count.tsv_new |
-| 05_count_cog_class_trans.py | Count cog class number an fraction of transmembrane or secreted smORFs with annotation | 90AA_tm_signal.tsv.gz 0_arc_motif_cog.tsv 0_bac_motif_cog.tsv | 1_arc_motif_cog_class_count_trans.tsv 1_bac_motif_cog_class_count_trans.tsv |
-| 06_count_cog_trans.py | Combine TMHMM and SignalP results | 90AA_tm_signal.tsv.gz 90AA_tm_signal.tsv.gz 0_arc_motif_cog.tsv 0_bac_motif_cog.tsv | 1_arc_motif_cog_count_trans.tsv 1_arc_motif_cog_count_not_trans.tsv 1_bac_motif_cog_count_trans.tsv 1_bac_motif_cog_count_not_trans.tsv |
+| 01_map_taxonomy_trans.py | Map transmembrane or secreted families to taxonomy and count transmembrane or secreted fraction of each phylum | 90AA_tm_signal.tsv 90AA_tax.tsv.xz | trans_taxa.tsv trans_phylum.csv |
+| 02_extract_cog.py | Extract bacterial and archaeal 90AA families with COG annotation | 90AA_tax.tsv.xz 1_cdd_tcov_90AA.tsv.gz cddid_all.tbl cog-20.def.tab.tsv | 0_arc_motif_cog.tsv 0_bac_motif_cog.tsv 0_bg_motif_cog.tsv |
+| 03_count_cog_class.py | Count the number of each COG class of smORFs | 0_bac_motif_cog.tsv 0_arc_motif_cog.tsv 0_bg_motif_cog.tsv | 1_bac_motif_cog_class_count.tsv 1_arc_motif_cog_class_count.tsv 1_bg_motif_cog_class_count.tsv |
+| 04_count_cog.py | Count the number of each COG of smORFs | 0_arc_motif_cog.tsv 0_bg_motif_cog.tsv | 1_arc_motif_cog_count.tsv 1_bg_motif_cog_count.tsv_new |
+| 05_count_cog_class_trans.py | Count number of each cog class number of transmembrane or secreted smORFs | 90AA_tm_signal.tsv 0_arc_motif_cog.tsv 0_bac_motif_cog.tsv | 2_arc_motif_cog_class_count_trans.tsv 2_bac_motif_cog_class_count_trans.tsv |
+| 06_count_cog_trans.py | Count number of each COG of transmembrane or secreted smORFs | 90AA_tm_signal.tsv.gz 0_arc_motif_cog.tsv 0_bac_motif_cog.tsv | 9_arc_motif_cog_count_trans.tsv 9_arc_motif_cog_count_not_trans.tsv 9_bac_motif_cog_count_trans.tsv 9_bac_motif_cog_count_not_trans.tsv |

@@ -52,4 +52,4 @@ These databases are used in the construction and analysis of the catalogue.
 
 smORF catalogue & annotations: The smORF catalogue and its annotations are available at https://doi.org/10.5281/zenodo.7944370.
 
-Preprocessed data: For convenience, the preprocessed files are available under the Preprocessed_Files folder.
+Preprocessed data: For convenience, the preprocessed files are available under the `Manuscript_anlysis/data` folder.

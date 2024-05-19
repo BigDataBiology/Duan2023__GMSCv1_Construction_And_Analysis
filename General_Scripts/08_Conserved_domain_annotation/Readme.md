@@ -1,4 +1,4 @@
-## 07_GMSC_mapper_benchmark
+## 08_Conserved_domain_annotation
 
 ### 01_Annotation
 
