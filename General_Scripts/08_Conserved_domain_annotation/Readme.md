@@ -22,5 +22,7 @@
 | **Code** | **Description** |
 | :---: | :---: | :---: | :---: | 
 | 01_multi_genus.py | Extract multi-genus and specific-genus families. | 90AA_taxa_multi_specific.tsv | multi_genus_3.tsv specific_genus_3.tsv  |
-| 02_keep_size.py | Keep the same size for selected clusers from multi-genus and the whole clusters. | 90AA_taxa_multi_specific.tsv multi_genus_3.tsv| whole_3_selected.tsv |
-| 03_extract_count.py | Calculate fraction of habitats and cdd annotation of families from the whole GMSCwith the same size distribution. | whole_3_selected.tsv  90AA_multi_habitat_cdd.tsv 90AA_multi_habitat.tsv | whole_3_selected_habitat_cdd.tsv whole_3_selected_habitat.tsv |
+| 02_map_cdd_3.py | Map CDD annotation | 1_cdd_tcov_90AA.tsv.gz cddid_all.tbl.gz 90AA_multi_habitat.tsv multi_genus_3.tsv | 90AA_multi_habitat_cdd.tsv multi_genus_3_cdd.tsv|
+| 03_keep_size.py | Keep the same size for selected clusers from multi-genus and the whole clusters. | 90AA_taxa_multi_specific.tsv multi_genus_3.tsv| whole_3_selected.tsv |
+| 04_extract_count_cdd_habitat.py | Calculate fraction of habitats and cdd annotation of families. | whole_3_selected.tsv 90AA_multi_habitat_cdd.tsv 90AA_multi_habitat.tsv | whole_3_selected_habitat_cdd.tsv whole_3_selected_habitat.tsv |
+| 05_count_pfam.py | Map Pfam clan and count Pfam number. | multi_genus_3_cdd.tsv 90AA_multi_habitat_cdd.tsv Pfam-A.clans.tsv pfam-c_format.txt | multi_genus_3_pfam_count.tsv 90AA_multi_habitat_pfam_count.tsv |

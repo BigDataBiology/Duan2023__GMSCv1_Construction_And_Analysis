@@ -1,5 +1,5 @@
 '''
-
+Calculate fraction of habitats and cdd annotation of families.
 '''
 def extract(infile_1,infile_2,outfile):
     smorf_set = set()
@@ -70,5 +70,7 @@ infile3 = '90AA_multi_habitat.tsv'
 outfile2 = 'whole_3_selected_habitat.tsv'
 extract(infile1,infile3,outfile2)
 
+count_multi_cdd(infile2)
 count_multi_cdd(outfile1)
+count_multi_habitat(infile3)
 count_multi_habitat(outfile2)
