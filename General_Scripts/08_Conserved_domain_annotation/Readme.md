@@ -19,7 +19,7 @@
 
 ### 03_multi-genus_enrichment
 
-| **Code** | **Description** |
+| **Code** | **Description** | **Input** | **Output** |
 | :---: | :---: | :---: | :---: | 
 | 01_multi_genus.py | Extract multi-genus and specific-genus families. | 90AA_taxa_multi_specific.tsv | multi_genus_3.tsv specific_genus_3.tsv  |
 | 02_map_cdd_3.py | Map CDD annotation | 1_cdd_tcov_90AA.tsv.gz cddid_all.tbl.gz 90AA_multi_habitat.tsv multi_genus_3.tsv | 90AA_multi_habitat_cdd.tsv multi_genus_3_cdd.tsv|

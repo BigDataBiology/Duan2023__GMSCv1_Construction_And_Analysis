@@ -7,16 +7,14 @@ def filter(file_dir,outfile):
     import os
     out = open(outfile, "wt")
     for n in range(1,288):
-        print("first"+str(n)+"\n")
-        first_dir = file_dir+"/first"+str(n)
+        first_dir = f'{file_dir}/first{n}'
         for m in range(1,301):
-            print("second"+str(m)+"\n")
-            second_dir = first_dir+"/second"+str(m)
+            second_dir = f'{first_dir}/second{m}'
             if os.listdir(second_dir):
                 for infile in os.listdir(second_dir):
-                    file_path = second_dir+"/"+infile
-                    with open (file_path) as f1:
-                        for line in f1 :
+                    file_path = f'{second_dir}/{infile}'
+                    with open(file_path) as f:
+                        for line in f:
                             linelist = line.strip().split("\t")
                             if float(linelist[-1]) < 0.05:
                                 filesplit = infile.split(".")
@@ -50,6 +48,56 @@ def true_false_100AA_90AA(infile1,infile2,outfile1,outfile2,outfile3):
     out2.close()
     out3.close()
 
+def file_name(file_dir,outfile):
+    import os
+
+    out = open(outfile, "w")
+    for n in range(1,288):
+        first_dir = f'{file_dir}/first{n}'
+        for m in range(1,301):
+            second_dir = f'{first_dir}/second{m}'
+            for infile in os.listdir(second_dir):
+                file_path = f'{second_dir}/{infile}'
+                name = infile.replace('.fna.aln.tsv','')
+                with open(file_path) as f:
+                    linelist = f.readline().strip().split('\t')
+                    if len(linelist) >1:
+                        out.write(f'{name}\t{linelist[10]}\n')
+    out.close()
+
+def full_90(infile,outfile):
+    metaT = {}
+    with open(infile,'rt') as f:
+        for line in f:
+            cluster,number = line.strip().split('\t')
+            metaT[cluster] = number
+
+    with open(outfile,'wt') as out:
+        for i in range(287926875):
+            nf = f'{i:09}'
+            name = f'GMSC10.90AA.{nf[:3]}_{nf[3:6]}_{nf[6:9]}'
+            if name in metaT.keys():
+                out.write(f'{name}\t{metaT[name]}\n')
+            else:
+                out.write(f'{name}\tNA\n')
+
+def full_100(infile1,infile2,outfile):
+    import gzip
+
+    rnacode = {}
+    with open(infile1,'rt') as f:
+        for line in f:
+            cluster,number = line.strip().split('\t')
+            rnacode[cluster] = number
+
+    with open(outfile,'wt') as out:
+        with gzip.open(infile2,'rt') as f:
+            for line in f:
+                member,cluster = line.strip().split('\t')
+                if cluster in rnacode.keys():
+                    out.write(f'{member}\t{rnacode[cluster]}\n')
+                else:
+                    out.write(f'{member}\tNA\n')
 
 INPUT_DIR = "./rnacode"
 INPUT_FILE_1 = "GMSC.cluster_filter.tsv"
@@ -60,3 +108,13 @@ OUTPUT_FILE_4 = "rnacode_false_90AA.tsv"
 
 filter(INPUT_DIR,OUTPUT_FILE_1)
 true_false_100AA_90AA(OUTPUT_FILE_1,INPUT_FILE_1,OUTPUT_FILE_2,OUTPUT_FILE_3,OUTPUT_FILE_4)
+
+OUTPUT_FILE_5 = "90AA_RNAcode_p.tsv"
+file_name(INPUT_DIR,OUTPUT_FILE_5)
+
+OUTPUT_FILE_6 = '90AA_RNAcode.tsv'
+full_90(OUTPUT_FILE_5,OUTPUT_FILE_6)
+
+INPUT_FILE_3 = 'GMSC.cluster.tsv.gz'
+OUTPUT_FILE_7 = '100AA_RNAcode.tsv'
+full_100(INPUT_FILE_2,INPUT_FILE_3,OUTPUT_FILE_7)

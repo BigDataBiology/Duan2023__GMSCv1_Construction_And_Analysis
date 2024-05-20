@@ -74,6 +74,22 @@ def processfile_cov(infile):
         df = pd.DataFrame(out,columns=['Access','Coverage','QualityString'])
         return df.sort_values('Access')
     
+import re
+
+def processfile_cov_all(infile):
+    with open(infile, 'rt') as db:
+        out = []
+        for row in db:
+            smorf, seq, substr_lst = row.strip().split('\t')
+            for s in ['[',']',"'",' ']:
+                substr_lst = substr_lst.replace(s, '')
+            substr_lst = substr_lst.split(',')
+            if (smorf != 'query') and (seq != 'Sequence'):
+                cov, qualstr, _ = covcalc(seq, substr_lst)
+                out.append([smorf, cov])
+        df = pd.DataFrame(out,columns=['Access','Coverage'])
+        return df.sort_values('Access')
+
 if __name__ == '__main__':
     folder = "./map_result"
     ofile = "merged_output.tsv"
@@ -82,3 +98,5 @@ if __name__ == '__main__':
     df = processfile_cov(ofile)
     # saving final results
     df.to_csv('coverage_analysis.tsv',sep='\t', header=True, index=None)
+    df = processfile_cov_all(ofile)
+    df.to_csv('100AA_metaP.tsv',sep='\t', header=True, index=None)

@@ -3,18 +3,29 @@ Merge all the quality control results.
 If it pass all the computational checking(Antifam,RNAcode,coordinate),
 and has at least 1 experimental evidence(Metaproteomes,metatranstomes,riboseq),then it will be high quality.
 '''
+def store_100(infile):
+    import lzma
+    smorf_100 = {}
+    with lzma.open(infile,"rt") as f1:
+        for line in f1:
+            member,cluster = line.strip().split("\t")
+            smorf_100[member] = ["NA","T","F","F","NA","F"]
+    return smorf_100
 
-def merge(infile1,infile2,infile3,infile4,infile5,infile6,infile7,infile8,outfile):
+def store_90(infile):
+    import lzma
+    smorf_90 = {}
+    with lzma.open(infile,"rt") as f1:
+        for line in f1:
+            member,cluster = line.strip().split("\t")
+            smorf_90[cluster] = ["NA","T","F","F","NA","F"]
+    return smorf_90
+
+def merge(smorf,infile2,infile3,infile4,infile5,infile6,infile7,infile8,outfile):
     import lzma
     import gzip
 
     out = lzma.open(outfile, "wt")
-    smorf = {}
-
-    with lzma.open (infile1,"rt") as f1:
-        for line in f1:
-            linelist = line.strip().split("\t")
-            smorf[linelist[0]] = ["NA","T","F","F","NA","F"]
             
     with lzma.open(infile2,"rt") as f2:
         for line in f2:
@@ -78,13 +89,15 @@ INPUT_FILE_8 = "metaT_100AA.tsv"
 OUTPUT_FILE_1 = "GMSC10.100AA.quality.tsv.xz"
 OUTPUT_FILE_2 = "allpass_100AA.txt"
 
-merge(INPUT_FILE_1,INPUT_FILE_2,INPUT_FILE_3,INPUT_FILE_4,INPUT_FILE_5,INPUT_FILE_6,INPUT_FILE_7,INPUT_FILE_8,OUTPUT_FILE_1)
+smorf_100 = store_100(INPUT_FILE_1)
+merge(smorf_100,INPUT_FILE_2,INPUT_FILE_3,INPUT_FILE_4,INPUT_FILE_5,INPUT_FILE_6,INPUT_FILE_7,INPUT_FILE_8,OUTPUT_FILE_1)
 allpass(OUTPUT_FILE_1,OUTPUT_FILE_2)
 
+#90AA
 INPUT_FILE_1 = "GMSC.cluster.tsv.gz"
 INPUT_FILE_2 = "rnacode_true_90AA.tsv"
 INPUT_FILE_3 = "rnacode_false_90AA.tsv"
-INPUT_FILE_4 = "antifam_90AA.tsv.gz"
+INPUT_FILE_4 = "antifam_90AA.tsv"
 INPUT_FILE_5 = "metaP_90AA.tsv.gz"
 INPUT_FILE_6 = "riboseq_90AA.tsv"
 INPUT_FILE_7 = "90AA_coordinate.tsv.gz"
@@ -92,5 +105,6 @@ INPUT_FILE_8 = "metaT_90AA.tsv"
 OUTPUT_FILE_1 = "GMSC10.90AA.quality.tsv.xz"
 OUTPUT_FILE_2 = "allpass_90AA.txt"
 
-merge(INPUT_FILE_1,INPUT_FILE_2,INPUT_FILE_3,INPUT_FILE_4,INPUT_FILE_5,INPUT_FILE_6,INPUT_FILE_7,INPUT_FILE_8,OUTPUT_FILE_1)
+smorf_90 = store_90(INPUT_FILE_1)
+merge(smorf_90,INPUT_FILE_2,INPUT_FILE_3,INPUT_FILE_4,INPUT_FILE_5,INPUT_FILE_6,INPUT_FILE_7,INPUT_FILE_8,OUTPUT_FILE_1)
 allpass(OUTPUT_FILE_1,OUTPUT_FILE_2)
