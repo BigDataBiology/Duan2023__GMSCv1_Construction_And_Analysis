@@ -7,9 +7,9 @@ The global microbial smORFs catalogue (GMSC) is available at https://gmsc.big-da
 
 ## Introduction
 
-The folder **General_Scripts** contains scripts to generate GMSC resourece from the raw data.
+The **General_Scripts** folder contains scripts to generate the GMSC resource.
 
-The folder **Manuscript_Analysis** contains pre-computed files and scripts to run the analysis and generate figures included in the GMSC manuscript.
+The **Manuscript_Analysis** folder contains pre-computed files and scripts to run the analysis and generate figures included in the GMSC manuscript.
 
 ## Dependencies
 
