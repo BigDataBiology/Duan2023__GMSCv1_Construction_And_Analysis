@@ -53,7 +53,7 @@ def hq(infile,outfile,aa):
                 else:
                     antifam,terminal,rnacode,metat,riboseq,metap = line.strip().split('\t')
                     if rnacode != 'NA':
-                        if (antifam == 'T' and terminal == 'T' and float(rnacode)<0.05) and (int(metat)>1 or int(riboseq)>1 or round(float(metap),1) >= 0.5):
+                        if (antifam == 'T' and terminal == 'T' and float(rnacode)<0.05) and (int(metat)>1 or int(riboseq)>1 or float(metap) >= 0.5):
                             number = n-1
                             nf = f'{number:09}'
                             name = f'GMSC10.{aa}AA.{nf[:3]}_{nf[3:6]}_{nf[6:9]}'

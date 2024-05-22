@@ -68,7 +68,6 @@ def processfile_cov(infile):
             substr_lst = substr_lst.split(',')
             if (smorf != 'query') and (seq != 'Sequence'):
                 cov, qualstr, _ = covcalc(seq, substr_lst)                     
-                cov = round(cov, 1)
                 if cov >= 0.5:
                     out.append([smorf, cov, qualstr])
         df = pd.DataFrame(out,columns=['Access','Coverage','QualityString'])
