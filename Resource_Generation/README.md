@@ -1,5 +1,6 @@
-# General_Scripts
-The folder contains scripts to generate GMSC resourece from the raw data.
+# Resource generation scripts
+
+The folder contains scripts to generate GMSC resourece from the raw data. Running it requires access to the original data (which is publicly available, but very large) and a large amount of computational resources. They are provided for transparency and reproducibility, but we recommend that most users use the pre-generated resources available on Zenodo or the GMSC website.
 
 ## 00_Remove_redundancy_and_cluster
 
@@ -109,7 +110,7 @@ The folder contains scripts to generate GMSC resourece from the raw data.
 | **Code** | **Description** |
 | :---: | :---: |
 | 01_download.sh | Download archaeal and bacterial proteins from Refseq | 
-| 02_filter_sp_dedup.py | Filter sequences (<100aa) and remove redundancy | 
+| 02_filter_sp_dedup.py | Filter sequences (&lt;100aa) and remove redundancy | 
 | 03_align.sh | Use Diamond to align sequences to GMSC | 
 
 ## 07_GMSC_mapper_benchmark
